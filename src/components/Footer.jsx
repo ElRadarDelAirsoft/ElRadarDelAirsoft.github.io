@@ -48,6 +48,18 @@ export default function Footer({ ultimaActualizacion }) {
             </a>
           </div>
         </div>
+
+        <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 dark:border-base-600/60 dark:bg-base-800/50">
+          <img
+            src="/images/Yape.jpg"
+            alt="Código QR de Yape para donaciones"
+            loading="lazy"
+            className="h-12 w-12 sm:h-14 sm:w-14 rounded-lg object-cover shrink-0"
+          />
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+            Si te pude ayudar con algo, se aceptan donaciones para seguir dando un buen servicio.
+          </p>
+        </div>
       </div>
     </footer>
   )
