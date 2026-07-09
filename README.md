@@ -1,4 +1,4 @@
-# Airsoft Perú · Biblioteca
+# El Radar del Airsoft
 
 Directorio web de la comunidad de airsoft en Perú: canchas, tiendas, grupos de WhatsApp,
 eventos, importadores, mercado de pulgas, workshops, jugadores y equipos.

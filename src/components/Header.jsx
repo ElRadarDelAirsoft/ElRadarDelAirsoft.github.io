@@ -17,9 +17,9 @@ export default function Header({ search, onSearchChange, isDark, onToggleDark })
             </div>
             <div className="min-w-0">
               <h1 className="font-display font-extrabold text-xl sm:text-2xl leading-tight tracking-tight">
-                <span className="hidden sm:inline text-base-900 dark:text-white">Airsoft </span>
-                <span className="text-gradient">Perú</span>
-                <span className="hidden sm:inline text-base-900 dark:text-white"> · Biblioteca</span>
+                <span className="hidden sm:inline text-base-900 dark:text-white">El </span>
+                <span className="text-gradient">Radar</span>
+                <span className="text-base-900 dark:text-white"> del Airsoft</span>
               </h1>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 truncate">
                 Todo lo que necesitas de la comunidad: canchas, tiendas, grupos, eventos y más.
