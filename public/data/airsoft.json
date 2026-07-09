@@ -75,6 +75,81 @@
       "organizador": "Eduardo",
       "descripcion": "Cancha comunitaria con módulos de contenedores y torres de francotirador.",
       "horarios": "Sáb-Dom 9:00am-4:00pm"
+    },
+    {
+      "id": 6,
+      "nombre": "Ares Norte",
+      "direccion": "",
+      "telefono": "",
+      "whatsapp": "",
+      "email": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "imagen": "",
+      "organizador": "",
+      "descripcion": "",
+      "horarios": ""
+    },
+    {
+      "id": 7,
+      "nombre": "Napoles",
+      "direccion": "",
+      "telefono": "",
+      "whatsapp": "",
+      "email": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "imagen": "",
+      "organizador": "",
+      "descripcion": "",
+      "horarios": ""
+    },
+    {
+      "id": 8,
+      "nombre": "Sherwood",
+      "direccion": "",
+      "telefono": "",
+      "whatsapp": "",
+      "email": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "imagen": "",
+      "organizador": "",
+      "descripcion": "",
+      "horarios": ""
+    },
+    {
+      "id": 9,
+      "nombre": "Camboya",
+      "direccion": "",
+      "telefono": "",
+      "whatsapp": "",
+      "email": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "imagen": "",
+      "organizador": "",
+      "descripcion": "",
+      "horarios": ""
+    },
+    {
+      "id": 10,
+      "nombre": "Mamacona",
+      "direccion": "",
+      "telefono": "",
+      "whatsapp": "",
+      "email": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "imagen": "",
+      "organizador": "",
+      "descripcion": "",
+      "horarios": ""
     }
   ],
 
@@ -255,6 +330,66 @@
       "especialidad": "Partes internas HPA y GBB, custom builds",
       "tiempo_entrega": "30-40 días hábiles",
       "zonas_cobertura": "Todo el Perú"
+    },
+    {
+      "id": 5,
+      "nombre": "Sami",
+      "contacto": "",
+      "whatsapp": "",
+      "email": "",
+      "especialidad": "",
+      "tiempo_entrega": "",
+      "zonas_cobertura": ""
+    },
+    {
+      "id": 6,
+      "nombre": "Rambo",
+      "contacto": "",
+      "whatsapp": "",
+      "email": "",
+      "especialidad": "",
+      "tiempo_entrega": "",
+      "zonas_cobertura": ""
+    },
+    {
+      "id": 7,
+      "nombre": "Ares",
+      "contacto": "",
+      "whatsapp": "",
+      "email": "",
+      "especialidad": "",
+      "tiempo_entrega": "",
+      "zonas_cobertura": ""
+    },
+    {
+      "id": 8,
+      "nombre": "Padrino",
+      "contacto": "",
+      "whatsapp": "",
+      "email": "",
+      "especialidad": "",
+      "tiempo_entrega": "",
+      "zonas_cobertura": ""
+    },
+    {
+      "id": 9,
+      "nombre": "Parabellum",
+      "contacto": "",
+      "whatsapp": "",
+      "email": "",
+      "especialidad": "",
+      "tiempo_entrega": "",
+      "zonas_cobertura": ""
+    },
+    {
+      "id": 10,
+      "nombre": "Wizard",
+      "contacto": "",
+      "whatsapp": "",
+      "email": "",
+      "especialidad": "",
+      "tiempo_entrega": "",
+      "zonas_cobertura": ""
     }
   ],
 
@@ -345,6 +480,83 @@
       "especialidad": "Customización estética, cerakote y upgrades internos",
       "horarios": "Lun-Sáb 9:00am-6:00pm",
       "tiempo_reparacion_promedio": "7-10 días hábiles"
+    },
+    {
+      "id": 5,
+      "nombre": "Russito",
+      "contacto": "",
+      "whatsapp": "",
+      "email": "",
+      "ubicacion": "",
+      "especialidad": "",
+      "horarios": "",
+      "tiempo_reparacion_promedio": ""
+    },
+    {
+      "id": 6,
+      "nombre": "Ares",
+      "contacto": "",
+      "whatsapp": "",
+      "email": "",
+      "ubicacion": "",
+      "especialidad": "",
+      "horarios": "",
+      "tiempo_reparacion_promedio": ""
+    },
+    {
+      "id": 7,
+      "nombre": "Padrino",
+      "contacto": "",
+      "whatsapp": "",
+      "email": "",
+      "ubicacion": "",
+      "especialidad": "",
+      "horarios": "",
+      "tiempo_reparacion_promedio": ""
+    },
+    {
+      "id": 8,
+      "nombre": "Parabellum",
+      "contacto": "",
+      "whatsapp": "",
+      "email": "",
+      "ubicacion": "",
+      "especialidad": "",
+      "horarios": "",
+      "tiempo_reparacion_promedio": ""
+    },
+    {
+      "id": 9,
+      "nombre": "Akito",
+      "contacto": "",
+      "whatsapp": "",
+      "email": "",
+      "ubicacion": "",
+      "especialidad": "",
+      "horarios": "",
+      "tiempo_reparacion_promedio": ""
+    },
+    {
+      "id": 10,
+      "nombre": "Russo viejo",
+      "contacto": "",
+      "whatsapp": "",
+      "email": "",
+      "ubicacion": "",
+      "especialidad": "",
+      "horarios": "",
+      "tiempo_reparacion_promedio": ""
+    },
+    {
+      "id": 11,
+      "nombre": "Acanga",
+      "contacto": "",
+      "whatsapp": "",
+      "email": "",
+      "ubicacion": "",
+      "especialidad": "",
+      "horarios": "",
+      "tiempo_reparacion_promedio": ""
     }
   ],
 
@@ -431,6 +643,21 @@
       "contacto_capitan": "Martín Villar",
       "whatsapp": "+51 954012399",
       "torneo_o_cancha_principal": "Delta Ops Airsoft Park"
+    }
+  ],
+
+  "pintado_replicas": [
+    {
+      "id": 1,
+      "nombre": "Patron Custom",
+      "contacto": "",
+      "whatsapp": "",
+      "email": "",
+      "instagram": "",
+      "ubicacion": "",
+      "especialidad": "",
+      "tiempo_entrega": "",
+      "imagen": ""
     }
   ]
 }

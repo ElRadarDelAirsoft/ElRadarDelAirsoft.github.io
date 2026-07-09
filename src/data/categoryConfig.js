@@ -226,6 +226,29 @@ export const categoryConfig = {
       cta: null,
     }),
   },
+
+  pintado_replicas: {
+    label: 'Pintado de Réplicas',
+    emoji: '🎨',
+    normalize: (i) => ({
+      id: i.id,
+      nombre: i.nombre,
+      imagen: i.imagen,
+      descripcion: i.especialidad,
+      badge: null,
+      direccion: i.ubicacion ? { texto: i.ubicacion, mapsQuery: i.ubicacion } : null,
+      telefono: null,
+      email: i.email,
+      web: null,
+      whatsapp: i.whatsapp ? { label: 'Contactar por WhatsApp', href: whatsappLinkFromPhone(i.whatsapp) } : null,
+      socials: { instagram: i.instagram, tiktok: null, youtube: null, twitch: null },
+      extra: [
+        i.contacto ? { icon: TagIcon, text: `Contacto: ${i.contacto}` } : null,
+        i.tiempo_entrega ? { icon: ClockIcon, text: `Entrega: ${i.tiempo_entrega}` } : null,
+      ].filter(Boolean),
+      cta: null,
+    }),
+  },
 }
 
 export const categoryKeys = Object.keys(categoryConfig)
