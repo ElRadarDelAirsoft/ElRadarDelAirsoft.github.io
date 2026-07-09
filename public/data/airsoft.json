@@ -1,0 +1,423 @@
+{
+  "_INSTRUCCIONES": "EDITA ESTE ARCHIVO PARA AGREGAR/MODIFICAR CONTENIDO. Solo cambia los valores, no la estructura. No borres ninguna clave (aunque esté vacía, deja \"\"). Guarda las imágenes en /public/images/<categoria>/ y referencia la ruta como \"/images/<categoria>/archivo.jpg\". Para agregar una entrada nueva, copia un objeto existente dentro del arreglo de su categoría, pégalo y cambia los valores (usa un \"id\" nuevo que no se repita).",
+  "_ultima_actualizacion": "2026-07-08",
+
+  "canchas": [
+    {
+      "id": 1,
+      "nombre": "Delta Ops Airsoft Park",
+      "direccion": "Av. Los Frutales 450, Ate, Lima",
+      "telefono": "+51 987654321",
+      "whatsapp": "+51 987654321",
+      "email": "contacto@deltaops.pe",
+      "web": "www.deltaops.pe",
+      "instagram": "@deltaops.pe",
+      "tiktok": "@deltaops.pe",
+      "imagen": "/images/canchas/delta-ops.jpg",
+      "organizador": "Renzo Vidal",
+      "descripcion": "Cancha MilSim de 3 hectáreas con bosque, trincheras y estructuras urbanas. Ideal para partidas largas.",
+      "horarios": "Sáb-Dom 8:00am-6:00pm"
+    },
+    {
+      "id": 2,
+      "nombre": "Zona de Combate CQB Surco",
+      "direccion": "Jr. Las Begonias 210, Surco, Lima",
+      "telefono": "+51 976543210",
+      "whatsapp": "+51 976543210",
+      "email": "info@zonacombate.pe",
+      "web": "www.zonacombate.pe",
+      "instagram": "@zonacombate",
+      "tiktok": "@zonacombate",
+      "imagen": "/images/canchas/cqb-surco.jpg",
+      "organizador": "Diego Salazar",
+      "descripcion": "Escenario CQB techado de 2 pisos, ideal para speedsoft y partidas cortas entre semana.",
+      "horarios": "Mar-Dom 3:00pm-11:00pm"
+    },
+    {
+      "id": 3,
+      "nombre": "Black Hawk Airsoft Field",
+      "direccion": "Km 22 Carretera Central, Chosica, Lima",
+      "telefono": "+51 965432109",
+      "whatsapp": "+51 965432109",
+      "email": "reservas@blackhawkfield.pe",
+      "web": "",
+      "instagram": "@blackhawk.airsoft",
+      "tiktok": "",
+      "imagen": "/images/canchas/black-hawk.jpg",
+      "organizador": "Familia Cárdenas",
+      "descripcion": "Terreno abierto tipo desierto con vehículos abandonados como cobertura. Eventos temáticos mensuales.",
+      "horarios": "Vie-Dom 9:00am-5:00pm"
+    },
+    {
+      "id": 4,
+      "nombre": "Fortaleza Norte Airsoft",
+      "direccion": "Av. Naranjal 1800, Los Olivos, Lima",
+      "telefono": "+51 954321098",
+      "whatsapp": "+51 954321098",
+      "email": "fortalezanorte@gmail.com",
+      "web": "",
+      "instagram": "@fortalezanorte.as",
+      "tiktok": "@fortalezanorte.as",
+      "imagen": "/images/canchas/fortaleza-norte.jpg",
+      "organizador": "Kevin Ramos",
+      "descripcion": "Cancha comunitaria con módulos de contenedores y torres de francotirador.",
+      "horarios": "Sáb-Dom 9:00am-4:00pm"
+    }
+  ],
+
+  "tiendas": [
+    {
+      "id": 1,
+      "nombre": "Airsoft Warehouse Perú",
+      "direccion": "Av. Angamos Este 1450, Surquillo, Lima",
+      "telefono": "+51 943210987",
+      "whatsapp": "+51 943210987",
+      "email": "ventas@airsoftwarehouse.pe",
+      "instagram": "@airsoftwarehouse.pe",
+      "tiktok": "@airsoftwarehouse.pe",
+      "web": "www.airsoftwarehouse.pe",
+      "imagen": "/images/tiendas/warehouse.jpg",
+      "especialidad": "Réplicas AEG/GBB, accesorios tácticos y protección",
+      "descripcion": "Tienda física y online con las principales marcas: Tokyo Marui, VFC, KWA, WE."
+    },
+    {
+      "id": 2,
+      "nombre": "Tactical Gear Store",
+      "direccion": "C.C. Real Plaza, Local 214, San Miguel, Lima",
+      "telefono": "+51 932109876",
+      "whatsapp": "+51 932109876",
+      "email": "contacto@tacticalgear.pe",
+      "instagram": "@tacticalgear.pe",
+      "tiktok": "",
+      "web": "www.tacticalgear.pe",
+      "imagen": "/images/tiendas/tactical-gear.jpg",
+      "especialidad": "Ropa táctica, chalecos y accesorios de protección",
+      "descripcion": "Especialistas en equipo de protección: lentes, chalecos, guantes y uniformes."
+    },
+    {
+      "id": 3,
+      "nombre": "Munición Express Lima",
+      "direccion": "Jr. Puno 890, Cercado de Lima",
+      "telefono": "+51 921098765",
+      "whatsapp": "+51 921098765",
+      "email": "pedidos@municionexpress.pe",
+      "instagram": "@municionexpress",
+      "tiktok": "@municionexpress",
+      "web": "",
+      "imagen": "/images/tiendas/municion-express.jpg",
+      "especialidad": "Munición BB 0.20g-0.32g y gas verde/propano",
+      "descripcion": "Delivery el mismo día en Lima Metropolitana para pedidos de munición y gas."
+    },
+    {
+      "id": 4,
+      "nombre": "Replica Store Arequipa",
+      "direccion": "Calle Mercaderes 320, Cercado, Arequipa",
+      "telefono": "+51 910987654",
+      "whatsapp": "+51 910987654",
+      "email": "info@replicastoreaqp.pe",
+      "instagram": "@replicastore.aqp",
+      "tiktok": "",
+      "web": "",
+      "imagen": "/images/tiendas/replica-store-aqp.jpg",
+      "especialidad": "Réplicas y accesorios, envíos a todo el sur",
+      "descripcion": "Primera tienda especializada de airsoft en Arequipa, con showroom y taller propio."
+    }
+  ],
+
+  "grupos_whatsapp": [
+    {
+      "id": 1,
+      "nombre": "Airsoft Perú Oficial",
+      "descripcion": "Grupo general de la comunidad: noticias, compra-venta y coordinación de partidas.",
+      "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0001",
+      "miembros_aprox": 950,
+      "admin_contacto": "Renzo F.",
+      "tematica": "Casual / General - Todo el Perú"
+    },
+    {
+      "id": 2,
+      "nombre": "Milsim Lima Norte",
+      "descripcion": "Coordinación de partidas MilSim y operaciones de fin de semana en zona norte.",
+      "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0002",
+      "miembros_aprox": 210,
+      "admin_contacto": "Kevin Ramos",
+      "tematica": "MilSim - Lima Norte"
+    },
+    {
+      "id": 3,
+      "nombre": "Speedsoft Competitivo PE",
+      "descripcion": "Grupo enfocado en torneos de speedsoft y entrenamientos CQB competitivos.",
+      "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0003",
+      "miembros_aprox": 130,
+      "admin_contacto": "Diego Salazar",
+      "tematica": "Competitivo"
+    },
+    {
+      "id": 4,
+      "nombre": "Airsoft Arequipa Sur",
+      "descripcion": "Grupo regional para coordinar partidas y compra-venta en Arequipa y alrededores.",
+      "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0004",
+      "miembros_aprox": 85,
+      "admin_contacto": "Fabrizio Chávez",
+      "tematica": "Regional - Arequipa"
+    }
+  ],
+
+  "eventos": [
+    {
+      "id": 1,
+      "nombre": "Herzog: Operación Fenrir",
+      "fecha_hora": "2026-08-15 08:00am",
+      "ubicacion": "Black Hawk Airsoft Field, Chosica, Lima",
+      "descripcion": "Evento MilSim de 8 horas con narrativa, facciones y objetivos por radio.",
+      "aforo": "120 jugadores",
+      "contacto": "Equipo Herzog",
+      "whatsapp": "+51 987012345",
+      "link_inscripcion": "https://forms.gle/EJEMPLOHERZOG1",
+      "imagen": "/images/eventos/operacion-fenrir.jpg"
+    },
+    {
+      "id": 2,
+      "nombre": "Herzog: Noche de Asalto",
+      "fecha_hora": "2026-09-05 06:00pm",
+      "ubicacion": "Delta Ops Airsoft Park, Ate, Lima",
+      "descripcion": "Partida nocturna con equipo de iluminación táctica obligatorio.",
+      "aforo": "80 jugadores",
+      "contacto": "Equipo Herzog",
+      "whatsapp": "+51 987012345",
+      "link_inscripcion": "https://forms.gle/EJEMPLOHERZOG2",
+      "imagen": "/images/eventos/noche-asalto.jpg"
+    },
+    {
+      "id": 3,
+      "nombre": "Herzog: Copa Regional Speedsoft",
+      "fecha_hora": "2026-09-20 09:00am",
+      "ubicacion": "Zona de Combate CQB Surco, Lima",
+      "descripcion": "Torneo eliminatorio por equipos de 4, formato speedsoft 2 vs 2 y 4 vs 4.",
+      "aforo": "64 jugadores (16 equipos)",
+      "contacto": "Equipo Herzog",
+      "whatsapp": "+51 987012345",
+      "link_inscripcion": "https://forms.gle/EJEMPLOHERZOG3",
+      "imagen": "/images/eventos/copa-speedsoft.jpg"
+    }
+  ],
+
+  "importadores": [
+    {
+      "id": 1,
+      "nombre": "PE Airsoft Import",
+      "contacto": "Jorge Huamán",
+      "whatsapp": "+51 998877665",
+      "email": "ventas@peairsoftimport.com",
+      "especialidad": "Réplicas de alta gama (Tokyo Marui, KRYTAC, VFC)",
+      "tiempo_entrega": "25-35 días hábiles",
+      "zonas_cobertura": "Todo el Perú"
+    },
+    {
+      "id": 2,
+      "nombre": "Tactical Import SAC",
+      "contacto": "Mariana Ríos",
+      "whatsapp": "+51 987766554",
+      "email": "importaciones@tacticalimport.pe",
+      "especialidad": "Accesorios, ópticas y partes de repuesto",
+      "tiempo_entrega": "15-20 días hábiles",
+      "zonas_cobertura": "Lima y Callao"
+    },
+    {
+      "id": 3,
+      "nombre": "Gear Import Perú",
+      "contacto": "Luis Fernández",
+      "whatsapp": "+51 976655443",
+      "email": "contacto@gearimportperu.com",
+      "especialidad": "Munición al por mayor y gas HFC134a/verde",
+      "tiempo_entrega": "10-15 días hábiles",
+      "zonas_cobertura": "Lima, Trujillo y Chiclayo"
+    },
+    {
+      "id": 4,
+      "nombre": "Andes Airsoft Import",
+      "contacto": "Patricia Loayza",
+      "whatsapp": "+51 965544332",
+      "email": "info@andesairsoft.pe",
+      "especialidad": "Partes internas HPA y GBB, custom builds",
+      "tiempo_entrega": "30-40 días hábiles",
+      "zonas_cobertura": "Todo el Perú"
+    }
+  ],
+
+  "mercado_pulgas": [
+    {
+      "id": 1,
+      "tipo": "persona",
+      "nombre": "Cristian M.",
+      "contacto": "Cristian Medina",
+      "whatsapp": "+51 954433221",
+      "ubicacion": "San Juan de Lurigancho, Lima",
+      "que_vende": "AEG G36C usada, cargadores y chaleco plate carrier",
+      "imagen": "/images/mercado_pulgas/cristian-m.jpg"
+    },
+    {
+      "id": 2,
+      "tipo": "tienda",
+      "nombre": "Segunda Vuelta Airsoft",
+      "contacto": "Andrea Paredes",
+      "whatsapp": "+51 943322110",
+      "ubicacion": "Av. Brasil 2200, Jesús María, Lima",
+      "que_vende": "Réplicas usadas certificadas, accesorios y uniformes de segunda mano",
+      "imagen": "/images/mercado_pulgas/segunda-vuelta.jpg"
+    },
+    {
+      "id": 3,
+      "tipo": "persona",
+      "nombre": "Gonzalo T.",
+      "contacto": "Gonzalo Torres",
+      "whatsapp": "+51 932211009",
+      "ubicacion": "Cercado, Arequipa",
+      "que_vende": "GBB pistola + kit de mantenimiento, casi sin uso",
+      "imagen": "/images/mercado_pulgas/gonzalo-t.jpg"
+    },
+    {
+      "id": 4,
+      "tipo": "persona",
+      "nombre": "Valeria S.",
+      "contacto": "Valeria Solano",
+      "whatsapp": "+51 921100998",
+      "ubicacion": "Cieneguilla, Lima",
+      "que_vende": "Set completo sniper (réplica + funda + bípode)",
+      "imagen": "/images/mercado_pulgas/valeria-s.jpg"
+    }
+  ],
+
+  "workshops": [
+    {
+      "id": 1,
+      "nombre": "Taller RM Airsoft",
+      "contacto": "Ricardo Meza",
+      "whatsapp": "+51 987123456",
+      "email": "rmairsoft.taller@gmail.com",
+      "ubicacion": "Av. Colonial 3200, Callao",
+      "especialidad": "Reparación y tuning de AEG, cambio de gearbox",
+      "horarios": "Lun-Sáb 10:00am-7:00pm",
+      "tiempo_reparacion_promedio": "3-5 días hábiles"
+    },
+    {
+      "id": 2,
+      "nombre": "GBB Doctor Perú",
+      "contacto": "Sebastián Quiroz",
+      "whatsapp": "+51 976123456",
+      "email": "gbbdoctor.pe@gmail.com",
+      "ubicacion": "Jr. Lampa 540, Cercado de Lima",
+      "especialidad": "Reparación GBB, sellado de válvulas y O-rings",
+      "horarios": "Mar-Dom 11:00am-8:00pm",
+      "tiempo_reparacion_promedio": "2-4 días hábiles"
+    },
+    {
+      "id": 3,
+      "nombre": "HPA Perú Custom Shop",
+      "contacto": "Nicolás Farfán",
+      "whatsapp": "+51 965123456",
+      "email": "contacto@hpaperucustom.com",
+      "ubicacion": "Av. La Molina 780, La Molina, Lima",
+      "especialidad": "Instalación y mantenimiento de sistemas HPA",
+      "horarios": "Lun-Vie 3:00pm-9:00pm, Sáb 10:00am-2:00pm",
+      "tiempo_reparacion_promedio": "5-7 días hábiles"
+    },
+    {
+      "id": 4,
+      "nombre": "Custom Airsoft Works",
+      "contacto": "Bruno Alarcón",
+      "whatsapp": "+51 954123456",
+      "email": "customairsoftworks@gmail.com",
+      "ubicacion": "Calle Mercaderes 88, Arequipa",
+      "especialidad": "Customización estética, cerakote y upgrades internos",
+      "horarios": "Lun-Sáb 9:00am-6:00pm",
+      "tiempo_reparacion_promedio": "7-10 días hábiles"
+    }
+  ],
+
+  "jugadores": [
+    {
+      "id": 1,
+      "nombre": "Fabrizio 'Ghost' Chávez",
+      "foto": "/images/jugadores/ghost-chavez.jpg",
+      "descripcion": "Jugador nivel avanzado, especialista en francotirador y reconocimiento MilSim.",
+      "instagram": "@ghost.aqp",
+      "tiktok": "@ghost.aqp",
+      "youtube": "https://youtube.com/@GhostAirsoftPE",
+      "twitch": ""
+    },
+    {
+      "id": 2,
+      "nombre": "Camila 'Vixen' Rojas",
+      "foto": "/images/jugadores/vixen-rojas.jpg",
+      "descripcion": "Especialista en asalto y speedsoft, capitana de equipo femenino.",
+      "instagram": "@vixen.airsoft",
+      "tiktok": "@vixen.airsoft",
+      "youtube": "",
+      "twitch": "twitch.tv/vixenairsoft"
+    },
+    {
+      "id": 3,
+      "nombre": "Martín 'Tanque' Villar",
+      "foto": "/images/jugadores/tanque-villar.jpg",
+      "descripcion": "Support gunner, nivel intermedio-avanzado. Crea contenido de gameplay y reviews.",
+      "instagram": "@tanque.airsoftpe",
+      "tiktok": "@tanque.airsoftpe",
+      "youtube": "https://youtube.com/@TanqueAirsoft",
+      "twitch": ""
+    },
+    {
+      "id": 4,
+      "nombre": "Daniela 'Nova' Torres",
+      "foto": "/images/jugadores/nova-torres.jpg",
+      "descripcion": "Jugadora nivel principiante-intermedio, rol de asalto. Divulga airsoft para nuevos jugadores.",
+      "instagram": "@nova.playsairsoft",
+      "tiktok": "@nova.playsairsoft",
+      "youtube": "",
+      "twitch": ""
+    }
+  ],
+
+  "equipos": [
+    {
+      "id": 1,
+      "nombre": "Lobos Nocturnos",
+      "logo": "/images/equipos/lobos-nocturnos.jpg",
+      "descripcion": "Equipo MilSim orientado a operaciones nocturnas y tácticas de infiltración.",
+      "cantidad_jugadores": 14,
+      "contacto_capitan": "Fabrizio Chávez",
+      "whatsapp": "+51 987012399",
+      "torneo_o_cancha_principal": "Black Hawk Airsoft Field"
+    },
+    {
+      "id": 2,
+      "nombre": "Cobras Tácticas",
+      "logo": "/images/equipos/cobras-tacticas.jpg",
+      "descripcion": "Equipo competitivo de speedsoft, participante regular de torneos Herzog.",
+      "cantidad_jugadores": 8,
+      "contacto_capitan": "Camila Rojas",
+      "whatsapp": "+51 976012399",
+      "torneo_o_cancha_principal": "Zona de Combate CQB Surco"
+    },
+    {
+      "id": 3,
+      "nombre": "Legión Andina",
+      "logo": "/images/equipos/legion-andina.jpg",
+      "descripcion": "Equipo mixto de Arequipa, enfocado en partidas casuales y crecimiento de la comunidad sur.",
+      "cantidad_jugadores": 20,
+      "contacto_capitan": "Gonzalo Torres",
+      "whatsapp": "+51 965012399",
+      "torneo_o_cancha_principal": "Replica Store Arequipa (punto de encuentro)"
+    },
+    {
+      "id": 4,
+      "nombre": "Escuadrón Fénix",
+      "logo": "/images/equipos/escuadron-fenix.jpg",
+      "descripcion": "Equipo juvenil orientado a formación de nuevos jugadores y torneos amateur.",
+      "cantidad_jugadores": 11,
+      "contacto_capitan": "Martín Villar",
+      "whatsapp": "+51 954012399",
+      "torneo_o_cancha_principal": "Delta Ops Airsoft Park"
+    }
+  ]
+}

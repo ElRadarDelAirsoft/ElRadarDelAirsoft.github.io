@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Rajdhani', system-ui, sans-serif;
+  }
+  body {
+    @apply bg-slate-100 text-base-900 dark:bg-base-950 dark:text-slate-100;
+  }
+}
+
