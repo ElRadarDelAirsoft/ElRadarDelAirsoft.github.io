@@ -643,6 +643,146 @@
       "contacto_capitan": "Martín Villar",
       "whatsapp": "+51 954012399",
       "torneo_o_cancha_principal": "Delta Ops Airsoft Park"
+    },
+    {
+      "id": 5,
+      "nombre": "BlackWater Peru Airsoft Team",
+      "logo": "/images/Equipos/BlackWater_Peru_Airsoft_Team_logo.jpg",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": ""
+    },
+    {
+      "id": 6,
+      "nombre": "BOPE Airsoft Peru",
+      "logo": "/images/Equipos/BOPE_Airsoft_Peru_logo.jpg",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": ""
+    },
+    {
+      "id": 7,
+      "nombre": "Delta Airsoft Team",
+      "logo": "/images/Equipos/Delta_Airsoft_Team_logo.png",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": ""
+    },
+    {
+      "id": 8,
+      "nombre": "Forward Observations Group",
+      "logo": "",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": ""
+    },
+    {
+      "id": 9,
+      "nombre": "GIOT - Grupo Independiente de Operadores Tácticos",
+      "logo": "/images/Equipos/GIOT_logo.jpg",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": ""
+    },
+    {
+      "id": 10,
+      "nombre": "Guerreros ATUK",
+      "logo": "/images/Equipos/Guerreros_ATUK_logo.png",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": ""
+    },
+    {
+      "id": 11,
+      "nombre": "Mercenarios Airsoft Peru",
+      "logo": "/images/Equipos/Mercenarios_Airsoft_Peru_logo.jpg",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": ""
+    },
+    {
+      "id": 12,
+      "nombre": "Pretorianos Airsoft Team",
+      "logo": "/images/Equipos/Pretorianos_Airsoft_Team_logo.jpg",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": ""
+    },
+    {
+      "id": 13,
+      "nombre": "Samurai Tactical Team",
+      "logo": "/images/Equipos/Samurai_Tactical_Team_logo.jpg",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": ""
+    },
+    {
+      "id": 14,
+      "nombre": "Sarin",
+      "logo": "/images/Equipos/Sarin_logo.jpg",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": ""
+    },
+    {
+      "id": 15,
+      "nombre": "Templarios Tactical Team Lima",
+      "logo": "/images/Equipos/Templarios_Tactical_Team_logo.jpg",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": ""
+    },
+    {
+      "id": 16,
+      "nombre": "UNOPES Airsoft Team",
+      "logo": "/images/Equipos/UNOPES_Airsoft_Team_logo.jpg",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": ""
+    },
+    {
+      "id": 17,
+      "nombre": "Wolf Airsoft Team",
+      "logo": "/images/Equipos/Wolf_Airsoft_Team_logo.jpg",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": ""
+    },
+    {
+      "id": 18,
+      "nombre": "ZLN",
+      "logo": "/images/Equipos/ZLN_logo.png",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": ""
     }
   ],
 
