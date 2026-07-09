@@ -20,6 +20,7 @@ export default function Header({ search, onSearchChange, isDark, onToggleDark })
                 <span className="hidden sm:inline text-base-900 dark:text-white">El </span>
                 <span className="text-gradient">Radar</span>
                 <span className="text-base-900 dark:text-white"> del Airsoft</span>
+                <span className="hidden sm:inline text-base-900 dark:text-white"> - Perú</span>
               </h1>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 truncate">
                 Todo lo que necesitas de la comunidad: canchas, tiendas, grupos, eventos y más.
