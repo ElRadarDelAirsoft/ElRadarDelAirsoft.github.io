@@ -8,11 +8,11 @@ export default function Header({ search, onSearchChange, isDark, onToggleDark })
       <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-3.5">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3 min-w-0">
-            <div className="shrink-0 rounded-lg bg-white p-1 shadow-sm">
+            <div className="shrink-0 rounded-lg bg-white p-1.5 shadow-sm">
               <img
-                src="/images/logo-airsoft-peru.png"
-                alt="Airsoft Perú"
-                className="h-9 sm:h-11 w-auto aspect-[1.3] object-cover object-left rounded"
+                src="/images/logo-radar-airsoft.png"
+                alt="El Radar del Airsoft"
+                className="h-14 sm:h-20 w-auto aspect-[2] object-contain rounded"
               />
             </div>
             <div className="min-w-0">
