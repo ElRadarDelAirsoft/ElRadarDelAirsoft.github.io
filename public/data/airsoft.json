@@ -5,7 +5,7 @@
   "canchas": [
     {
       "id": 1,
-      "nombre": "Delta Ops Airsoft Park",
+      "nombre": "Arena",
       "direccion": "Av. Los Frutales 450, Ate, Lima",
       "telefono": "+51 987654321",
       "whatsapp": "+51 987654321",
@@ -20,7 +20,7 @@
     },
     {
       "id": 2,
-      "nombre": "Zona de Combate CQB Surco",
+      "nombre": "Molicentro",
       "direccion": "Jr. Las Begonias 210, Surco, Lima",
       "telefono": "+51 976543210",
       "whatsapp": "+51 976543210",
@@ -35,7 +35,7 @@
     },
     {
       "id": 3,
-      "nombre": "Black Hawk Airsoft Field",
+      "nombre": "La Estrella",
       "direccion": "Km 22 Carretera Central, Chosica, Lima",
       "telefono": "+51 965432109",
       "whatsapp": "+51 965432109",
@@ -50,7 +50,7 @@
     },
     {
       "id": 4,
-      "nombre": "Fortaleza Norte Airsoft",
+      "nombre": "CQB Lab",
       "direccion": "Av. Naranjal 1800, Los Olivos, Lima",
       "telefono": "+51 954321098",
       "whatsapp": "+51 954321098",
@@ -68,7 +68,7 @@
   "tiendas": [
     {
       "id": 1,
-      "nombre": "Airsoft Warehouse Perú",
+      "nombre": "Armaq",
       "direccion": "Av. Angamos Este 1450, Surquillo, Lima",
       "telefono": "+51 943210987",
       "whatsapp": "+51 943210987",
@@ -291,7 +291,7 @@
   "workshops": [
     {
       "id": 1,
-      "nombre": "Taller RM Airsoft",
+      "nombre": "Ares Workshop",
       "contacto": "Ricardo Meza",
       "whatsapp": "+51 987123456",
       "email": "rmairsoft.taller@gmail.com",
@@ -302,7 +302,7 @@
     },
     {
       "id": 2,
-      "nombre": "GBB Doctor Perú",
+      "nombre": "Russo Jackass",
       "contacto": "Sebastián Quiroz",
       "whatsapp": "+51 976123456",
       "email": "gbbdoctor.pe@gmail.com",
@@ -313,7 +313,7 @@
     },
     {
       "id": 3,
-      "nombre": "HPA Perú Custom Shop",
+      "nombre": "Padrino Custom",
       "contacto": "Nicolás Farfán",
       "whatsapp": "+51 965123456",
       "email": "contacto@hpaperucustom.com",
@@ -324,7 +324,7 @@
     },
     {
       "id": 4,
-      "nombre": "Custom Airsoft Works",
+      "nombre": "Yawar",
       "contacto": "Bruno Alarcón",
       "whatsapp": "+51 954123456",
       "email": "customairsoftworks@gmail.com",
@@ -381,7 +381,7 @@
   "equipos": [
     {
       "id": 1,
-      "nombre": "Lobos Nocturnos",
+      "nombre": "Jackass",
       "logo": "/images/equipos/lobos-nocturnos.jpg",
       "descripcion": "Equipo MilSim orientado a operaciones nocturnas y tácticas de infiltración.",
       "cantidad_jugadores": 14,

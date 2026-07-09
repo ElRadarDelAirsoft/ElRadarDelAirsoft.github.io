@@ -15,8 +15,9 @@ export default function Card({ item, categoryKey }) {
   const showImage = data.imagen && !imgError
 
   return (
-    <article className="flex flex-col rounded-xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow dark:bg-base-800 dark:border-base-700">
-      <div className="relative h-40 w-full bg-gradient-to-br from-base-800 to-base-950 flex items-center justify-center">
+    <article className="group flex flex-col rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-glow hover:border-neon-blue/40 dark:bg-base-800 dark:border-base-600/60">
+      <div className="relative h-40 w-full overflow-hidden bg-gradient-to-br from-base-800 via-base-900 to-base-950 flex items-center justify-center">
+        <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_30%_20%,rgba(0,217,255,0.35),transparent_55%),radial-gradient(circle_at_80%_80%,rgba(57,255,20,0.25),transparent_55%)]" />
         {showImage ? (
           <img
             src={data.imagen}
@@ -24,16 +25,16 @@ export default function Card({ item, categoryKey }) {
             loading="lazy"
             decoding="async"
             onError={() => setImgError(true)}
-            className="h-full w-full object-cover"
+            className="relative h-full w-full object-cover transition-transform group-hover:scale-[1.03]"
           />
         ) : (
-          <span className="text-4xl opacity-70">{config.emoji}</span>
+          <span className="relative text-4xl drop-shadow-[0_0_12px_rgba(0,217,255,0.5)]">{config.emoji}</span>
         )}
-        <span className="absolute top-2 left-2 text-[11px] font-semibold uppercase tracking-wide px-2 py-1 rounded-full bg-black/60 text-neon-green backdrop-blur-sm">
+        <span className="absolute top-2 left-2 text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-full bg-black/70 text-neon-green backdrop-blur-sm ring-1 ring-white/10">
           {config.emoji} {config.label}
         </span>
         {data.badge && (
-          <span className="absolute top-2 right-2 text-[11px] font-semibold px-2 py-1 rounded-full bg-neon-blue text-base-950">
+          <span className="absolute top-2 right-2 text-[11px] font-bold px-2 py-1 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple text-base-950">
             {data.badge}
           </span>
         )}
@@ -75,7 +76,7 @@ export default function Card({ item, categoryKey }) {
                 href={data.cta.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-md border border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-base-950 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg border border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-base-950 transition-colors"
               >
                 <LinkIcon className="w-3.5 h-3.5" /> {data.cta.label}
               </a>
@@ -85,7 +86,7 @@ export default function Card({ item, categoryKey }) {
                 href={data.whatsapp.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-md bg-green-600 text-white hover:bg-green-500 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg bg-gradient-to-r from-green-600 to-green-500 text-white shadow-sm hover:shadow-[0_0_16px_-2px_rgba(34,197,94,0.6)] hover:from-green-500 hover:to-green-400 transition-all"
               >
                 <WhatsAppIcon className="w-3.5 h-3.5" /> {data.whatsapp.label}
               </a>

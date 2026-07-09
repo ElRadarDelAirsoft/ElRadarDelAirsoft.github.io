@@ -1,9 +1,9 @@
 import { InstagramIcon, TiktokIcon, YoutubeIcon, TwitchIcon } from './Icons.jsx'
 
 const iconBtn =
-  'inline-flex items-center justify-center w-8 h-8 rounded-full ' +
-  'bg-slate-200/70 text-slate-700 hover:bg-neon-blue hover:text-white transition-colors ' +
-  'dark:bg-base-700/60 dark:text-slate-200 dark:hover:bg-neon-blue dark:hover:text-base-950'
+  'inline-flex items-center justify-center w-8 h-8 rounded-full border transition-all ' +
+  'bg-slate-100 border-slate-200 text-slate-700 hover:border-transparent hover:bg-gradient-to-br hover:from-neon-blue hover:to-neon-purple hover:text-white ' +
+  'dark:bg-base-700/50 dark:border-base-600/60 dark:text-slate-200'
 
 function toUrl(handle, platform) {
   if (!handle) return null

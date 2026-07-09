@@ -1,13 +1,14 @@
 import { categoryConfig, categoryKeys } from '../data/categoryConfig.js'
 
 const pillBase =
-  'shrink-0 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-sm font-semibold ' +
-  'border transition-colors whitespace-nowrap'
+  'shrink-0 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-sm font-bold ' +
+  'border transition-all whitespace-nowrap'
 
-const pillActive = 'bg-neon-green text-base-950 border-neon-green'
+const pillActive =
+  'bg-gradient-to-r from-neon-green to-neon-blue text-base-950 border-transparent shadow-glow-sm'
 const pillInactive =
-  'bg-white text-slate-600 border-slate-300 hover:border-neon-green ' +
-  'dark:bg-base-800 dark:text-slate-300 dark:border-base-700 dark:hover:border-neon-green'
+  'glass text-slate-600 hover:border-neon-blue/60 hover:text-base-900 ' +
+  'dark:text-slate-300 dark:hover:text-white'
 
 // Barra de tabs horizontal (scrollable en mobile) para filtrar por categoría.
 // "todo" es un valor especial que muestra las 9 categorías a la vez.

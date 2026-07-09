@@ -24,7 +24,7 @@ export default function CategoryGrid({ groups, showHeaders = true, emptyMessage 
             {showHeaders && (
               <h2
                 id={`section-${key}`}
-                className="flex items-center gap-2 text-xl font-display font-bold mb-4 text-base-900 dark:text-white"
+                className="flex items-center gap-2.5 text-xl font-display font-bold mb-4 pl-3 border-l-4 border-neon-blue text-base-900 dark:text-white"
               >
                 <span>{config.emoji}</span>
                 {config.label}
