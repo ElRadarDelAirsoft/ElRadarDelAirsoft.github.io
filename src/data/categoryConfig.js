@@ -32,7 +32,7 @@ export const categoryConfig = {
       nombre: i.nombre,
       imagen: i.imagen,
       descripcion: i.descripcion,
-      badge: null,
+      badge: i.departamento || null,
       direccion: i.direccion ? { texto: i.direccion, mapsQuery: i.direccion } : null,
       telefono: i.telefono,
       email: i.email,

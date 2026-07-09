@@ -3,6 +3,7 @@ import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
 import CategoryTabs from './components/CategoryTabs.jsx'
 import CategoryGrid from './components/CategoryGrid.jsx'
+import RegionFilter, { matchesRegion } from './components/RegionFilter.jsx'
 import { useAirsoftData } from './hooks/useAirsoftData.js'
 import { categoryKeys, getSearchableText } from './data/categoryConfig.js'
 
@@ -26,6 +27,7 @@ export default function App() {
   const [isDark, toggleDark] = useDarkMode()
   const [search, setSearch] = useState('')
   const [activeCategory, setActiveCategory] = useState('todo')
+  const [regionFilter, setRegionFilter] = useState('todos')
 
   const counts = useMemo(() => {
     if (!data) return {}
@@ -42,11 +44,14 @@ export default function App() {
     const q = search.trim().toLowerCase()
     const keysToShow = activeCategory === 'todo' ? categoryKeys : [activeCategory]
     return keysToShow.map((key) => {
-      const items = data[key] || []
+      let items = data[key] || []
+      if (key === 'canchas') {
+        items = items.filter((it) => matchesRegion(it.departamento, regionFilter))
+      }
       const filtered = q ? items.filter((it) => getSearchableText(it).includes(q)) : items
       return { key, items: filtered }
     })
-  }, [data, search, activeCategory])
+  }, [data, search, activeCategory, regionFilter])
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -54,6 +59,10 @@ export default function App() {
 
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-6 flex flex-col gap-6">
         <CategoryTabs active={activeCategory} onChange={setActiveCategory} counts={counts} />
+
+        {activeCategory === 'canchas' && (
+          <RegionFilter value={regionFilter} onChange={setRegionFilter} />
+        )}
 
         {loading && (
           <p className="text-center py-16 text-slate-500 dark:text-slate-400">Cargando biblioteca...</p>
