@@ -1,14 +1,13 @@
 import { categoryConfig, categoryKeys } from '../data/categoryConfig.js'
 
 const pillBase =
-  'shrink-0 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-sm font-bold ' +
-  'border transition-all whitespace-nowrap'
+  'shrink-0 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-sm text-xs font-semibold uppercase tracking-wider ' +
+  'border transition-colors whitespace-nowrap'
 
-const pillActive =
-  'bg-gradient-to-r from-neon-green to-neon-blue text-base-950 border-transparent shadow-glow-sm'
+const pillActive = 'bg-accent text-black border-accent'
 const pillInactive =
-  'glass text-slate-600 hover:border-neon-blue/60 hover:text-base-900 ' +
-  'dark:text-slate-300 dark:hover:text-white'
+  'bg-slate-50 border-slate-200 text-slate-600 hover:border-accent hover:text-base-950 ' +
+  'dark:bg-base-900 dark:border-base-700 dark:text-slate-300 dark:hover:border-accent dark:hover:text-white'
 
 // Barra de tabs horizontal (scrollable en mobile) para filtrar por categoría.
 // "todo" es un valor especial que muestra las 9 categorías a la vez.
@@ -23,7 +22,7 @@ export default function CategoryTabs({ active, onChange, counts }) {
         onClick={() => onChange('todo')}
         className={`${pillBase} ${active === 'todo' ? pillActive : pillInactive}`}
       >
-        ⭐ Ver todo
+        Ver todo
       </button>
       {categoryKeys.map((key) => (
         <button
@@ -34,7 +33,7 @@ export default function CategoryTabs({ active, onChange, counts }) {
         >
           {categoryConfig[key].emoji} {categoryConfig[key].label}
           {typeof counts?.[key] === 'number' && (
-            <span className="text-xs opacity-70">({counts[key]})</span>
+            <span className="opacity-70">({counts[key]})</span>
           )}
         </button>
       ))}

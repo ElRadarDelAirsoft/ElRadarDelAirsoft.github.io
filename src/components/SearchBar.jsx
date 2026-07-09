@@ -9,9 +9,9 @@ export default function SearchBar({ value, onChange }) {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="Buscar por nombre, lugar, contacto..."
-        className="w-full rounded-xl border bg-white border-slate-300 pl-9 pr-9 py-2.5 text-sm
-          text-base-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-neon-blue focus:border-transparent
-          dark:bg-base-800/80 dark:border-base-600/60 dark:text-white dark:placeholder:text-slate-500"
+        className="w-full rounded-sm border bg-white border-slate-300 pl-9 pr-9 py-2.5 text-sm
+          text-base-950 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-accent focus:border-accent
+          dark:bg-base-900 dark:border-base-700 dark:text-white dark:placeholder:text-slate-500"
       />
       {value && (
         <button

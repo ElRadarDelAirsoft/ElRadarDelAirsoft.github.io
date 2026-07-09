@@ -15,9 +15,8 @@ export default function Card({ item, categoryKey }) {
   const showImage = data.imagen && !imgError
 
   return (
-    <article className="group flex flex-col rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-glow hover:border-neon-blue/40 dark:bg-base-800 dark:border-base-600/60">
-      <div className="relative h-40 w-full overflow-hidden bg-gradient-to-br from-base-800 via-base-900 to-base-950 flex items-center justify-center">
-        <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_30%_20%,rgba(0,217,255,0.35),transparent_55%),radial-gradient(circle_at_80%_80%,rgba(57,255,20,0.25),transparent_55%)]" />
+    <article className="group flex flex-col rounded-sm overflow-hidden bg-white border border-slate-200 transition-colors hover:border-accent dark:bg-base-900 dark:border-base-700">
+      <div className="relative h-40 w-full overflow-hidden bg-base-950 flex items-center justify-center">
         {showImage ? (
           <img
             src={data.imagen}
@@ -25,28 +24,30 @@ export default function Card({ item, categoryKey }) {
             loading="lazy"
             decoding="async"
             onError={() => setImgError(true)}
-            className="relative h-full w-full object-cover transition-transform group-hover:scale-[1.03]"
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
           />
         ) : (
-          <span className="relative text-4xl drop-shadow-[0_0_12px_rgba(0,217,255,0.5)]">{config.emoji}</span>
+          <span className="text-4xl opacity-80">{config.emoji}</span>
         )}
-        <span className="absolute top-2 left-2 text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-full bg-black/70 text-neon-green backdrop-blur-sm ring-1 ring-white/10">
-          {config.emoji} {config.label}
-        </span>
         {data.badge && (
-          <span className="absolute top-2 right-2 text-[11px] font-bold px-2 py-1 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple text-base-950">
+          <span className="absolute top-2 right-2 text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-sm bg-black/80 text-accent ring-1 ring-accent/40">
             {data.badge}
           </span>
         )}
+        <div className="absolute bottom-0 left-0 right-0 px-3 py-1.5 bg-black/70 backdrop-blur-sm">
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-accent">
+            {config.emoji} {config.label}
+          </span>
+        </div>
       </div>
 
       <div className="flex flex-col gap-2.5 p-4 flex-1">
-        <h3 className="font-display font-bold text-lg leading-snug text-base-900 dark:text-white">
+        <h3 className="font-display font-semibold uppercase tracking-wide text-lg leading-snug text-base-950 dark:text-white">
           {data.nombre}
         </h3>
 
         {data.descripcion && (
-          <p className="text-sm text-slate-600 dark:text-slate-300 line-clamp-3">{data.descripcion}</p>
+          <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-3">{data.descripcion}</p>
         )}
 
         {data.extra.length > 0 && (
@@ -76,7 +77,7 @@ export default function Card({ item, categoryKey }) {
                 href={data.cta.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg border border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-base-950 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-3 py-2 rounded-sm border border-accent text-accent-dim hover:bg-accent hover:text-black transition-colors dark:text-accent"
               >
                 <LinkIcon className="w-3.5 h-3.5" /> {data.cta.label}
               </a>
@@ -86,7 +87,7 @@ export default function Card({ item, categoryKey }) {
                 href={data.whatsapp.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg bg-gradient-to-r from-green-600 to-green-500 text-white shadow-sm hover:shadow-[0_0_16px_-2px_rgba(34,197,94,0.6)] hover:from-green-500 hover:to-green-400 transition-all"
+                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-3 py-2 rounded-sm bg-green-600 text-white hover:bg-green-500 transition-colors"
               >
                 <WhatsAppIcon className="w-3.5 h-3.5" /> {data.whatsapp.label}
               </a>

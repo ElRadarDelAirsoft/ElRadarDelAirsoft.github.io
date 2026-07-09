@@ -24,11 +24,11 @@ export default function CategoryGrid({ groups, showHeaders = true, emptyMessage 
             {showHeaders && (
               <h2
                 id={`section-${key}`}
-                className="flex items-center gap-2.5 text-xl font-display font-bold mb-4 pl-3 border-l-4 border-neon-blue text-base-900 dark:text-white"
+                className="flex items-center gap-2.5 text-lg font-display font-semibold uppercase tracking-wide mb-4 pb-2 border-b-2 border-accent text-base-950 dark:text-white"
               >
                 <span>{config.emoji}</span>
                 {config.label}
-                <span className="text-sm font-normal text-slate-500 dark:text-slate-400">({items.length})</span>
+                <span className="text-sm font-normal normal-case tracking-normal text-slate-500 dark:text-slate-400">({items.length})</span>
               </h2>
             )}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

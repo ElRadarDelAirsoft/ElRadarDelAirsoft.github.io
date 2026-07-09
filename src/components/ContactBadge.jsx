@@ -2,9 +2,9 @@ import { PhoneIcon, MailIcon, GlobeIcon, MapPinIcon } from './Icons.jsx'
 import { mapsLinkFromAddress } from '../utils/whatsapp.js'
 
 const baseClasses =
-  'inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1.5 rounded-lg border ' +
-  'bg-slate-100 border-slate-200 text-slate-700 hover:border-neon-blue/60 hover:text-base-900 transition-colors ' +
-  'dark:bg-base-700/50 dark:border-base-600/60 dark:text-slate-200 dark:hover:border-neon-blue/60 dark:hover:text-white'
+  'inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1.5 rounded-sm border ' +
+  'bg-slate-100 border-slate-200 text-slate-700 hover:border-accent hover:text-base-950 transition-colors ' +
+  'dark:bg-base-800 dark:border-base-700 dark:text-slate-300 dark:hover:border-accent dark:hover:text-white'
 
 // Badge genérico de contacto (teléfono / email / web / dirección → maps).
 // Cada variante es clicable y abre en una nueva pestaña cuando corresponde.
