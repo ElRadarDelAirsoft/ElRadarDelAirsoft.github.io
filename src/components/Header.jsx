@@ -7,15 +7,24 @@ export default function Header({ search, onSearchChange, isDark, onToggleDark })
       <div className="h-[3px] w-full bg-gradient-to-r from-neon-green via-neon-blue to-neon-purple" />
       <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-3.5">
         <div className="flex items-center justify-between gap-3">
-          <div className="min-w-0">
-            <h1 className="font-display font-extrabold text-2xl sm:text-3xl leading-tight tracking-tight">
-              <span className="text-base-900 dark:text-white">🪖 Airsoft </span>
-              <span className="text-gradient">Perú</span>
-              <span className="hidden sm:inline text-base-900 dark:text-white"> · Biblioteca</span>
-            </h1>
-            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 truncate">
-              Todo lo que necesitas de la comunidad: canchas, tiendas, grupos, eventos y más.
-            </p>
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="shrink-0 rounded-lg bg-white p-1 shadow-sm">
+              <img
+                src="/images/logo-airsoft-peru.png"
+                alt="Airsoft Perú"
+                className="h-9 sm:h-11 w-auto aspect-[1.3] object-cover object-left rounded"
+              />
+            </div>
+            <div className="min-w-0">
+              <h1 className="font-display font-extrabold text-xl sm:text-2xl leading-tight tracking-tight">
+                <span className="hidden sm:inline text-base-900 dark:text-white">Airsoft </span>
+                <span className="text-gradient">Perú</span>
+                <span className="hidden sm:inline text-base-900 dark:text-white"> · Biblioteca</span>
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 truncate">
+                Todo lo que necesitas de la comunidad: canchas, tiendas, grupos, eventos y más.
+              </p>
+            </div>
           </div>
           <DarkModeToggle isDark={isDark} onToggle={onToggleDark} />
         </div>
