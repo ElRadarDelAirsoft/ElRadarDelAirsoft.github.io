@@ -50,17 +50,16 @@ export default function Footer({ ultimaActualizacion }) {
 
         <div>
           <h3 className={columnTitle}>Apoya el proyecto</h3>
-          <div className="flex items-center gap-3">
-            <img
-              src="/images/Yape.jpg"
-              alt="Código QR de Yape para donaciones"
-              loading="lazy"
-              className="h-12 w-12 sm:h-14 sm:w-14 rounded-sm object-cover shrink-0"
-            />
-            <p className="text-xs sm:text-sm">
-              Si te pude ayudar con algo, se aceptan donaciones para seguir dando un buen servicio.
-            </p>
-          </div>
+          <p className="text-xs sm:text-sm mb-3">
+            Si te pude ayudar con algo, se aceptan donaciones para seguir dando un buen servicio. Escanea el
+            código con tu Yape:
+          </p>
+          <img
+            src="/images/Yape.jpg"
+            alt="Código QR de Yape para donaciones"
+            loading="lazy"
+            className="w-40 h-40 rounded-sm object-contain bg-white p-1.5"
+          />
         </div>
       </div>
 
