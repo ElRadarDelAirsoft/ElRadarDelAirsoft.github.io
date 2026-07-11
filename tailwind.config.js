@@ -4,6 +4,7 @@ export default {
   content: [
     './index.html',
     './src/**/*.{js,jsx}',
+    './scripts/**/*.mjs',
   ],
   theme: {
     extend: {

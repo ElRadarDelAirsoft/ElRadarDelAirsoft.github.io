@@ -1,5 +1,5 @@
 {
-  "_INSTRUCCIONES": "EDITA ESTE ARCHIVO PARA AGREGAR/MODIFICAR CONTENIDO. Solo cambia los valores, no la estructura. No borres ninguna clave (aunque esté vacía, deja \"\"). Guarda las imágenes en /public/images/<categoria>/ y referencia la ruta como \"/images/<categoria>/archivo.jpg\". Para agregar una entrada nueva, copia un objeto existente dentro del arreglo de su categoría, pégalo y cambia los valores (usa un \"id\" nuevo que no se repita).",
+  "_INSTRUCCIONES": "EDITA ESTE ARCHIVO PARA AGREGAR/MODIFICAR CONTENIDO. Solo cambia los valores, no la estructura. No borres ninguna clave (aunque esté vacía, deja \"\"). Guarda las imágenes en /public/images/<categoria>/ y referencia la ruta como \"/images/<categoria>/archivo.jpg\". Para agregar una entrada nueva, copia un objeto existente dentro del arreglo de su categoría, pégalo y cambia los valores (usa un \"id\" nuevo que no se repita). IMPORTANTE PARA SEO: en \"canchas\" el campo \"departamento\" y en \"tiendas\" el campo \"ciudad\" determinan si esa entrada genera su propia página indexable (/campos/<departamento>/<nombre> o /tiendas/<ciudad>/<nombre>) al correr \"npm run build\". Si los dejas vacíos, la entrada sigue apareciendo en el directorio pero no genera página propia.",
   "_ultima_actualizacion": "2026-07-08",
 
   "canchas": [
@@ -170,6 +170,7 @@
       "id": 1,
       "nombre": "Armaq",
       "direccion": "Av. Angamos Este 1450, Surquillo, Lima",
+      "ciudad": "Lima",
       "telefono": "+51 943210987",
       "whatsapp": "+51 943210987",
       "email": "ventas@airsoftwarehouse.pe",
@@ -184,6 +185,7 @@
       "id": 2,
       "nombre": "Tactical Gear Store",
       "direccion": "C.C. Real Plaza, Local 214, San Miguel, Lima",
+      "ciudad": "Lima",
       "telefono": "+51 932109876",
       "whatsapp": "+51 932109876",
       "email": "contacto@tacticalgear.pe",
@@ -198,6 +200,7 @@
       "id": 3,
       "nombre": "Munición Express Lima",
       "direccion": "Jr. Puno 890, Cercado de Lima",
+      "ciudad": "Lima",
       "telefono": "+51 921098765",
       "whatsapp": "+51 921098765",
       "email": "pedidos@municionexpress.pe",
@@ -212,6 +215,7 @@
       "id": 4,
       "nombre": "Replica Store Arequipa",
       "direccion": "Calle Mercaderes 320, Cercado, Arequipa",
+      "ciudad": "Arequipa",
       "telefono": "+51 910987654",
       "whatsapp": "+51 910987654",
       "email": "info@replicastoreaqp.pe",

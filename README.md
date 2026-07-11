@@ -42,10 +42,27 @@ Abre `http://localhost:5173`.
 npm run build
 ```
 
-Genera la carpeta `dist/` lista para deployar.
+Corre `vite build` y después `scripts/prerender.mjs`, que genera páginas HTML estáticas
+indexables (una por campo, tienda, ciudad y post de blog — con su propio title/meta/OG/
+JSON-LD) más `sitemap.xml`, `robots.txt` y `llms.txt`, todo dentro de `dist/`.
 
 - **Vercel**: importa el repo, framework preset "Vite" (auto-detectado). No requiere configuración adicional.
 - **Netlify**: ya incluye `netlify.toml` con `npm run build` y `dist` como carpeta publicada.
+- **Antes de deployar a producción**: actualiza `SITE_URL` en `scripts/prerender.mjs` (y las
+  urls hardcodeadas en `index.html`) con el dominio real — hoy apunta a un placeholder
+  (`https://elradardelairsoft.pe`).
+
+### SEO / GEO
+
+- Cada cancha con `departamento` no vacío y cada tienda con `ciudad` no vacía generan su
+  propia página en `/campos/<departamento>/<nombre>/` o `/tiendas/<ciudad>/<nombre>/`
+  (más una landing por departamento/ciudad). Si dejas esos campos vacíos, la entrada sigue
+  apareciendo en el directorio normal, solo no genera página propia.
+- El blog vive en `src/data/blogPosts.js` (array plano, sin Markdown). Cada post genera
+  `/blog/<slug>/`. Formato pensado para que un LLM te pueda citar: respuesta directa de
+  2-3 líneas al inicio, headings en formato pregunta.
+- Las páginas de detalle son HTML estático sin React (no se hidratan) — la home (`/`) sigue
+  siendo la SPA interactiva de siempre.
 
 ## Estructura del proyecto
 
@@ -73,7 +90,10 @@ src/
     useAirsoftData.js         Carga /data/airsoft.json vía fetch
   utils/
     whatsapp.js                Helpers para construir links wa.me / Google Maps
+    slug.js                    slugify() — usado por Card.jsx y scripts/prerender.mjs
   App.jsx                      Filtrado por categoría + búsqueda global
+scripts/
+  prerender.mjs                Genera las páginas estáticas SEO/GEO + sitemap/robots/llms.txt
 ```
 
 ## Agregar una 10ma categoría (para el futuro)

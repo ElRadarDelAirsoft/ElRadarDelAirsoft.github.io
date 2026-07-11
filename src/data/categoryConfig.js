@@ -8,6 +8,7 @@ import {
   WrenchIcon,
 } from '../components/Icons.jsx'
 import { whatsappLinkFromPhone, whatsappGroupLink } from '../utils/whatsapp.js'
+import { slugify } from '../utils/slug.js'
 
 // Cada entrada define: label/emoji para tabs, y normalize() que convierte
 // un item crudo del JSON en el esquema común que consume <Card />.
@@ -20,7 +21,8 @@ import { whatsappLinkFromPhone, whatsappGroupLink } from '../utils/whatsapp.js'
 //   whatsapp: { label, href } | null,
 //   socials: { instagram, tiktok, youtube, twitch },
 //   extra: [{ icon, text }],
-//   cta: { label, href } | null   // ej. link de inscripción a un evento
+//   cta: { label, href } | null,   // ej. link de inscripción a un evento
+//   detailUrl: string | null        // página indexable propia (solo canchas/tiendas con departamento/ciudad)
 // }
 
 export const categoryConfig = {
@@ -44,6 +46,7 @@ export const categoryConfig = {
         i.horarios ? { icon: ClockIcon, text: i.horarios } : null,
       ].filter(Boolean),
       cta: null,
+      detailUrl: i.departamento && i.nombre ? `/campos/${slugify(i.departamento)}/${slugify(i.nombre)}/` : null,
     }),
   },
 
@@ -64,6 +67,7 @@ export const categoryConfig = {
       socials: { instagram: i.instagram, tiktok: i.tiktok, youtube: null, twitch: null },
       extra: [i.especialidad ? { icon: TagIcon, text: i.especialidad } : null].filter(Boolean),
       cta: null,
+      detailUrl: i.ciudad && i.nombre ? `/tiendas/${slugify(i.ciudad)}/${slugify(i.nombre)}/` : null,
     }),
   },
 

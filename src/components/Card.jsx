@@ -46,6 +46,12 @@ export default function Card({ item, categoryKey }) {
           {data.nombre}
         </h3>
 
+        {data.detailUrl && (
+          <a href={data.detailUrl} className="text-xs font-semibold text-accent-dim dark:text-accent hover:underline -mt-1.5">
+            Ver ficha completa →
+          </a>
+        )}
+
         {data.descripcion && (
           <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-3">{data.descripcion}</p>
         )}
