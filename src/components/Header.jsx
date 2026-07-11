@@ -1,9 +1,10 @@
+import { forwardRef } from 'react'
 import SearchBar from './SearchBar.jsx'
 import DarkModeToggle from './DarkModeToggle.jsx'
 
-export default function Header({ search, onSearchChange, isDark, onToggleDark }) {
+const Header = forwardRef(function Header({ search, onSearchChange, isDark, onToggleDark }, ref) {
   return (
-    <header className="sticky top-0 z-20 border-b border-slate-200 bg-white">
+    <header ref={ref} className="sticky top-0 z-20 border-b border-slate-200 bg-white">
       <div className="h-[3px] w-full bg-accent" />
       <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-3.5">
         <h1 className="sr-only">El Radar del Airsoft - Perú</h1>
@@ -22,4 +23,6 @@ export default function Header({ search, onSearchChange, isDark, onToggleDark })
       </div>
     </header>
   )
-}
+})
+
+export default Header

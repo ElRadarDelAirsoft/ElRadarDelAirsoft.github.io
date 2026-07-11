@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
 import CategoryTabs from './components/CategoryTabs.jsx'
@@ -29,6 +29,21 @@ export default function App() {
   const [activeCategory, setActiveCategory] = useState('todo')
   const [regionFilter, setRegionFilter] = useState('todos')
 
+  // Altura real del header (varía por breakpoint/contenido) para que la
+  // barra de categorías se pegue justo debajo, sin taparlo ni dejar hueco.
+  const headerRef = useRef(null)
+  const [headerHeight, setHeaderHeight] = useState(0)
+
+  useLayoutEffect(() => {
+    const el = headerRef.current
+    if (!el) return
+    const update = () => setHeaderHeight(el.offsetHeight)
+    update()
+    const ro = new ResizeObserver(update)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
   const counts = useMemo(() => {
     if (!data) return {}
     const q = search.trim().toLowerCase()
@@ -55,15 +70,21 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header search={search} onSearchChange={setSearch} isDark={isDark} onToggleDark={toggleDark} />
+      <Header ref={headerRef} search={search} onSearchChange={setSearch} isDark={isDark} onToggleDark={toggleDark} />
+
+      <div
+        className="sticky z-10 bg-white dark:bg-black border-b border-slate-200 dark:border-base-700"
+        style={{ top: headerHeight }}
+      >
+        <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-3">
+          <CategoryTabs active={activeCategory} onChange={setActiveCategory} counts={counts} />
+          {activeCategory === 'canchas' && (
+            <RegionFilter value={regionFilter} onChange={setRegionFilter} />
+          )}
+        </div>
+      </div>
 
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-6 flex flex-col gap-6">
-        <CategoryTabs active={activeCategory} onChange={setActiveCategory} counts={counts} />
-
-        {activeCategory === 'canchas' && (
-          <RegionFilter value={regionFilter} onChange={setRegionFilter} />
-        )}
-
         {loading && (
           <p className="text-center py-16 text-slate-500 dark:text-slate-400">Cargando biblioteca...</p>
         )}
