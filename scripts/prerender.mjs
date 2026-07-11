@@ -164,6 +164,35 @@ function page({ head, body }) {
 </html>`
 }
 
+// ---------- 404 ----------
+
+function build404Page(cssHref) {
+  const title = `404 — Página no encontrada | ${SITE_NAME}`
+  const head = `<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <title>${esc(title)}</title>
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="${cssHref}" />
+    ${DARK_MODE_SCRIPT}`
+
+  const body = `<div class="text-center py-6">
+    <img src="/404.png" alt="Un topo explorador táctico confundido frente a una pantalla de error 404" class="mx-auto w-full max-w-sm rounded-sm mb-8" />
+    <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-3">404 — Página no encontrada</h1>
+    <p class="text-slate-600 mb-8">Parece que este túnel no lleva a ningún lado. La página que buscas no existe o se movió.</p>
+    <a href="/" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm bg-accent text-black hover:bg-accent/90">Volver al directorio</a>
+  </div>`
+
+  // 404.html (no "index.html" ni carpeta propia) es el nombre que Netlify,
+  // Vercel y GitHub Pages buscan automáticamente como página de error.
+  // No se agrega a generatedRoutes/sitemap: no es contenido indexable.
+  fs.writeFileSync(path.join(DIST, '404.html'), page({ head, body }))
+}
+
 // ---------- generación: campos (canchas) ----------
 
 function buildCampos(cssHref) {
@@ -496,6 +525,7 @@ function main() {
   buildCampos(cssHref)
   buildTiendas(cssHref)
   buildBlog(cssHref)
+  build404Page(cssHref)
   buildSeoFiles()
   console.log(`[prerender] ${generatedRoutes.length} páginas estáticas generadas + sitemap.xml + robots.txt + llms.txt`)
 }
