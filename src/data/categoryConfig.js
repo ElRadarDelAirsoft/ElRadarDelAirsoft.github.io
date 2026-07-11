@@ -253,6 +253,26 @@ export const categoryConfig = {
       cta: null,
     }),
   },
+
+  marco_legal: {
+    label: 'Marco Legal & Reguladores',
+    emoji: '⚖️',
+    normalize: (i) => ({
+      id: i.id,
+      nombre: i.nombre,
+      imagen: i.imagen,
+      descripcion: i.descripcion,
+      badge: i.tipo || null,
+      direccion: i.direccion ? { texto: i.direccion, mapsQuery: i.direccion } : null,
+      telefono: i.telefono,
+      email: i.email,
+      web: i.web,
+      whatsapp: null,
+      socials: { instagram: null, tiktok: null, youtube: null, twitch: null },
+      extra: [i.relevancia ? { icon: TagIcon, text: i.relevancia } : null].filter(Boolean),
+      cta: null,
+    }),
+  },
 }
 
 export const categoryKeys = Object.keys(categoryConfig)

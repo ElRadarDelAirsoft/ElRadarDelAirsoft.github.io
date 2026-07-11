@@ -815,5 +815,32 @@
       "tiempo_entrega": "",
       "imagen": ""
     }
+  ],
+
+  "marco_legal": [
+    {
+      "id": 1,
+      "nombre": "SUCAMEC",
+      "tipo": "Institución reguladora",
+      "descripcion": "Superintendencia Nacional de Control de Servicios de Seguridad, Armas, Municiones y Explosivos de Uso Civil. Es el organismo del Estado peruano encargado de autorizar, controlar y fiscalizar la posesión, importación y comercialización de armas y réplicas, incluidas las de airsoft.",
+      "relevancia": "Cualquier persona o negocio que importe, venda o posea réplicas de airsoft en Perú debe cumplir con la normativa que SUCAMEC fiscaliza.",
+      "web": "www.gob.pe/sucamec",
+      "telefono": "",
+      "email": "",
+      "direccion": "",
+      "imagen": ""
+    },
+    {
+      "id": 2,
+      "nombre": "Ley N° 30299",
+      "tipo": "Norma legal",
+      "descripcion": "Ley de Armas de Fuego, Municiones, Explosivos, Productos Pirotécnicos y Materiales Relacionados de Uso Civil. Es la norma marco que regula la fabricación, importación, comercialización, posesión y uso de armas y materiales relacionados en el Perú.",
+      "relevancia": "Es la base legal bajo la cual SUCAMEC regula la importación, posesión y uso de réplicas de airsoft en el país.",
+      "web": "",
+      "telefono": "",
+      "email": "",
+      "direccion": "",
+      "imagen": ""
+    }
   ]
 }
