@@ -14,13 +14,6 @@ const itemInactive =
 export default function CategorySidebar({ active, onChange, counts }) {
   return (
     <nav aria-label="Categorías" className="flex flex-col gap-1.5">
-      <button
-        type="button"
-        onClick={() => onChange('todo')}
-        className={`${itemBase} ${active === 'todo' ? itemActive : itemInactive}`}
-      >
-        <span>Ver todo</span>
-      </button>
       {categoryKeys.map((key) => (
         <button
           key={key}

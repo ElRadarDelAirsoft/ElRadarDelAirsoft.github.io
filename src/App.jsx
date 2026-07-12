@@ -45,15 +45,6 @@ export default function App() {
     return () => ro.disconnect()
   }, [])
 
-  const stats = useMemo(
-    () => ({
-      canchas: data?.canchas?.length ?? 0,
-      tiendas: data?.tiendas?.length ?? 0,
-      equipos: data?.equipos?.length ?? 0,
-    }),
-    [data],
-  )
-
   const counts = useMemo(() => {
     if (!data) return {}
     const q = search.trim().toLowerCase()
@@ -90,7 +81,7 @@ export default function App() {
         onSearchChange={setSearch}
         isDark={isDark}
         onToggleDark={toggleDark}
-        stats={stats}
+        onLogoClick={() => setActiveCategory('todo')}
       />
 
       {/* Mobile/tablet: barra horizontal pegajosa. Un sidebar fijo no funciona
