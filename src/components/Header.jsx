@@ -16,8 +16,8 @@ const Header = forwardRef(function Header({ search, onSearchChange, isDark, onTo
           />
         </button>
         <div className="flex flex-col items-end gap-1 flex-1 min-w-0 max-w-xs">
-          <span className="text-xs font-bold uppercase tracking-wide text-slate-700">
-            Todo del airsoft peruano aquí
+          <span className="text-xs font-bold uppercase tracking-wide text-slate-700 text-right">
+            Encuentra todo lo que necesitas del airsoft en Perú aquí
           </span>
           <div className="flex items-center gap-2 w-full">
             <SearchBar value={search} onChange={onSearchChange} />
