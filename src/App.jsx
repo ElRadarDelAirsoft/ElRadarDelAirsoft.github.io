@@ -98,7 +98,7 @@ export default function App() {
 
       <div className="flex-1 max-w-6xl w-full mx-auto px-4 py-6 md:flex md:items-start md:gap-8">
         {/* Desktop: sidebar fija a la izquierda */}
-        <aside className="hidden md:block w-56 shrink-0">
+        <aside className="hidden md:block w-56 shrink-0 self-stretch">
           <div className="sticky flex flex-col gap-4" style={{ top: headerHeight + 24 }}>
             <CategorySidebar active={activeCategory} onChange={setActiveCategory} counts={counts} />
             {regionFilterNode}
