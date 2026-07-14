@@ -840,7 +840,8 @@
       "telefono": "",
       "email": "",
       "direccion": "",
-      "imagen": ""
+      "imagen": "",
+      "archivo_pdf": "/Ley-30299-LPDerecho.pdf"
     }
   ]
 }

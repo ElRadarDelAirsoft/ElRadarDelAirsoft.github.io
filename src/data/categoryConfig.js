@@ -270,7 +270,7 @@ export const categoryConfig = {
       whatsapp: null,
       socials: { instagram: null, tiktok: null, youtube: null, twitch: null },
       extra: [i.relevancia ? { icon: TagIcon, text: i.relevancia } : null].filter(Boolean),
-      cta: null,
+      cta: i.archivo_pdf ? { label: 'Ver documento (PDF)', href: i.archivo_pdf } : null,
     }),
   },
 }
