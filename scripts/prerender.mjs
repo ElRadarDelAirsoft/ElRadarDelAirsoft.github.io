@@ -181,7 +181,7 @@ function build404Page(cssHref) {
     ${DARK_MODE_SCRIPT}`
 
   const body = `<div class="text-center py-6">
-    <img src="/404.png" alt="Un topo explorador táctico confundido frente a una pantalla de error 404" class="mx-auto w-full max-w-sm rounded-sm mb-8" />
+    <img src="/404.webp" alt="Un topo explorador táctico confundido frente a una pantalla de error 404" class="mx-auto w-full max-w-sm rounded-sm mb-8" />
     <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-3">404 — Página no encontrada</h1>
     <p class="text-slate-600 mb-8">Parece que este túnel no lleva a ningún lado. La página que buscas no existe o se movió.</p>
     <a href="/" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm bg-accent text-black hover:bg-accent/90">Volver al directorio</a>
