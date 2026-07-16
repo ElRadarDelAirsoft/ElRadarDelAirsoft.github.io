@@ -46,11 +46,14 @@ Corre `vite build` y después `scripts/prerender.mjs`, que genera páginas HTML 
 indexables (una por campo, tienda, ciudad y post de blog — con su propio title/meta/OG/
 JSON-LD) más `sitemap.xml`, `robots.txt` y `llms.txt`, todo dentro de `dist/`.
 
+- **GitHub Pages** (deploy activo): `.github/workflows/deploy.yml` corre `npm run build` y publica
+  `dist/` en cada push a `main`. El repo debe tener `Settings → Pages → Build and deployment →
+  Source` en "GitHub Actions" (no "Deploy from a branch", que intenta procesar el repo con Jekyll
+  y falla). Sitio en `https://renzofowks-master.github.io/`.
 - **Vercel**: importa el repo, framework preset "Vite" (auto-detectado). No requiere configuración adicional.
 - **Netlify**: ya incluye `netlify.toml` con `npm run build` y `dist` como carpeta publicada.
-- **Antes de deployar a producción**: actualiza `SITE_URL` en `scripts/prerender.mjs` (y las
-  urls hardcodeadas en `index.html`) con el dominio real — hoy apunta a un placeholder
-  (`https://elradardelairsoft.pe`).
+- `SITE_URL` en `scripts/prerender.mjs` (y las urls hardcodeadas en `index.html`) ya apuntan al
+  dominio real de GitHub Pages. Si el sitio se muda a un dominio propio, actualízalas ahí.
 
 ### SEO / GEO
 
