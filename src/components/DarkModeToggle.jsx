@@ -9,7 +9,7 @@ export default function DarkModeToggle({ isDark, onToggle }) {
       title={isDark ? 'Modo claro' : 'Modo oscuro'}
       className="relative inline-flex items-center justify-center w-9 h-9 rounded-sm border overflow-hidden
         transition-[background-color,border-color,transform] duration-200 ease-out-quart active:scale-[0.92]
-        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2
+        focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2
         bg-slate-100 border-slate-200 text-slate-700 hover:border-accent hover:text-accent
         dark:bg-base-900 dark:border-base-700 dark:text-accent dark:hover:border-accent dark:focus-visible:ring-offset-base-900"
     >

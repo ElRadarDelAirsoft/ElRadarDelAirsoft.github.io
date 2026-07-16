@@ -3,7 +3,7 @@ import { categoryConfig, categoryKeys } from '../data/categoryConfig.js'
 const itemBase =
   'flex items-center justify-between gap-2 px-3 py-2.5 rounded-sm text-xs font-semibold ' +
   'uppercase tracking-wider border transition-[background-color,color,border-color,transform] duration-200 ease-out-quart text-left ' +
-  'active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 dark:focus-visible:ring-offset-base-900'
+  'active:scale-[0.98] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 dark:focus-visible:ring-offset-base-900'
 
 const itemActive = 'bg-accent text-black border-accent'
 const itemInactive =

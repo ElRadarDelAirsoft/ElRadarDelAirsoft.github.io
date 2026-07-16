@@ -2,10 +2,10 @@ import { InstagramIcon, TiktokIcon, YoutubeIcon, TwitchIcon } from './Icons.jsx'
 
 const iconBtn =
   'inline-flex items-center justify-center w-8 h-8 rounded-sm border ' +
-  'transition-[background-color,color,border-color,transform] duration-200 ease-out-quart active:scale-90 ' +
-  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ' +
-  'bg-slate-100 border-slate-200 text-slate-700 hover:border-accent hover:bg-accent hover:text-black ' +
-  'dark:bg-base-800 dark:border-base-700 dark:text-slate-300 dark:focus-visible:ring-offset-base-900'
+  'transition-[color,border-color,transform] duration-200 ease-out-quart active:scale-90 ' +
+  'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 ' +
+  'bg-slate-100 border-slate-200 text-slate-700 hover:border-accent hover:text-accent-dim ' +
+  'dark:bg-base-800 dark:border-base-700 dark:text-slate-300 dark:hover:text-accent dark:focus-visible:ring-offset-base-900'
 
 function toUrl(handle, platform) {
   if (!handle) return null

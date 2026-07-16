@@ -12,7 +12,7 @@ const Header = forwardRef(function Header({ search, onSearchChange, isDark, onTo
           type="button"
           onClick={onLogoClick}
           className="shrink-0 rounded-sm transition-transform duration-150 ease-out-quart active:scale-95
-            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+            focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2"
           aria-label="Ir al inicio"
         >
           <img

@@ -3,7 +3,7 @@ import { categoryConfig, categoryKeys } from '../data/categoryConfig.js'
 const pillBase =
   'shrink-0 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-sm text-xs font-semibold uppercase tracking-wider ' +
   'border transition-[background-color,color,border-color,transform] duration-200 ease-out-quart whitespace-nowrap ' +
-  'active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 dark:focus-visible:ring-offset-base-900'
+  'active:scale-[0.96] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 dark:focus-visible:ring-offset-base-900'
 
 const pillActive = 'bg-accent text-black border-accent'
 const pillInactive =

@@ -17,7 +17,7 @@ export default function Card({ item, categoryKey, index = 0 }) {
   return (
     <article
       style={{ animationDelay: `${Math.min(index, 10) * 40}ms` }}
-      className="group flex flex-col rounded-sm overflow-hidden bg-white border border-slate-200 animate-fade-up transition-[border-color,box-shadow,transform] duration-200 ease-out-quart hover:border-accent hover:-translate-y-0.5 hover:shadow-md dark:bg-base-900 dark:border-base-700 dark:hover:shadow-black/40"
+      className="group flex flex-col rounded-sm overflow-hidden bg-white border border-slate-200 animate-fade-up transition-[border-color,transform] duration-200 ease-out-quart hover:border-slate-300 hover:-translate-y-0.5 dark:bg-base-900 dark:border-base-700 dark:hover:border-base-600"
     >
       <div className="relative h-40 w-full overflow-hidden bg-base-950 flex items-center justify-center">
         {showImage ? (
@@ -37,11 +37,6 @@ export default function Card({ item, categoryKey, index = 0 }) {
             {data.badge}
           </span>
         )}
-        <div className="absolute bottom-0 left-0 right-0 px-3 py-1.5 bg-black/70 backdrop-blur-sm">
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-accent">
-            {config.emoji} {config.label}
-          </span>
-        </div>
       </div>
 
       <div className="flex flex-col gap-2.5 p-4 flex-1">
@@ -89,7 +84,7 @@ export default function Card({ item, categoryKey, index = 0 }) {
                 href={data.cta.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-3 py-2 rounded-sm border border-accent text-accent-dim hover:bg-accent hover:text-black transition-[background-color,color,transform] duration-150 ease-out-quart active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 dark:text-accent dark:focus-visible:ring-offset-base-900"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-sm border border-accent text-accent-dim hover:bg-accent hover:text-black transition-[background-color,color,transform] duration-150 ease-out-quart active:scale-[0.97] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 dark:text-accent dark:focus-visible:ring-offset-base-900"
               >
                 <LinkIcon className="w-3.5 h-3.5" /> {data.cta.label}
               </a>
@@ -99,7 +94,7 @@ export default function Card({ item, categoryKey, index = 0 }) {
                 href={data.whatsapp.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-3 py-2 rounded-sm bg-green-600 text-white hover:bg-green-500 transition-[background-color,transform] duration-150 ease-out-quart active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-base-900"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-sm bg-green-700 text-white hover:bg-green-600 transition-[background-color,transform] duration-150 ease-out-quart active:scale-[0.97] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-green-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-base-900"
               >
                 <WhatsAppIcon className="w-3.5 h-3.5" /> {data.whatsapp.label}
               </a>
