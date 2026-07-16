@@ -20,15 +20,19 @@ export default function Footer({ ultimaActualizacion }) {
               href={ADMIN_WHATSAPP}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-3 py-2 rounded-sm bg-green-600 text-white hover:bg-green-500 transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-3 py-2 rounded-sm bg-green-600 text-white hover:bg-green-500
+                transition-[background-color,transform] duration-150 ease-out-quart active:scale-[0.96]
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-black"
             >
               <WhatsAppIcon className="w-3.5 h-3.5" /> WhatsApp
             </a>
             <a
               href={`mailto:${ADMIN_EMAIL}`}
               className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-sm border
-                bg-slate-100 border-slate-200 text-slate-700 hover:border-accent transition-colors
-                dark:bg-base-900 dark:border-base-700 dark:text-slate-300 dark:hover:border-accent"
+                bg-slate-100 border-slate-200 text-slate-700 hover:border-accent
+                transition-[background-color,border-color,transform] duration-150 ease-out-quart active:scale-[0.96]
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2
+                dark:bg-base-900 dark:border-base-700 dark:text-slate-300 dark:hover:border-accent dark:focus-visible:ring-offset-black"
             >
               <MailIcon className="w-3.5 h-3.5" /> {ADMIN_EMAIL}
             </a>
@@ -38,10 +42,24 @@ export default function Footer({ ultimaActualizacion }) {
         <div>
           <h3 className={columnTitle}>Comunidad</h3>
           <div className="flex items-center gap-3 mb-3">
-            <a href={COMUNIDAD_INSTAGRAM} target="_blank" rel="noopener noreferrer" aria-label="Instagram comunidad" className="hover:text-accent transition-colors">
+            <a
+              href={COMUNIDAD_INSTAGRAM}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram comunidad"
+              className="hover:text-accent transition-[color,transform] duration-150 ease-out-quart active:scale-90
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
+            >
               <InstagramIcon className="w-4 h-4" />
             </a>
-            <a href={COMUNIDAD_TIKTOK} target="_blank" rel="noopener noreferrer" aria-label="TikTok comunidad" className="hover:text-accent transition-colors">
+            <a
+              href={COMUNIDAD_TIKTOK}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok comunidad"
+              className="hover:text-accent transition-[color,transform] duration-150 ease-out-quart active:scale-90
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
+            >
               <TiktokIcon className="w-4 h-4" />
             </a>
           </div>

@@ -8,11 +8,24 @@
   }
   body {
     @apply bg-white text-base-950 dark:bg-black dark:text-slate-200;
+    transition: background-color 200ms cubic-bezier(0.25, 1, 0.5, 1), color 200ms cubic-bezier(0.25, 1, 0.5, 1);
   }
 }
 
 @layer utilities {
   .panel {
     @apply bg-slate-50 border border-slate-200 dark:bg-base-900 dark:border-base-700;
+  }
+}
+
+/* Motion siempre debe poder desactivarse: sin excepciones. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

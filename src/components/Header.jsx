@@ -8,7 +8,13 @@ const Header = forwardRef(function Header({ search, onSearchChange, isDark, onTo
       <div className="h-[3px] w-full bg-accent" />
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
         <h1 className="sr-only">El Radar del Airsoft - Perú</h1>
-        <button type="button" onClick={onLogoClick} className="shrink-0" aria-label="Ir al inicio">
+        <button
+          type="button"
+          onClick={onLogoClick}
+          className="shrink-0 rounded-sm transition-transform duration-150 ease-out-quart active:scale-95
+            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+          aria-label="Ir al inicio"
+        >
           <img
             src="/images/logo-radar-airsoft.png"
             alt="El Radar del Airsoft"

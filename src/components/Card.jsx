@@ -7,7 +7,7 @@ import { categoryConfig } from '../data/categoryConfig.js'
 // Card genérica: recibe el item crudo del JSON + a qué categoría pertenece,
 // lo normaliza vía categoryConfig y renderiza un layout consistente para
 // cualquiera de las 9 categorías.
-export default function Card({ item, categoryKey }) {
+export default function Card({ item, categoryKey, index = 0 }) {
   const [imgError, setImgError] = useState(false)
   const config = categoryConfig[categoryKey]
   const data = config.normalize(item)
@@ -15,7 +15,10 @@ export default function Card({ item, categoryKey }) {
   const showImage = data.imagen && !imgError
 
   return (
-    <article className="group flex flex-col rounded-sm overflow-hidden bg-white border border-slate-200 transition-colors hover:border-accent dark:bg-base-900 dark:border-base-700">
+    <article
+      style={{ animationDelay: `${Math.min(index, 10) * 40}ms` }}
+      className="group flex flex-col rounded-sm overflow-hidden bg-white border border-slate-200 animate-fade-up transition-[border-color,box-shadow,transform] duration-200 ease-out-quart hover:border-accent hover:-translate-y-0.5 hover:shadow-md dark:bg-base-900 dark:border-base-700 dark:hover:shadow-black/40"
+    >
       <div className="relative h-40 w-full overflow-hidden bg-base-950 flex items-center justify-center">
         {showImage ? (
           <img
@@ -24,7 +27,7 @@ export default function Card({ item, categoryKey }) {
             loading="lazy"
             decoding="async"
             onError={() => setImgError(true)}
-            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+            className="h-full w-full object-cover transition-transform duration-300 ease-out-quart group-hover:scale-[1.03]"
           />
         ) : (
           <span className="text-4xl opacity-80">{config.emoji}</span>
@@ -47,7 +50,10 @@ export default function Card({ item, categoryKey }) {
         </h3>
 
         {data.detailUrl && (
-          <a href={data.detailUrl} className="text-xs font-semibold text-accent-dim dark:text-accent hover:underline -mt-1.5">
+          <a
+            href={data.detailUrl}
+            className="text-xs font-semibold text-accent-dim dark:text-accent hover:underline -mt-1.5 inline-flex w-fit items-center gap-1 transition-transform duration-150 ease-out-quart hover:translate-x-0.5"
+          >
             Ver ficha completa →
           </a>
         )}
@@ -83,7 +89,7 @@ export default function Card({ item, categoryKey }) {
                 href={data.cta.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-3 py-2 rounded-sm border border-accent text-accent-dim hover:bg-accent hover:text-black transition-colors dark:text-accent"
+                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-3 py-2 rounded-sm border border-accent text-accent-dim hover:bg-accent hover:text-black transition-[background-color,color,transform] duration-150 ease-out-quart active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 dark:text-accent dark:focus-visible:ring-offset-base-900"
               >
                 <LinkIcon className="w-3.5 h-3.5" /> {data.cta.label}
               </a>
@@ -93,7 +99,7 @@ export default function Card({ item, categoryKey }) {
                 href={data.whatsapp.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-3 py-2 rounded-sm bg-green-600 text-white hover:bg-green-500 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-3 py-2 rounded-sm bg-green-600 text-white hover:bg-green-500 transition-[background-color,transform] duration-150 ease-out-quart active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-base-900"
               >
                 <WhatsAppIcon className="w-3.5 h-3.5" /> {data.whatsapp.label}
               </a>

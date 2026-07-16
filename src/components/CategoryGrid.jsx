@@ -8,7 +8,7 @@ export default function CategoryGrid({ groups, showHeaders = true, emptyMessage 
 
   if (!hasAnyItems) {
     return (
-      <div className="text-center py-16 text-slate-500 dark:text-slate-400">
+      <div className="text-center py-16 text-slate-500 dark:text-slate-400 animate-fade-up">
         <p className="text-lg font-medium">{emptyMessage || 'No se encontraron resultados.'}</p>
       </div>
     )
@@ -32,8 +32,8 @@ export default function CategoryGrid({ groups, showHeaders = true, emptyMessage 
               </h2>
             )}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {items.map((item) => (
-                <Card key={item.id} item={item} categoryKey={key} />
+              {items.map((item, idx) => (
+                <Card key={item.id} item={item} categoryKey={key} index={idx} />
               ))}
             </div>
           </section>
