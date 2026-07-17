@@ -145,10 +145,10 @@ function page({ head, body }) {
   </head>
   <body class="bg-white text-base-950 dark:bg-black dark:text-slate-200">
     <div class="min-h-screen flex flex-col">
-      <header class="border-b border-slate-200 bg-[#f8f9fd]">
+      <header class="border-b border-black/40 bg-[#232b1c] bg-[url('/images/camo-tiger-stripe.webp')] bg-cover bg-center">
         <div class="h-[3px] w-full bg-accent"></div>
         <div class="max-w-4xl mx-auto px-4 py-5">
-          <a href="/" class="inline-flex items-center gap-2">
+          <a href="/" class="inline-flex items-center gap-2 rounded-sm bg-[#f8f9fd] px-2.5 py-1.5 shadow-md w-fit">
             <img src="${LOGO_PATH}" alt="${esc(SITE_NAME)}" class="h-12 w-auto object-contain" />
           </a>
         </div>
