@@ -1,7 +1,7 @@
 import { InstagramIcon, TiktokIcon, YoutubeIcon, TwitchIcon } from './Icons.jsx'
 
 const iconBtn =
-  'inline-flex items-center justify-center w-8 h-8 rounded-sm border ' +
+  'inline-flex items-center justify-center w-11 h-11 rounded-sm border ' +
   'transition-[color,border-color,transform] duration-200 ease-out-quart active:scale-90 ' +
   'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 ' +
   'bg-slate-100 border-slate-200 text-slate-700 hover:border-accent hover:text-accent-dim ' +

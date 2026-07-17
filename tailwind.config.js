@@ -11,7 +11,7 @@ export default {
       colors: {
         accent: {
           DEFAULT: '#5FD3EC',
-          dim: '#3B8FA3',
+          dim: '#2E7688',
         },
         base: {
           950: '#000000',

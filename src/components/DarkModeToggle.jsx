@@ -7,7 +7,7 @@ export default function DarkModeToggle({ isDark, onToggle }) {
       onClick={onToggle}
       aria-label={isDark ? 'Activar modo claro' : 'Activar modo oscuro'}
       title={isDark ? 'Modo claro' : 'Modo oscuro'}
-      className="relative inline-flex items-center justify-center w-9 h-9 rounded-sm border overflow-hidden
+      className="relative inline-flex items-center justify-center w-11 h-11 shrink-0 rounded-sm border overflow-hidden
         transition-[background-color,border-color,transform] duration-200 ease-out-quart active:scale-[0.92]
         focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2
         bg-slate-100 border-slate-200 text-slate-700 hover:border-accent hover:text-accent
