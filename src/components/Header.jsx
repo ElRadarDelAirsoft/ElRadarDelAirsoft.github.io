@@ -21,6 +21,9 @@ const Header = forwardRef(function Header({ search, onSearchChange, isDark, onTo
           <img
             src="/images/logo-radar-airsoft.png"
             alt="El Radar del Airsoft"
+            width="900"
+            height="305"
+            fetchpriority="high"
             className="h-12 sm:h-14 md:h-16 w-auto object-contain"
           />
         </button>

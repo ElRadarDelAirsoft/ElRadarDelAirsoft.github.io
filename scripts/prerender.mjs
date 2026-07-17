@@ -149,7 +149,7 @@ function page({ head, body }) {
         <div class="h-[3px] w-full bg-accent"></div>
         <div class="max-w-4xl mx-auto px-4 py-5">
           <a href="/" class="inline-flex items-center gap-2 rounded-sm bg-[#f8f9fd] px-2.5 py-1.5 shadow-md w-fit">
-            <img src="${LOGO_PATH}" alt="${esc(SITE_NAME)}" class="h-12 w-auto object-contain" />
+            <img src="${LOGO_PATH}" alt="${esc(SITE_NAME)}" width="900" height="305" class="h-12 w-auto object-contain" />
           </a>
         </div>
       </header>
@@ -181,7 +181,7 @@ function build404Page(cssHref) {
     ${DARK_MODE_SCRIPT}`
 
   const body = `<div class="text-center py-6">
-    <img src="/404.webp" alt="Un topo explorador táctico confundido frente a una pantalla de error 404" class="mx-auto w-full max-w-sm rounded-sm mb-8" />
+    <img src="/404.webp" alt="Un topo explorador táctico confundido frente a una pantalla de error 404" width="900" height="1125" class="mx-auto w-full max-w-sm rounded-sm mb-8" />
     <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-3">404 — Página no encontrada</h1>
     <p class="text-slate-600 mb-8">Parece que este túnel no lleva a ningún lado. La página que buscas no existe o se movió.</p>
     <a href="/" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm bg-accent text-black hover:bg-accent/90">Volver al directorio</a>

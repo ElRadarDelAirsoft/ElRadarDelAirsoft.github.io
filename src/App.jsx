@@ -8,6 +8,19 @@ import RegionFilter, { matchesRegion } from './components/RegionFilter.jsx'
 import { useAirsoftData } from './hooks/useAirsoftData.js'
 import { categoryKeys, getSearchableText } from './data/categoryConfig.js'
 
+const VALID_REGIONS = ['todos', 'lima', 'provincias']
+
+function readFiltersFromUrl() {
+  const params = new URLSearchParams(window.location.search)
+  const categoria = params.get('categoria')
+  const region = params.get('region')
+  return {
+    search: params.get('q') || '',
+    activeCategory: categoria && categoryKeys.includes(categoria) ? categoria : 'todo',
+    regionFilter: region && VALID_REGIONS.includes(region) ? region : 'todos',
+  }
+}
+
 function useDarkMode() {
   const [isDark, setIsDark] = useState(() => {
     const stored = localStorage.getItem('airsoft-dark-mode')
@@ -26,9 +39,23 @@ function useDarkMode() {
 export default function App() {
   const { data, error, loading } = useAirsoftData()
   const [isDark, toggleDark] = useDarkMode()
-  const [search, setSearch] = useState('')
-  const [activeCategory, setActiveCategory] = useState('todo')
-  const [regionFilter, setRegionFilter] = useState('todos')
+  const [{ search, activeCategory, regionFilter }, setFilters] = useState(readFiltersFromUrl)
+
+  const setSearch = (value) => setFilters((f) => ({ ...f, search: value }))
+  const setActiveCategory = (value) => setFilters((f) => ({ ...f, activeCategory: value }))
+  const setRegionFilter = (value) => setFilters((f) => ({ ...f, regionFilter: value }))
+
+  // Refleja los filtros en la URL para que una búsqueda/categoría sea
+  // compartible y sobreviva a un refresh (sin agregar historial por cada tecla).
+  useEffect(() => {
+    const params = new URLSearchParams()
+    if (search) params.set('q', search)
+    if (activeCategory !== 'todo') params.set('categoria', activeCategory)
+    if (regionFilter !== 'todos') params.set('region', regionFilter)
+    const qs = params.toString()
+    const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname
+    window.history.replaceState(null, '', url)
+  }, [search, activeCategory, regionFilter])
 
   // Altura real del header (varía por breakpoint/contenido) para que la
   // barra/sidebar de categorías se pegue justo debajo, sin taparlo ni dejar hueco.
@@ -107,7 +134,7 @@ export default function App() {
 
         <main className="flex-1 min-w-0 flex flex-col gap-6">
           {loading && (
-            <p className="text-center py-16 text-slate-500 dark:text-slate-400">Cargando biblioteca...</p>
+            <p className="text-center py-16 text-slate-500 dark:text-slate-400">Cargando biblioteca…</p>
           )}
 
           {error && (

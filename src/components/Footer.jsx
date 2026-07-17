@@ -24,7 +24,7 @@ export default function Footer({ ultimaActualizacion }) {
                 transition-[background-color,transform] duration-150 ease-out-quart active:scale-[0.97]
                 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-green-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-black"
             >
-              <WhatsAppIcon className="w-3.5 h-3.5" /> WhatsApp
+              <WhatsAppIcon aria-hidden="true" className="w-3.5 h-3.5" /> WhatsApp
             </a>
             <a
               href={`mailto:${ADMIN_EMAIL}`}
@@ -34,7 +34,7 @@ export default function Footer({ ultimaActualizacion }) {
                 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2
                 dark:bg-base-900 dark:border-base-700 dark:text-slate-300 dark:hover:border-accent dark:focus-visible:ring-offset-black"
             >
-              <MailIcon className="w-3.5 h-3.5" /> {ADMIN_EMAIL}
+              <MailIcon aria-hidden="true" className="w-3.5 h-3.5" /> {ADMIN_EMAIL}
             </a>
           </div>
         </div>
@@ -75,6 +75,8 @@ export default function Footer({ ultimaActualizacion }) {
           <img
             src="/images/Yape.jpg"
             alt="Código QR de Yape para donaciones"
+            width="508"
+            height="515"
             loading="lazy"
             className="w-40 h-40 rounded-sm object-contain bg-white p-1.5"
           />

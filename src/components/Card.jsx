@@ -24,6 +24,8 @@ export default function Card({ item, categoryKey, index = 0 }) {
           <img
             src={data.imagen}
             alt={data.nombre}
+            width="400"
+            height="160"
             loading="lazy"
             decoding="async"
             onError={() => setImgError(true)}
@@ -61,7 +63,7 @@ export default function Card({ item, categoryKey, index = 0 }) {
           <ul className="flex flex-col gap-1">
             {data.extra.map((row, idx) => (
               <li key={idx} className="flex items-start gap-1.5 text-xs text-slate-500 dark:text-slate-400">
-                <row.icon className="w-3.5 h-3.5 mt-0.5 shrink-0" />
+                <row.icon aria-hidden="true" className="w-3.5 h-3.5 mt-0.5 shrink-0" />
                 <span>{row.text}</span>
               </li>
             ))}
@@ -86,7 +88,7 @@ export default function Card({ item, categoryKey, index = 0 }) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-sm border border-accent text-accent-dim hover:bg-accent hover:text-black transition-[background-color,color,transform] duration-150 ease-out-quart active:scale-[0.97] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 dark:text-accent dark:focus-visible:ring-offset-base-900"
               >
-                <LinkIcon className="w-3.5 h-3.5" /> {data.cta.label}
+                <LinkIcon aria-hidden="true" className="w-3.5 h-3.5" /> {data.cta.label}
               </a>
             )}
             {data.whatsapp && (
@@ -96,7 +98,7 @@ export default function Card({ item, categoryKey, index = 0 }) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-sm bg-green-700 text-white hover:bg-green-600 transition-[background-color,transform] duration-150 ease-out-quart active:scale-[0.97] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-green-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-base-900"
               >
-                <WhatsAppIcon className="w-3.5 h-3.5" /> {data.whatsapp.label}
+                <WhatsAppIcon aria-hidden="true" className="w-3.5 h-3.5" /> {data.whatsapp.label}
               </a>
             )}
           </div>

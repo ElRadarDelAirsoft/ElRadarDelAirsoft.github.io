@@ -17,20 +17,20 @@ export default function ContactBadge({ type, value, mapsQuery }) {
     case 'phone':
       return (
         <a href={`tel:${value.replace(/[^\d+]/g, '')}`} className={baseClasses}>
-          <PhoneIcon /> {value}
+          <PhoneIcon aria-hidden="true" /> {value}
         </a>
       )
     case 'email':
       return (
         <a href={`mailto:${value}`} className={baseClasses}>
-          <MailIcon /> {value}
+          <MailIcon aria-hidden="true" /> {value}
         </a>
       )
     case 'web': {
       const href = value.startsWith('http') ? value : `https://${value}`
       return (
         <a href={href} target="_blank" rel="noopener noreferrer" className={baseClasses}>
-          <GlobeIcon /> {value.replace(/^https?:\/\//, '')}
+          <GlobeIcon aria-hidden="true" /> {value.replace(/^https?:\/\//, '')}
         </a>
       )
     }
@@ -40,9 +40,9 @@ export default function ContactBadge({ type, value, mapsQuery }) {
           href={mapsLinkFromAddress(mapsQuery || value)}
           target="_blank"
           rel="noopener noreferrer"
-          className={baseClasses}
+          className={`${baseClasses} min-w-0`}
         >
-          <MapPinIcon /> <span className="line-clamp-2 text-left">{value}</span>
+          <MapPinIcon aria-hidden="true" className="shrink-0" /> <span className="line-clamp-2 text-left min-w-0">{value}</span>
         </a>
       )
     default:
