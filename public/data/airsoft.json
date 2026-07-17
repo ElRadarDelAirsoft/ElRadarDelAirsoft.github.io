@@ -1,5 +1,6 @@
 {
   "_INSTRUCCIONES": "EDITA ESTE ARCHIVO PARA AGREGAR/MODIFICAR CONTENIDO. Solo cambia los valores, no la estructura. No borres ninguna clave (aunque esté vacía, deja \"\"). Guarda las imágenes en /public/images/<categoria>/ y referencia la ruta como \"/images/<categoria>/archivo.jpg\". Para agregar una entrada nueva, copia un objeto existente dentro del arreglo de su categoría, pégalo y cambia los valores (usa un \"id\" nuevo que no se repita). IMPORTANTE PARA SEO: en \"canchas\" el campo \"departamento\" y en \"tiendas\" el campo \"ciudad\" determinan si esa entrada genera su propia página indexable (/campos/<departamento>/<nombre> o /tiendas/<ciudad>/<nombre>) al correr \"npm run build\". Si los dejas vacíos, la entrada sigue apareciendo en el directorio pero no genera página propia.",
+
   "_ultima_actualizacion": "2026-07-08",
 
   "canchas": [
@@ -209,7 +210,7 @@
       "web": "",
       "imagen": "/images/tiendas/kingston.webp",
       "especialidad": "Tienda Online con delivery gratuito y entrega en el mismo día",
-      "descripcion": "Réplicas, accesorios tácticos y protección"
+      "descripcion": "Accesorios tácticos y protección"
     },
     {
       "id": 4,
@@ -232,83 +233,92 @@
     {
       "id": 1,
       "nombre": "Ventas y Partidas de Airsoft Perú",
-      "descripcion": "Grupo general de la comunidad: noticias, compra-venta y coordinación de partidas.",
-      "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0001",
-      "miembros_aprox": 950,
-      "admin_contacto": "Renzo F.",
-      "tematica": "Casual / General - Todo el Perú"
+      "descripcion": "Grupo donde se habla de compra-venta y coordinación de partidas.",
+      "link_whatsapp": "",
+      "miembros_aprox": "",
+      "admin_contacto": "Miguel Navas +51 983 509 060",
+      "tematica": "",
+      "imagen": "/images/grupos-whatsapp/ventas-y-partidas-de-airsoft-peru.webp"
     },
     {
       "id": 2,
       "nombre": "Airsoft Tacticshop & Eventos",
-      "descripcion": "Coordinación de partidas MilSim y operaciones de fin de semana en zona norte.",
-      "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0002",
-      "miembros_aprox": 210,
-      "admin_contacto": "Kevin Ramos",
-      "tematica": "MilSim - Lima Norte"
+      "descripcion": "Grupo donde se habla de compra-venta y coordinación de partidas.",
+      "link_whatsapp": "",
+      "miembros_aprox": "",
+      "admin_contacto": "Russo - +51 942 785 333",
+      "tematica": "",
+      "imagen": "/images/grupos-whatsapp/airsoft-tacticshop-eventos.webp"
     },
     {
       "id": 3,
       "nombre": "Akito airsoft club",
-      "descripcion": "Grupo enfocado en torneos de speedsoft y entrenamientos CQB competitivos.",
-      "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0003",
-      "miembros_aprox": 130,
-      "admin_contacto": "Diego Salazar",
-      "tematica": "Competitivo"
+      "descripcion": "Grupo donde se habla de compra-venta y coordinación de partidas.",
+      "link_whatsapp": "",
+      "miembros_aprox": "",
+      "admin_contacto": "Akito +51 995 292 571",
+      "tematica": "",
+      "imagen": "/images/grupos-whatsapp/akito-airsoft-club.webp"
     },
     {
       "id": 4,
       "nombre": "Comunidad Airsofters Arena",
-      "descripcion": "Grupo regional para coordinar partidas y compra-venta en Arequipa y alrededores.",
-      "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0004",
-      "miembros_aprox": 85,
-      "admin_contacto": "Fabrizio Chávez",
-      "tematica": "Regional - Arequipa"
+      "descripcion": "Grupo para charla abierta de la comunidad.",
+      "link_whatsapp": "",
+      "miembros_aprox": "",
+      "admin_contacto": "Arena Airsoft +51 930 905 335",
+      "tematica": "",
+      "imagen": "/images/grupos-whatsapp/comunidad-airsofters-arena.webp"
     },
- {
+    {
       "id": 5,
       "nombre": "Market ASFT",
-      "descripcion": "Grupo enfocado en torneos de speedsoft y entrenamientos CQB competitivos.",
-      "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0003",
-      "miembros_aprox": 130,
-      "admin_contacto": "Diego Salazar",
-      "tematica": "Competitivo"
+      "descripcion": "Grupo de compra-venta de Arena Airsoft",
+      "link_whatsapp": "",
+      "miembros_aprox": "",
+      "admin_contacto": "Arena Airsoft +51 930 905 335",
+      "tematica": "",
+      "imagen": "/images/grupos-whatsapp/market-asft.webp"
     },
- {
+    {
       "id": 6,
       "nombre": "Promociones y Partidas ASFT",
-      "descripcion": "Grupo enfocado en torneos de speedsoft y entrenamientos CQB competitivos.",
-      "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0003",
-      "miembros_aprox": 130,
-      "admin_contacto": "Diego Salazar",
-      "tematica": "Competitivo"
+      "descripcion": "Grupo de compra -venta y partidas en Arena Airsoft.",
+      "link_whatsapp": "",
+      "miembros_aprox": "",
+      "admin_contacto": "Arena Airsoft +51 930 905 335",
+      "tematica": "",
+      "imagen": "/images/grupos-whatsapp/promociones-y-partidas-asft.webp"
     },
- {
+    {
       "id": 7,
       "nombre": "Yo apoyo el Airsoft en el Perú",
-      "descripcion": "Grupo enfocado en torneos de speedsoft y entrenamientos CQB competitivos.",
-      "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0003",
-      "miembros_aprox": 130,
-      "admin_contacto": "Diego Salazar",
-      "tematica": "Competitivo"
+      "descripcion": "Grupo enfocado a hacer crecer el Airsoft en el Perú.",
+      "link_whatsapp": "",
+      "miembros_aprox": "",
+      "admin_contacto": "Padrino +51 998 318 610",
+      "tematica": "",
+      "imagen": "/images/grupos-whatsapp/yo-apoyo-el-airsoft-en-el-peru.webp"
     },
- {
+    {
       "id": 8,
       "nombre": "Parabellum Airsoft",
-      "descripcion": "Grupo enfocado en torneos de speedsoft y entrenamientos CQB competitivos.",
-      "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0003",
-      "miembros_aprox": 130,
-      "admin_contacto": "Diego Salazar",
-      "tematica": "Competitivo"
+      "descripcion": "Grupo enfocado mantenimiento de replicas & importación de réplicas y accesorios.",
+      "link_whatsapp": "",
+      "miembros_aprox": "",
+      "admin_contacto": "Parabellum +51 922 421 385",
+      "tematica": "",
+      "imagen": "/images/grupos-whatsapp/parabellum-airsoft.webp"
     },
- {
+    {
       "id": 9,
       "nombre": "GULAG LIMA",
-      "descripcion": "Grupo enfocado en torneos de speedsoft y entrenamientos CQB competitivos.",
-      "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0003",
-      "miembros_aprox": 130,
-      "admin_contacto": "Diego Salazar",
-      "tematica": "Competitivo"
+      "descripcion": "Grupo enfocado en partidas en el Gulag.",
+      "link_whatsapp": "",
+      "miembros_aprox": "",
+      "admin_contacto": "Eduardo +51 996 668 504",
+      "tematica": "",
+      "imagen": "/images/grupos-whatsapp/gulag-lima.webp"
     }
   ],
 
@@ -389,7 +399,7 @@
       "zonas_cobertura": "Lima, Trujillo y Chiclayo"
     }
   ],
-  
+
   "Armeros & Mecánicos": [
     {
       "id": 1,
@@ -498,40 +508,55 @@
       "nombre": "Roma",
       "foto": "/images/jugadores/ghost-chavez.jpg",
       "descripcion": "",
-      "instagram": "",
-      "tiktok": "",
-      "youtube": "",
-      "twitch": ""
+      "instagram": "https://www.instagram.com/roma_airsoft/",
+      "tiktok": "https://www.tiktok.com/@romaairsoft",
+      "youtube": "https://www.youtube.com/RomaAirsoftPeru",
+      "twitch": "",
+      "facebook": ""
     },
     {
       "id": 2,
       "nombre": "Topo",
       "foto": "/images/jugadores/vixen-rojas.jpg",
       "descripcion": "",
-      "instagram": "",
+      "instagram": "https://www.instagram.com/eltopoairsoft/",
       "tiktok": "",
       "youtube": "",
-      "twitch": ""
+      "twitch": "",
+      "facebook": ""
     },
     {
       "id": 3,
       "nombre": "Piwik",
       "foto": "/images/jugadores/tanque-villar.jpg",
       "descripcion": "",
-      "instagram": "",
+      "instagram": "https://www.instagram.com/piwikk_te_dispara/",
       "tiktok": "",
       "youtube": "",
-      "twitch": ""
+      "twitch": "",
+      "facebook": ""
     },
     {
       "id": 4,
+      "nombre": "Parabellum",
+      "foto": "/images/jugadores/tanque-villar.jpg",
+      "descripcion": "https://www.parabellumairsoft.com.pe/",
+      "instagram": "https://www.instagram.com/parabellumairsoft.pe/",
+      "tiktok": "",
+      "youtube": "https://www.youtube.com/channel/UCYI4rzSqENDYPvOHBNyN0NQ",
+      "twitch": "",
+      "facebook": ""
+    },
+    {
+      "id": 5,
       "nombre": "Techies",
       "foto": "/images/jugadores/nova-torres.jpg",
       "descripcion": "",
-      "instagram": "",
+      "instagram": "https://www.instagram.com/__campo_de_tecnicos__/",
       "tiktok": "",
       "youtube": "",
-      "twitch": ""
+      "twitch": "",
+      "facebook": ""
     }
   ],
 
@@ -540,7 +565,12 @@
       "id": 1,
       "nombre": "Jackass",
       "logo": "/images/Equipos/jackass.webp",
-      "contacto_capitan": "Rusito"
+      "contacto_capitan": "Rusito",
+      "facebook": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": ""
     },
     {
       "id": 2,
@@ -550,7 +580,12 @@
       "cantidad_jugadores": "",
       "contacto_capitan": "",
       "whatsapp": "",
-      "torneo_o_cancha_principal": ""
+      "torneo_o_cancha_principal": "",
+      "facebook": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": ""
     },
     {
       "id": 3,
@@ -560,7 +595,12 @@
       "cantidad_jugadores": "",
       "contacto_capitan": "Sikary",
       "whatsapp": "",
-      "torneo_o_cancha_principal": ""
+      "torneo_o_cancha_principal": "",
+      "facebook": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": ""
     },
     {
       "id": 4,
@@ -570,7 +610,12 @@
       "cantidad_jugadores": "",
       "contacto_capitan": "",
       "whatsapp": "",
-      "torneo_o_cancha_principal": ""
+      "torneo_o_cancha_principal": "",
+      "facebook": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": ""
     },
     {
       "id": 5,
@@ -580,7 +625,12 @@
       "cantidad_jugadores": "",
       "contacto_capitan": "",
       "whatsapp": "",
-      "torneo_o_cancha_principal": ""
+      "torneo_o_cancha_principal": "",
+      "facebook": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": ""
     },
     {
       "id": 6,
@@ -590,7 +640,12 @@
       "cantidad_jugadores": "",
       "contacto_capitan": "Artillero",
       "whatsapp": "",
-      "torneo_o_cancha_principal": ""
+      "torneo_o_cancha_principal": "",
+      "facebook": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": ""
     },
     {
       "id": 7,
@@ -600,7 +655,12 @@
       "cantidad_jugadores": "",
       "contacto_capitan": "",
       "whatsapp": "",
-      "torneo_o_cancha_principal": ""
+      "torneo_o_cancha_principal": "",
+      "facebook": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": ""
     },
     {
       "id": 8,
@@ -610,7 +670,12 @@
       "cantidad_jugadores": "Berraco",
       "contacto_capitan": "",
       "whatsapp": "",
-      "torneo_o_cancha_principal": ""
+      "torneo_o_cancha_principal": "",
+      "facebook": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": ""
     },
     {
       "id": 9,
@@ -620,7 +685,12 @@
       "cantidad_jugadores": "",
       "contacto_capitan": "",
       "whatsapp": "",
-      "torneo_o_cancha_principal": ""
+      "torneo_o_cancha_principal": "",
+      "facebook": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": ""
     },
     {
       "id": 10,
@@ -630,7 +700,12 @@
       "cantidad_jugadores": "",
       "contacto_capitan": "Shinobi",
       "whatsapp": "",
-      "torneo_o_cancha_principal": ""
+      "torneo_o_cancha_principal": "",
+      "facebook": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": ""
     },
     {
       "id": 11,
@@ -640,7 +715,12 @@
       "cantidad_jugadores": "Rambo",
       "contacto_capitan": "",
       "whatsapp": "",
-      "torneo_o_cancha_principal": ""
+      "torneo_o_cancha_principal": "",
+      "facebook": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": ""
     },
     {
       "id": 12,
@@ -650,7 +730,12 @@
       "cantidad_jugadores": "Moro",
       "contacto_capitan": "",
       "whatsapp": "",
-      "torneo_o_cancha_principal": ""
+      "torneo_o_cancha_principal": "",
+      "facebook": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": ""
     },
     {
       "id": 13,
@@ -660,7 +745,12 @@
       "cantidad_jugadores": "",
       "contacto_capitan": "",
       "whatsapp": "",
-      "torneo_o_cancha_principal": ""
+      "torneo_o_cancha_principal": "",
+      "facebook": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": ""
     },
     {
       "id": 14,
@@ -670,7 +760,12 @@
       "cantidad_jugadores": "",
       "contacto_capitan": "",
       "whatsapp": "",
-      "torneo_o_cancha_principal": ""
+      "torneo_o_cancha_principal": "",
+      "facebook": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": ""
     },
     {
       "id": 15,
@@ -680,17 +775,72 @@
       "cantidad_jugadores": "",
       "contacto_capitan": "",
       "whatsapp": "",
-      "torneo_o_cancha_principal": ""
+      "torneo_o_cancha_principal": "",
+      "facebook": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": ""
     },
     {
       "id": 16,
+      "nombre": "Skulls",
+      "logo": "/images/Equipos/skulls.webp",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "Padrino",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": "",
+      "facebook": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": ""
+    },
+    {
+      "id": 17,
+      "nombre": "Black Lions",
+      "logo": "/images/Equipos/black-lions.webp",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "Ares",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": "",
+      "facebook": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": ""
+    },
+    {
+      "id": 18,
+      "nombre": "Centuriones",
+      "logo": "/images/Equipos/centuriones.webp",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": "",
+      "facebook": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": ""
+    },
+    {
+      "id": 19,
       "nombre": "ZLN",
       "logo": "/images/Equipos/zln.webp",
       "descripcion": "",
       "cantidad_jugadores": "",
       "contacto_capitan": "",
       "whatsapp": "",
-      "torneo_o_cancha_principal": ""
+      "torneo_o_cancha_principal": "",
+      "facebook": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": ""
     }
   ],
 

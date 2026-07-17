@@ -1,4 +1,4 @@
-import { InstagramIcon, TiktokIcon, YoutubeIcon, TwitchIcon } from './Icons.jsx'
+import { InstagramIcon, TiktokIcon, YoutubeIcon, TwitchIcon, FacebookIcon } from './Icons.jsx'
 
 const iconBtn =
   'inline-flex items-center justify-center w-11 h-11 rounded-sm border ' +
@@ -20,14 +20,17 @@ function toUrl(handle, platform) {
       return `https://youtube.com/${clean.startsWith('@') ? clean : '@' + clean}`
     case 'twitch':
       return `https://twitch.tv/${clean}`
+    case 'facebook':
+      return `https://facebook.com/${clean}`
     default:
       return null
   }
 }
 
 // Fila de iconos de redes sociales, cada uno clicable y abre en pestaña nueva.
-export default function SocialIcons({ instagram, tiktok, youtube, twitch }) {
+export default function SocialIcons({ instagram, tiktok, youtube, twitch, facebook }) {
   const items = [
+    { platform: 'facebook', handle: facebook, Icon: FacebookIcon, label: 'Facebook' },
     { platform: 'instagram', handle: instagram, Icon: InstagramIcon, label: 'Instagram' },
     { platform: 'tiktok', handle: tiktok, Icon: TiktokIcon, label: 'TikTok' },
     { platform: 'youtube', handle: youtube, Icon: YoutubeIcon, label: 'YouTube' },
