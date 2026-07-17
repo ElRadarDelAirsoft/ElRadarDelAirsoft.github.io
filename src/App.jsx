@@ -154,7 +154,7 @@ export default function App() {
         </main>
       </div>
 
-      <Footer ultimaActualizacion={data?._ultima_actualizacion} />
+      <Footer />
     </div>
   )
 }
