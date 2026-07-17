@@ -22,7 +22,7 @@ const DIST = path.join(ROOT, 'dist')
 // Afecta canonical, og:url, sitemap.xml y llms.txt.
 const SITE_URL = 'https://elradardelairsoft.github.io'
 const SITE_NAME = 'El Radar del Airsoft'
-const LOGO_PATH = '/images/logo-radar-airsoft.png'
+const LOGO_PATH = '/images/logo-radar-airsoft.webp'
 
 const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'public/data/airsoft.json'), 'utf8'))
 
@@ -149,7 +149,7 @@ function page({ head, body }) {
         <div class="h-[3px] w-full bg-accent"></div>
         <div class="max-w-4xl mx-auto px-4 py-5">
           <a href="/" class="inline-flex items-center gap-2 rounded-sm bg-[#f8f9fd] px-2.5 py-1.5 shadow-md w-fit">
-            <img src="${LOGO_PATH}" alt="${esc(SITE_NAME)}" width="900" height="305" class="h-12 w-auto object-contain" />
+            <img src="${LOGO_PATH}" alt="${esc(SITE_NAME)}" width="564" height="700" class="h-14 w-auto object-contain" />
           </a>
         </div>
       </header>

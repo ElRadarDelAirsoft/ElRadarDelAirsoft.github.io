@@ -19,12 +19,12 @@ const Header = forwardRef(function Header({ search, onSearchChange, isDark, onTo
           aria-label="Ir al inicio"
         >
           <img
-            src="/images/logo-radar-airsoft.png"
+            src="/images/logo-radar-airsoft.webp"
             alt="El Radar del Airsoft"
-            width="900"
-            height="305"
+            width="564"
+            height="700"
             fetchpriority="high"
-            className="h-12 sm:h-14 md:h-16 w-auto object-contain"
+            className="h-16 sm:h-20 md:h-24 w-auto object-contain"
           />
         </button>
         <div className="flex flex-col items-end gap-1.5 flex-1 min-w-0 max-w-xs">
