@@ -506,7 +506,7 @@
     {
       "id": 1,
       "nombre": "Roma",
-      "foto": "/images/jugadores/ghost-chavez.jpg",
+      "foto": "/images/jugadores/roma.webp",
       "descripcion": "",
       "instagram": "https://www.instagram.com/roma_airsoft/",
       "tiktok": "https://www.tiktok.com/@romaairsoft",
@@ -517,7 +517,7 @@
     {
       "id": 2,
       "nombre": "Topo",
-      "foto": "/images/jugadores/vixen-rojas.jpg",
+      "foto": "/images/jugadores/topo.webp",
       "descripcion": "",
       "instagram": "https://www.instagram.com/eltopoairsoft/",
       "tiktok": "",
@@ -528,7 +528,7 @@
     {
       "id": 3,
       "nombre": "Piwik",
-      "foto": "/images/jugadores/tanque-villar.jpg",
+      "foto": "/images/jugadores/piwik.webp",
       "descripcion": "",
       "instagram": "https://www.instagram.com/piwikk_te_dispara/",
       "tiktok": "",
@@ -539,7 +539,7 @@
     {
       "id": 4,
       "nombre": "Parabellum",
-      "foto": "/images/jugadores/tanque-villar.jpg",
+      "foto": "/images/jugadores/parabellum.webp",
       "descripcion": "https://www.parabellumairsoft.com.pe/",
       "instagram": "https://www.instagram.com/parabellumairsoft.pe/",
       "tiktok": "",
