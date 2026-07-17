@@ -133,6 +133,22 @@
     },
     {
       "id": 9,
+      "nombre": "War Zone Huaraz",
+      "direccion": "Jr. simon Bolivar S/N (al frente de Compartamos banco), Huaraz, Peru, 02001",
+      "departamento": "Ancash",
+      "telefono": "",
+      "whatsapp": "+51 972501889",
+      "email": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "imagen": "/images/canchas/war-zone-huaraz.webp",
+      "organizador": "",
+      "descripcion": "Cancha CQB llena de adrenalina",
+      "horarios": "Dom 9:00am-1:00pm"
+    },
+    {
+      "id": 10,
       "nombre": "Camboya",
       "direccion": "Av. Jorge Chávez 1930, Santiago de Surco 15063",
       "departamento": "Lima",
@@ -658,6 +674,16 @@
     },
     {
       "id": 15,
+      "nombre": "Strong Tower",
+      "logo": "/images/Equipos/strong-tower.webp",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": ""
+    },
+    {
+      "id": 16,
       "nombre": "ZLN",
       "logo": "/images/Equipos/zln.webp",
       "descripcion": "",

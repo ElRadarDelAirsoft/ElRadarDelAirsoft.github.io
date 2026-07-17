@@ -92,7 +92,8 @@ export default function App() {
         items = items.filter((it) => matchesRegion(it.departamento, regionFilter))
       }
       const filtered = q ? items.filter((it) => getSearchableText(it).includes(q)) : items
-      return { key, items: filtered }
+      const sorted = [...filtered].sort((a, b) => (a.nombre || '').localeCompare(b.nombre || '', 'es'))
+      return { key, items: sorted }
     })
   }, [data, search, activeCategory, regionFilter])
 
