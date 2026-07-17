@@ -10,8 +10,8 @@ export default {
     extend: {
       colors: {
         accent: {
-          DEFAULT: '#D4A82F',
-          dim: '#8A6D1A',
+          DEFAULT: '#6B9B37',
+          dim: '#3D5C28',
         },
         base: {
           950: '#000000',

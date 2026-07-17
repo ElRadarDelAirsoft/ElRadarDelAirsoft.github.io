@@ -70,7 +70,7 @@ export default function Card({ item, categoryKey, index = 0 }) {
           </ul>
         )}
 
-        <div className="flex flex-wrap gap-1.5 mt-1">
+        <div className="flex flex-col gap-1.5 mt-1">
           <ContactBadge type="address" value={data.direccion?.texto} />
           <ContactBadge type="phone" value={data.telefono} />
           <ContactBadge type="email" value={data.email} />

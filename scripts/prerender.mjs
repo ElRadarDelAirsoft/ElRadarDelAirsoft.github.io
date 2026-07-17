@@ -126,7 +126,16 @@ function contactBlock(entity) {
   }
   if (entity.telefono) rows.push(`<li><a href="tel:${esc(entity.telefono)}" class="text-sm text-slate-600 hover:text-accent-dim">📞 ${esc(entity.telefono)}</a></li>`)
   if (entity.email) rows.push(`<li><a href="mailto:${esc(entity.email)}" class="text-sm text-slate-600 hover:text-accent-dim">✉️ ${esc(entity.email)}</a></li>`)
-  if (entity.web) rows.push(`<li><a href="${entity.web.startsWith('http') ? entity.web : 'https://' + entity.web}" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-600 hover:text-accent-dim">🌐 ${esc(entity.web)}</a></li>`)
+  if (entity.web) {
+    const webHref = entity.web.startsWith('http') ? entity.web : `https://${entity.web}`
+    let webLabel = entity.web
+    try {
+      webLabel = new URL(webHref).hostname.replace(/^www\./, '')
+    } catch {
+      // valor no parseable como URL: se muestra tal cual
+    }
+    rows.push(`<li><a href="${webHref}" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-600 hover:text-accent-dim">🌐 ${esc(webLabel)}</a></li>`)
+  }
   if (entity.horarios) rows.push(`<li class="text-sm text-slate-600">🕒 ${esc(entity.horarios)}</li>`)
   return `<ul class="flex flex-col gap-2 mb-5">${rows.join('')}</ul>`
 }
