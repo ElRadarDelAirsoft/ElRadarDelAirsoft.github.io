@@ -10,8 +10,3 @@ export function whatsappLinkFromPhone(phone) {
 export function whatsappGroupLink(link) {
   return link || null
 }
-
-export function mapsLinkFromAddress(address) {
-  if (!address) return null
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
-}

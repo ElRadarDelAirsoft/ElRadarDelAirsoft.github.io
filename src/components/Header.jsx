@@ -21,10 +21,10 @@ const Header = forwardRef(function Header({ search, onSearchChange, isDark, onTo
           <img
             src="/images/logo-radar-airsoft.webp"
             alt="El Radar del Airsoft"
-            width="564"
-            height="700"
+            width="452"
+            height="456"
             fetchpriority="high"
-            className="h-16 sm:h-20 md:h-24 w-auto object-contain"
+            className="h-20 sm:h-24 md:h-28 w-auto object-contain"
           />
         </button>
         <div className="flex flex-col items-end gap-1.5 flex-1 min-w-0 max-w-xs">

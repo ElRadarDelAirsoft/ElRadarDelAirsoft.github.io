@@ -1,5 +1,4 @@
 import { PhoneIcon, MailIcon, GlobeIcon, MapPinIcon } from './Icons.jsx'
-import { mapsLinkFromAddress } from '../utils/whatsapp.js'
 
 const baseClasses =
   'inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1.5 rounded-sm border ' +
@@ -8,9 +7,16 @@ const baseClasses =
   'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 ' +
   'dark:bg-base-800 dark:border-base-700 dark:text-slate-300 dark:hover:border-accent dark:hover:text-white dark:focus-visible:ring-offset-base-900'
 
-// Badge genérico de contacto (teléfono / email / web / dirección → maps).
-// Cada variante es clicable y abre en una nueva pestaña cuando corresponde.
-export default function ContactBadge({ type, value, mapsQuery }) {
+// Badge estático (no clicable) para mostrar la dirección sin enlazar a
+// Google Maps, así nadie sale de la página sin querer.
+const staticClasses =
+  'inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1.5 rounded-sm border ' +
+  'bg-slate-100 border-slate-200 text-slate-700 ' +
+  'dark:bg-base-800 dark:border-base-700 dark:text-slate-300'
+
+// Badge genérico de contacto (teléfono / email / web / dirección).
+// Teléfono/email/web son clicables; la dirección es texto plano (sin salir a Maps).
+export default function ContactBadge({ type, value }) {
   if (!value) return null
 
   switch (type) {
@@ -36,14 +42,9 @@ export default function ContactBadge({ type, value, mapsQuery }) {
     }
     case 'address':
       return (
-        <a
-          href={mapsLinkFromAddress(mapsQuery || value)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${baseClasses} min-w-0`}
-        >
-          <MapPinIcon aria-hidden="true" className="shrink-0" /> <span className="line-clamp-2 text-left min-w-0">{value}</span>
-        </a>
+        <span className={`${staticClasses} min-w-0`}>
+          <MapPinIcon aria-hidden="true" className="w-4 h-4 shrink-0" /> <span className="line-clamp-2 text-left min-w-0">{value}</span>
+        </span>
       )
     default:
       return null

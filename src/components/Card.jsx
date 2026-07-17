@@ -71,7 +71,7 @@ export default function Card({ item, categoryKey, index = 0 }) {
         )}
 
         <div className="flex flex-wrap gap-1.5 mt-1">
-          <ContactBadge type="address" value={data.direccion?.texto} mapsQuery={data.direccion?.mapsQuery} />
+          <ContactBadge type="address" value={data.direccion?.texto} />
           <ContactBadge type="phone" value={data.telefono} />
           <ContactBadge type="email" value={data.email} />
           <ContactBadge type="web" value={data.web} />

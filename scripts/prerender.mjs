@@ -12,7 +12,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { slugify } from '../src/utils/slug.js'
 import { blogPosts } from '../src/data/blogPosts.js'
-import { whatsappLinkFromPhone, mapsLinkFromAddress } from '../src/utils/whatsapp.js'
+import { whatsappLinkFromPhone } from '../src/utils/whatsapp.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
@@ -122,7 +122,7 @@ function contactBlock(entity) {
   const rows = []
   const address = entity.direccion || entity.ubicacion
   if (address) {
-    rows.push(`<li><a href="${mapsLinkFromAddress(address)}" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-600 hover:text-accent-dim">📍 ${esc(address)}</a></li>`)
+    rows.push(`<li class="text-sm text-slate-600">📍 ${esc(address)}</li>`)
   }
   if (entity.telefono) rows.push(`<li><a href="tel:${esc(entity.telefono)}" class="text-sm text-slate-600 hover:text-accent-dim">📞 ${esc(entity.telefono)}</a></li>`)
   if (entity.email) rows.push(`<li><a href="mailto:${esc(entity.email)}" class="text-sm text-slate-600 hover:text-accent-dim">✉️ ${esc(entity.email)}</a></li>`)
@@ -149,7 +149,7 @@ function page({ head, body }) {
         <div class="h-[3px] w-full bg-accent"></div>
         <div class="max-w-4xl mx-auto px-4 py-5">
           <a href="/" class="inline-flex items-center gap-2 rounded-sm bg-[#f8f9fd] px-2.5 py-1.5 shadow-md w-fit">
-            <img src="${LOGO_PATH}" alt="${esc(SITE_NAME)}" width="564" height="700" class="h-14 w-auto object-contain" />
+            <img src="${LOGO_PATH}" alt="${esc(SITE_NAME)}" width="452" height="456" class="h-20 w-auto object-contain" />
           </a>
         </div>
       </header>
