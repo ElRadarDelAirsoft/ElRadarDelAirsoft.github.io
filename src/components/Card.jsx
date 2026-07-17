@@ -77,10 +77,10 @@ export default function Card({ item, categoryKey, index = 0 }) {
           <ContactBadge type="web" value={data.web} />
         </div>
 
-        <div className="mt-auto pt-3 flex items-center justify-between gap-2 flex-wrap">
+        <div className="mt-auto pt-3 flex items-center justify-center gap-2 flex-wrap">
           <SocialIcons {...data.socials} />
 
-          <div className="flex items-center gap-2 ml-auto">
+          <div className="flex items-center gap-2">
             {data.cta && (
               <a
                 href={data.cta.href}
