@@ -20,7 +20,7 @@ const DIST = path.join(ROOT, 'dist')
 
 // TODO: actualizar con el dominio real antes de deployar a producción.
 // Afecta canonical, og:url, sitemap.xml y llms.txt.
-const SITE_URL = 'https://renzofowks-master.github.io'
+const SITE_URL = 'https://elradardelairsoft.github.io'
 const SITE_NAME = 'El Radar del Airsoft'
 const LOGO_PATH = '/images/logo-radar-airsoft.png'
 
