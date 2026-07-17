@@ -95,7 +95,7 @@ export const categoryConfig = {
   },
 
   eventos: {
-    label: 'Eventos (Herzog)',
+    label: 'Eventos',
     emoji: '🔥',
     normalize: (i) => ({
       id: i.id,
@@ -143,29 +143,10 @@ export const categoryConfig = {
     }),
   },
 
-  mercado_pulgas: {
-    label: 'Mercado de Pulgas',
-    emoji: '🏷️',
-    normalize: (i) => ({
-      id: i.id,
-      nombre: i.nombre,
-      imagen: i.imagen,
-      descripcion: i.que_vende,
-      badge: i.tipo === 'tienda' ? 'Tienda' : 'Persona',
-      direccion: i.ubicacion ? { texto: i.ubicacion, mapsQuery: i.ubicacion } : null,
-      telefono: null,
-      email: null,
-      web: null,
-      whatsapp: i.whatsapp ? { label: 'Contactar por WhatsApp', href: whatsappLinkFromPhone(i.whatsapp) } : null,
-      socials: { instagram: null, tiktok: null, youtube: null, twitch: null },
-      extra: [i.contacto ? { icon: TagIcon, text: i.contacto } : null].filter(Boolean),
-      cta: null,
-    }),
-  },
-
   workshops: {
-    label: 'Workshops',
+    label: 'Armeros & Mecánicos',
     emoji: '🔧',
+    dataKey: 'Armeros & Mecánicos',
     normalize: (i) => ({
       id: i.id,
       nombre: i.nombre,
@@ -188,8 +169,9 @@ export const categoryConfig = {
   },
 
   jugadores: {
-    label: 'Jugadores',
+    label: 'Jugadores Influencers',
     emoji: '🎮',
+    dataKey: 'jugadores Influencers',
     normalize: (i) => ({
       id: i.id,
       nombre: i.nombre,
@@ -231,7 +213,7 @@ export const categoryConfig = {
     }),
   },
 
-  pintado_replicas: {
+  pintado_de_replicas: {
     label: 'Pintado de Réplicas',
     emoji: '🎨',
     normalize: (i) => ({

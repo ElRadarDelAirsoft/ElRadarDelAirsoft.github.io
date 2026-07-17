@@ -167,7 +167,7 @@
     },
     {
       "id": 2,
-      "nombre": "Tactical Gear Store",
+      "nombre": "Peru Airsoft Shop",
       "direccion": "C.C. Real Plaza, Local 214, San Miguel, Lima",
       "ciudad": "Lima",
       "telefono": "+51 932109876",
@@ -182,7 +182,7 @@
     },
     {
       "id": 3,
-      "nombre": "Munición Express Lima",
+      "nombre": "Padrino Airsoft Shop",
       "direccion": "Jr. Puno 890, Cercado de Lima",
       "ciudad": "Lima",
       "telefono": "+51 921098765",
@@ -194,28 +194,13 @@
       "imagen": "/images/tiendas/municion-express.jpg",
       "especialidad": "Munición BB 0.20g-0.32g y gas verde/propano",
       "descripcion": "Delivery el mismo día en Lima Metropolitana para pedidos de munición y gas."
-    },
-    {
-      "id": 4,
-      "nombre": "Replica Store Arequipa",
-      "direccion": "Calle Mercaderes 320, Cercado, Arequipa",
-      "ciudad": "Arequipa",
-      "telefono": "+51 910987654",
-      "whatsapp": "+51 910987654",
-      "email": "info@replicastoreaqp.pe",
-      "instagram": "@replicastore.aqp",
-      "tiktok": "",
-      "web": "",
-      "imagen": "/images/tiendas/replica-store-aqp.jpg",
-      "especialidad": "Réplicas y accesorios, envíos a todo el sur",
-      "descripcion": "Primera tienda especializada de airsoft en Arequipa, con showroom y taller propio."
     }
   ],
 
   "grupos_whatsapp": [
     {
       "id": 1,
-      "nombre": "Airsoft Perú Oficial",
+      "nombre": "Ventas y Partidas de Airsoft Perú",
       "descripcion": "Grupo general de la comunidad: noticias, compra-venta y coordinación de partidas.",
       "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0001",
       "miembros_aprox": 950,
@@ -224,7 +209,7 @@
     },
     {
       "id": 2,
-      "nombre": "Milsim Lima Norte",
+      "nombre": "Airsoft Tacticshop & Eventos",
       "descripcion": "Coordinación de partidas MilSim y operaciones de fin de semana en zona norte.",
       "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0002",
       "miembros_aprox": 210,
@@ -233,7 +218,7 @@
     },
     {
       "id": 3,
-      "nombre": "Speedsoft Competitivo PE",
+      "nombre": "Akito airsoft club",
       "descripcion": "Grupo enfocado en torneos de speedsoft y entrenamientos CQB competitivos.",
       "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0003",
       "miembros_aprox": 130,
@@ -242,107 +227,88 @@
     },
     {
       "id": 4,
-      "nombre": "Airsoft Arequipa Sur",
+      "nombre": "Comunidad Airsofters Arena",
       "descripcion": "Grupo regional para coordinar partidas y compra-venta en Arequipa y alrededores.",
       "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0004",
       "miembros_aprox": 85,
       "admin_contacto": "Fabrizio Chávez",
       "tematica": "Regional - Arequipa"
+    },
+ {
+      "id": 5,
+      "nombre": "Market ASFT",
+      "descripcion": "Grupo enfocado en torneos de speedsoft y entrenamientos CQB competitivos.",
+      "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0003",
+      "miembros_aprox": 130,
+      "admin_contacto": "Diego Salazar",
+      "tematica": "Competitivo"
+    },
+ {
+      "id": 6,
+      "nombre": "Promociones y Partidas ASFT",
+      "descripcion": "Grupo enfocado en torneos de speedsoft y entrenamientos CQB competitivos.",
+      "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0003",
+      "miembros_aprox": 130,
+      "admin_contacto": "Diego Salazar",
+      "tematica": "Competitivo"
+    },
+ {
+      "id": 7,
+      "nombre": "Yo apoyo el Airsoft en el Perú",
+      "descripcion": "Grupo enfocado en torneos de speedsoft y entrenamientos CQB competitivos.",
+      "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0003",
+      "miembros_aprox": 130,
+      "admin_contacto": "Diego Salazar",
+      "tematica": "Competitivo"
+    },
+ {
+      "id": 8,
+      "nombre": "Parabellum Airsoft",
+      "descripcion": "Grupo enfocado en torneos de speedsoft y entrenamientos CQB competitivos.",
+      "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0003",
+      "miembros_aprox": 130,
+      "admin_contacto": "Diego Salazar",
+      "tematica": "Competitivo"
+    },
+ {
+      "id": 9,
+      "nombre": "GULAG LIMA",
+      "descripcion": "Grupo enfocado en torneos de speedsoft y entrenamientos CQB competitivos.",
+      "link_whatsapp": "https://chat.whatsapp.com/EJEMPLO0003",
+      "miembros_aprox": 130,
+      "admin_contacto": "Diego Salazar",
+      "tematica": "Competitivo"
     }
   ],
 
   "eventos": [
     {
       "id": 1,
-      "nombre": "Herzog: Operación Fenrir",
-      "fecha_hora": "2026-08-15 08:00am",
-      "ubicacion": "Black Hawk Airsoft Field, Chosica, Lima",
-      "descripcion": "Evento MilSim de 8 horas con narrativa, facciones y objetivos por radio.",
-      "aforo": "120 jugadores",
-      "contacto": "Equipo Herzog",
-      "whatsapp": "+51 987012345",
-      "link_inscripcion": "https://forms.gle/EJEMPLOHERZOG1",
-      "imagen": "/images/eventos/operacion-fenrir.jpg"
-    },
-    {
-      "id": 2,
-      "nombre": "Herzog: Noche de Asalto",
-      "fecha_hora": "2026-09-05 06:00pm",
-      "ubicacion": "Delta Ops Airsoft Park, Ate, Lima",
-      "descripcion": "Partida nocturna con equipo de iluminación táctica obligatorio.",
-      "aforo": "80 jugadores",
-      "contacto": "Equipo Herzog",
-      "whatsapp": "+51 987012345",
-      "link_inscripcion": "https://forms.gle/EJEMPLOHERZOG2",
-      "imagen": "/images/eventos/noche-asalto.jpg"
-    },
-    {
-      "id": 3,
-      "nombre": "Herzog: Copa Regional Speedsoft",
-      "fecha_hora": "2026-09-20 09:00am",
-      "ubicacion": "Zona de Combate CQB Surco, Lima",
-      "descripcion": "Torneo eliminatorio por equipos de 4, formato speedsoft 2 vs 2 y 4 vs 4.",
-      "aforo": "64 jugadores (16 equipos)",
-      "contacto": "Equipo Herzog",
-      "whatsapp": "+51 987012345",
-      "link_inscripcion": "https://forms.gle/EJEMPLOHERZOG3",
-      "imagen": "/images/eventos/copa-speedsoft.jpg"
+      "nombre": "ZABODT La Fabrica",
+      "fecha_hora": "2026-07-12 09:00am",
+      "ubicacion": "EX FABRICA MANYLSA - Ate",
+      "descripcion": "Evento de lanzamiento de nueva cancha CQB en una fábrica abandonada",
+      "aforo": "150 jugadores",
+      "contacto": "Ryan Axel",
+      "whatsapp": "+51 964331909",
+      "link_inscripcion": "https://docs.google.com/forms/u/0/d/e/1FAIpQLScFapH7usB9XBT2A_AEJP7l8MqVChe57PCAhwORsoj57YI9uw/closedform",
+      "imagen": "/images/eventos/zabodt-la-fabrica.webp"
     }
   ],
 
   "importadores": [
     {
       "id": 1,
-      "nombre": "PE Airsoft Import",
-      "contacto": "Jorge Huamán",
-      "whatsapp": "+51 998877665",
-      "email": "ventas@peairsoftimport.com",
-      "especialidad": "Réplicas de alta gama (Tokyo Marui, KRYTAC, VFC)",
-      "tiempo_entrega": "25-35 días hábiles",
-      "zonas_cobertura": "Todo el Perú"
+      "nombre": "Sami Mejia",
+      "contacto": "",
+      "whatsapp": "+51 976655443",
+      "email": "contacto@gearimportperu.com",
+      "especialidad": "Réplicas y accesorios",
+      "tiempo_entrega": "30-60 días hábiles",
+      "zonas_cobertura": "Lima, Trujillo y Chiclayo"
     },
     {
       "id": 2,
-      "nombre": "Tactical Import SAC",
-      "contacto": "Mariana Ríos",
-      "whatsapp": "+51 987766554",
-      "email": "importaciones@tacticalimport.pe",
-      "especialidad": "Accesorios, ópticas y partes de repuesto",
-      "tiempo_entrega": "15-20 días hábiles",
-      "zonas_cobertura": "Lima y Callao"
-    },
-    {
-      "id": 3,
-      "nombre": "Gear Import Perú",
-      "contacto": "Luis Fernández",
-      "whatsapp": "+51 976655443",
-      "email": "contacto@gearimportperu.com",
-      "especialidad": "Munición al por mayor y gas HFC134a/verde",
-      "tiempo_entrega": "10-15 días hábiles",
-      "zonas_cobertura": "Lima, Trujillo y Chiclayo"
-    },
-    {
-      "id": 4,
-      "nombre": "Andes Airsoft Import",
-      "contacto": "Patricia Loayza",
-      "whatsapp": "+51 965544332",
-      "email": "info@andesairsoft.pe",
-      "especialidad": "Partes internas HPA y GBB, custom builds",
-      "tiempo_entrega": "30-40 días hábiles",
-      "zonas_cobertura": "Todo el Perú"
-    },
-    {
-      "id": 5,
-      "nombre": "Sami",
-      "contacto": "Luis Fernández",
-      "whatsapp": "+51 976655443",
-      "email": "contacto@gearimportperu.com",
-      "especialidad": "Munición al por mayor y gas HFC134a/verde",
-      "tiempo_entrega": "10-15 días hábiles",
-      "zonas_cobertura": "Lima, Trujillo y Chiclayo"
-    },
-    {
-      "id": 6,
       "nombre": "Rambo",
       "contacto": "Luis Fernández",
       "whatsapp": "+51 976655443",
@@ -352,7 +318,7 @@
       "zonas_cobertura": "Lima, Trujillo y Chiclayo"
     },
     {
-      "id": 7,
+      "id": 3,
       "nombre": "Ares",
       "contacto": "Luis Fernández",
       "whatsapp": "+51 976655443",
@@ -362,7 +328,7 @@
       "zonas_cobertura": "Lima, Trujillo y Chiclayo"
     },
     {
-      "id": 8,
+      "id": 4,
       "nombre": "Padrino",
       "contacto": "Luis Fernández",
       "whatsapp": "+51 976655443",
@@ -372,7 +338,7 @@
       "zonas_cobertura": "Lima, Trujillo y Chiclayo"
     },
     {
-      "id": 9,
+      "id": 5,
       "nombre": "Parabellum",
       "contacto": "Luis Fernández",
       "whatsapp": "+51 976655443",
@@ -382,7 +348,7 @@
       "zonas_cobertura": "Lima, Trujillo y Chiclayo"
     },
     {
-      "id": 10,
+      "id": 6,
       "nombre": "Wizard",
       "contacto": "Luis Fernández",
       "whatsapp": "+51 976655443",
@@ -392,51 +358,8 @@
       "zonas_cobertura": "Lima, Trujillo y Chiclayo"
     }
   ],
-
-  "mercado_pulgas": [
-    {
-      "id": 1,
-      "tipo": "persona",
-      "nombre": "Cristian M.",
-      "contacto": "Cristian Medina",
-      "whatsapp": "+51 954433221",
-      "ubicacion": "San Juan de Lurigancho, Lima",
-      "que_vende": "AEG G36C usada, cargadores y chaleco plate carrier",
-      "imagen": "/images/mercado_pulgas/cristian-m.jpg"
-    },
-    {
-      "id": 2,
-      "tipo": "tienda",
-      "nombre": "Segunda Vuelta Airsoft",
-      "contacto": "Andrea Paredes",
-      "whatsapp": "+51 943322110",
-      "ubicacion": "Av. Brasil 2200, Jesús María, Lima",
-      "que_vende": "Réplicas usadas certificadas, accesorios y uniformes de segunda mano",
-      "imagen": "/images/mercado_pulgas/segunda-vuelta.jpg"
-    },
-    {
-      "id": 3,
-      "tipo": "persona",
-      "nombre": "Gonzalo T.",
-      "contacto": "Gonzalo Torres",
-      "whatsapp": "+51 932211009",
-      "ubicacion": "Cercado, Arequipa",
-      "que_vende": "GBB pistola + kit de mantenimiento, casi sin uso",
-      "imagen": "/images/mercado_pulgas/gonzalo-t.jpg"
-    },
-    {
-      "id": 4,
-      "tipo": "persona",
-      "nombre": "Valeria S.",
-      "contacto": "Valeria Solano",
-      "whatsapp": "+51 921100998",
-      "ubicacion": "Cieneguilla, Lima",
-      "que_vende": "Set completo sniper (réplica + funda + bípode)",
-      "imagen": "/images/mercado_pulgas/valeria-s.jpg"
-    }
-  ],
-
-  "workshops": [
+  
+  "Armeros & Mecánicos": [
     {
       "id": 1,
       "nombre": "Ares Workshop",
@@ -560,10 +483,10 @@
     }
   ],
 
-  "jugadores": [
+  "jugadores Influencers": [
     {
       "id": 1,
-      "nombre": "Fabrizio 'Ghost' Chávez",
+      "nombre": "Roma",
       "foto": "/images/jugadores/ghost-chavez.jpg",
       "descripcion": "Jugador nivel avanzado, especialista en francotirador y reconocimiento MilSim.",
       "instagram": "@ghost.aqp",
@@ -573,7 +496,7 @@
     },
     {
       "id": 2,
-      "nombre": "Camila 'Vixen' Rojas",
+      "nombre": "El Topo",
       "foto": "/images/jugadores/vixen-rojas.jpg",
       "descripcion": "Especialista en asalto y speedsoft, capitana de equipo femenino.",
       "instagram": "@vixen.airsoft",
@@ -583,7 +506,7 @@
     },
     {
       "id": 3,
-      "nombre": "Martín 'Tanque' Villar",
+      "nombre": "Piwik",
       "foto": "/images/jugadores/tanque-villar.jpg",
       "descripcion": "Support gunner, nivel intermedio-avanzado. Crea contenido de gameplay y reviews.",
       "instagram": "@tanque.airsoftpe",
@@ -593,7 +516,7 @@
     },
     {
       "id": 4,
-      "nombre": "Daniela 'Nova' Torres",
+      "nombre": "Techies",
       "foto": "/images/jugadores/nova-torres.jpg",
       "descripcion": "Jugadora nivel principiante-intermedio, rol de asalto. Divulga airsoft para nuevos jugadores.",
       "instagram": "@nova.playsairsoft",
@@ -607,47 +530,43 @@
     {
       "id": 1,
       "nombre": "Jackass",
-      "logo": "/images/Equipos/Jackass_Airsoft_Team_logo_correct.jpg",
-      "descripcion": "Equipo MilSim orientado a operaciones nocturnas y tácticas de infiltración.",
-      "cantidad_jugadores": 14,
-      "contacto_capitan": "Fabrizio Chávez",
-      "whatsapp": "+51 987012399",
-      "torneo_o_cancha_principal": "Black Hawk Airsoft Field"
+      "logo": "/images/Equipos/jackass.webp",
+      "contacto_capitan": "Rusito"
     },
     {
       "id": 2,
-      "nombre": "Cobras Tácticas",
-      "logo": "/images/equipos/cobras-tacticas.jpg",
-      "descripcion": "Equipo competitivo de speedsoft, participante regular de torneos Herzog.",
-      "cantidad_jugadores": 8,
-      "contacto_capitan": "Camila Rojas",
-      "whatsapp": "+51 976012399",
-      "torneo_o_cancha_principal": "Zona de Combate CQB Surco"
+      "nombre": "BlackWater Peru Airsoft Team",
+      "logo": "/images/Equipos/blackwater-peru-airsoft-team.webp",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": ""
     },
     {
       "id": 3,
-      "nombre": "Legión Andina",
-      "logo": "/images/equipos/legion-andina.jpg",
-      "descripcion": "Equipo mixto de Arequipa, enfocado en partidas casuales y crecimiento de la comunidad sur.",
-      "cantidad_jugadores": 20,
-      "contacto_capitan": "Gonzalo Torres",
-      "whatsapp": "+51 965012399",
-      "torneo_o_cancha_principal": "Replica Store Arequipa (punto de encuentro)"
+      "nombre": "BOPE Airsoft Peru",
+      "logo": "/images/Equipos/bope-airsoft-peru.webp",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "Sikary",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": ""
     },
     {
       "id": 4,
-      "nombre": "Escuadrón Fénix",
-      "logo": "/images/equipos/escuadron-fenix.jpg",
-      "descripcion": "Equipo juvenil orientado a formación de nuevos jugadores y torneos amateur.",
-      "cantidad_jugadores": 11,
-      "contacto_capitan": "Martín Villar",
-      "whatsapp": "+51 954012399",
-      "torneo_o_cancha_principal": "Delta Ops Airsoft Park"
+      "nombre": "Delta Airsoft Team",
+      "logo": "/images/Equipos/delta-airsoft-team.webp",
+      "descripcion": "",
+      "cantidad_jugadores": "",
+      "contacto_capitan": "",
+      "whatsapp": "",
+      "torneo_o_cancha_principal": ""
     },
     {
       "id": 5,
-      "nombre": "BlackWater Peru Airsoft Team",
-      "logo": "/images/Equipos/BOPE_Airsoft_Peru_logo.jpg",
+      "nombre": "Forward Observations Group",
+      "logo": "/images/Equipos/forward-observations-group.webp",
       "descripcion": "",
       "cantidad_jugadores": "",
       "contacto_capitan": "",
@@ -656,18 +575,18 @@
     },
     {
       "id": 6,
-      "nombre": "BOPE Airsoft Peru",
-      "logo": "/images/Equipos/UNOPES_Airsoft_Team_logo.jpg",
+      "nombre": "GIOT - Grupo Independiente de Operadores Tácticos",
+      "logo": "/images/Equipos/giot.webp",
       "descripcion": "",
       "cantidad_jugadores": "",
-      "contacto_capitan": "",
+      "contacto_capitan": "Artillero",
       "whatsapp": "",
       "torneo_o_cancha_principal": ""
     },
     {
       "id": 7,
-      "nombre": "Delta Airsoft Team",
-      "logo": "/images/Equipos/Delta_Airsoft_Team_logo.png",
+      "nombre": "Guerreros ATUK",
+      "logo": "/images/Equipos/guerreros-atuk.webp",
       "descripcion": "",
       "cantidad_jugadores": "",
       "contacto_capitan": "",
@@ -676,18 +595,18 @@
     },
     {
       "id": 8,
-      "nombre": "Forward Observations Group",
-      "logo": "/images/Equipos/Templarios_Tactical_Team_logo.jpg",
+      "nombre": "Mercenarios Airsoft Peru",
+      "logo": "/images/Equipos/mercenarios-airsoft-peru.webp",
       "descripcion": "",
-      "cantidad_jugadores": "",
+      "cantidad_jugadores": "Berraco",
       "contacto_capitan": "",
       "whatsapp": "",
       "torneo_o_cancha_principal": ""
     },
     {
       "id": 9,
-      "nombre": "GIOT - Grupo Independiente de Operadores Tácticos",
-      "logo": "/images/Equipos/Sarin_logo.jpg",
+      "nombre": "Pretorianos Airsoft Team",
+      "logo": "/images/Equipos/pretorianos-airsoft-team.webp",
       "descripcion": "",
       "cantidad_jugadores": "",
       "contacto_capitan": "",
@@ -696,38 +615,38 @@
     },
     {
       "id": 10,
-      "nombre": "Guerreros ATUK",
-      "logo": "/images/Equipos/Mercenarios_Airsoft_Peru_logo.jpg",
+      "nombre": "Samurai Tactical Team",
+      "logo": "/images/Equipos/samurai-tactical-team.webp",
       "descripcion": "",
       "cantidad_jugadores": "",
-      "contacto_capitan": "",
+      "contacto_capitan": "Shinobi",
       "whatsapp": "",
       "torneo_o_cancha_principal": ""
     },
     {
       "id": 11,
-      "nombre": "Mercenarios Airsoft Peru",
-      "logo": "/images/Equipos/GIOT_logo.jpg",
+      "nombre": "Sarin",
+      "logo": "/images/Equipos/sarin.webp",
       "descripcion": "",
-      "cantidad_jugadores": "",
+      "cantidad_jugadores": "Rambo",
       "contacto_capitan": "",
       "whatsapp": "",
       "torneo_o_cancha_principal": ""
     },
     {
       "id": 12,
-      "nombre": "Pretorianos Airsoft Team",
-      "logo": "/images/Equipos/Pretorianos_Airsoft_Team_logo.jpg",
+      "nombre": "Templarios Tactical Team Lima",
+      "logo": "/images/Equipos/templarios-tactical-team-lima.webp",
       "descripcion": "",
-      "cantidad_jugadores": "",
+      "cantidad_jugadores": "Moro",
       "contacto_capitan": "",
       "whatsapp": "",
       "torneo_o_cancha_principal": ""
     },
     {
       "id": 13,
-      "nombre": "Samurai Tactical Team",
-      "logo": "/images/Equipos/Samurai_Tactical_Team_logo.jpg",
+      "nombre": "UNOPES Airsoft Team",
+      "logo": "/images/Equipos/unopes-airsoft-team.webp",
       "descripcion": "",
       "cantidad_jugadores": "",
       "contacto_capitan": "",
@@ -736,8 +655,8 @@
     },
     {
       "id": 14,
-      "nombre": "Sarin",
-      "logo": "/images/Equipos/Jackass_Airsoft_Team_logo.jpg",
+      "nombre": "Wolf Airsoft Team",
+      "logo": "/images/Equipos/wolf-airsoft-team.webp",
       "descripcion": "",
       "cantidad_jugadores": "",
       "contacto_capitan": "",
@@ -746,38 +665,8 @@
     },
     {
       "id": 15,
-      "nombre": "Templarios Tactical Team Lima",
-      "logo": "/images/Equipos/BlackWater_Peru_Airsoft_Team_logo.jpg",
-      "descripcion": "",
-      "cantidad_jugadores": "",
-      "contacto_capitan": "",
-      "whatsapp": "",
-      "torneo_o_cancha_principal": ""
-    },
-    {
-      "id": 16,
-      "nombre": "UNOPES Airsoft Team",
-      "logo": "/images/Equipos/ZLN_logo.png",
-      "descripcion": "",
-      "cantidad_jugadores": "",
-      "contacto_capitan": "",
-      "whatsapp": "",
-      "torneo_o_cancha_principal": ""
-    },
-    {
-      "id": 17,
-      "nombre": "Wolf Airsoft Team",
-      "logo": "/images/Equipos/Wolf_Airsoft_Team_logo.jpg",
-      "descripcion": "",
-      "cantidad_jugadores": "",
-      "contacto_capitan": "",
-      "whatsapp": "",
-      "torneo_o_cancha_principal": ""
-    },
-    {
-      "id": 18,
       "nombre": "ZLN",
-      "logo": "",
+      "logo": "/images/Equipos/zln.webp",
       "descripcion": "",
       "cantidad_jugadores": "",
       "contacto_capitan": "",
@@ -786,18 +675,18 @@
     }
   ],
 
-  "pintado_replicas": [
+  "pintado_de_replicas": [
     {
       "id": 1,
-      "nombre": "Patron Custom",
+      "nombre": "Patron Customs",
       "contacto": "",
       "whatsapp": "",
       "email": "",
-      "instagram": "",
+      "instagram": "https://www.instagram.com/patroncustoms/",
       "ubicacion": "",
-      "especialidad": "",
+      "especialidad": "Camuflaje, pintura de réplicas y accesorios",
       "tiempo_entrega": "",
-      "imagen": ""
+      "imagen": "/images/pintado-de-replicas/patron-customs.webp"
     }
   ],
 

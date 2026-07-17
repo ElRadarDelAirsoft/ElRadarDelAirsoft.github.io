@@ -6,7 +6,7 @@ import CategorySidebar from './components/CategorySidebar.jsx'
 import CategoryGrid from './components/CategoryGrid.jsx'
 import RegionFilter, { matchesRegion } from './components/RegionFilter.jsx'
 import { useAirsoftData } from './hooks/useAirsoftData.js'
-import { categoryKeys, getSearchableText } from './data/categoryConfig.js'
+import { categoryConfig, categoryKeys, getSearchableText } from './data/categoryConfig.js'
 
 const VALID_REGIONS = ['todos', 'lima', 'provincias']
 
@@ -76,7 +76,7 @@ export default function App() {
     if (!data) return {}
     const q = search.trim().toLowerCase()
     return categoryKeys.reduce((acc, key) => {
-      const items = data[key] || []
+      const items = data[categoryConfig[key].dataKey || key] || []
       acc[key] = q ? items.filter((it) => getSearchableText(it).includes(q)).length : items.length
       return acc
     }, {})
@@ -87,7 +87,7 @@ export default function App() {
     const q = search.trim().toLowerCase()
     const keysToShow = activeCategory === 'todo' ? categoryKeys : [activeCategory]
     return keysToShow.map((key) => {
-      let items = data[key] || []
+      let items = data[categoryConfig[key].dataKey || key] || []
       if (key === 'canchas') {
         items = items.filter((it) => matchesRegion(it.departamento, regionFilter))
       }
