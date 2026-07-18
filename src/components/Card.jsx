@@ -13,6 +13,7 @@ export default function Card({ item, categoryKey, index = 0 }) {
   const data = config.normalize(item)
 
   const showImage = data.imagen && !imgError
+  const imgAlt = `${data.nombre} — ${config.imgAlt}${data.badge ? ` en ${data.badge}` : ''}`
 
   return (
     <article
@@ -23,7 +24,7 @@ export default function Card({ item, categoryKey, index = 0 }) {
         {showImage ? (
           <img
             src={data.imagen}
-            alt={data.nombre}
+            alt={imgAlt}
             width="400"
             height="160"
             loading="lazy"

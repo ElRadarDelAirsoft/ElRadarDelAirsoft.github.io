@@ -28,6 +28,7 @@ import { slugify } from '../utils/slug.js'
 export const categoryConfig = {
   canchas: {
     label: 'Canchas',
+    imgAlt: 'Cancha de airsoft',
     emoji: '🎯',
     normalize: (i) => ({
       id: i.id,
@@ -52,6 +53,7 @@ export const categoryConfig = {
 
   eventos: {
     label: 'Eventos',
+    imgAlt: 'Evento de airsoft',
     emoji: '🔥',
     normalize: (i) => ({
       id: i.id,
@@ -76,6 +78,7 @@ export const categoryConfig = {
 
   grupos_whatsapp: {
     label: 'Grupos WhatsApp',
+    imgAlt: 'Grupo de WhatsApp de airsoft',
     emoji: '💬',
     normalize: (i) => ({
       id: i.id,
@@ -99,6 +102,7 @@ export const categoryConfig = {
 
   jugadores: {
     label: 'Jugadores Influencers',
+    imgAlt: 'Jugador influencer de airsoft',
     emoji: '🎮',
     dataKey: 'jugadores Influencers',
     normalize: (i) => ({
@@ -120,13 +124,14 @@ export const categoryConfig = {
 
   tiendas: {
     label: 'Tiendas',
+    imgAlt: 'Tienda de airsoft',
     emoji: '🛒',
     normalize: (i) => ({
       id: i.id,
       nombre: i.nombre,
       imagen: i.imagen,
       descripcion: i.descripcion,
-      badge: null,
+      badge: i.ciudad || null,
       direccion: i.direccion ? { texto: i.direccion, mapsQuery: i.direccion } : null,
       telefono: i.telefono,
       email: i.email,
@@ -141,6 +146,7 @@ export const categoryConfig = {
 
   importadores: {
     label: 'Importadores',
+    imgAlt: 'Importador de airsoft',
     emoji: '📦',
     normalize: (i) => ({
       id: i.id,
@@ -166,6 +172,7 @@ export const categoryConfig = {
 
   workshops: {
     label: 'Armeros & Mecánicos',
+    imgAlt: 'Armero y mecánico de airsoft',
     emoji: '🔧',
     dataKey: 'Armeros & Mecánicos',
     normalize: (i) => ({
@@ -191,6 +198,7 @@ export const categoryConfig = {
 
   pintado_de_replicas: {
     label: 'Pintado de Réplicas',
+    imgAlt: 'Pintado de réplicas de airsoft',
     emoji: '🎨',
     normalize: (i) => ({
       id: i.id,
@@ -214,6 +222,7 @@ export const categoryConfig = {
 
   equipos: {
     label: 'Equipos',
+    imgAlt: 'Equipo de airsoft',
     emoji: '🛡️',
     normalize: (i) => ({
       id: i.id,
@@ -238,6 +247,7 @@ export const categoryConfig = {
 
   marco_legal: {
     label: 'Marco Legal & Reguladores',
+    imgAlt: 'Entidad reguladora de airsoft en Perú',
     emoji: '⚖️',
     normalize: (i) => ({
       id: i.id,

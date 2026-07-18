@@ -297,7 +297,8 @@ function buildCampos(cssHref) {
       })
       const body2 = `${breadcrumbNav(breadcrumbCampo)}
         <span class="inline-block text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-sm bg-accent/15 text-accent-dim mb-3">Cancha de airsoft · ${esc(departamento)}</span>
-        <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-4">${esc(c.nombre)}</h1>
+        <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-4">${esc(c.nombre)} — Cancha de airsoft en ${esc(departamento)}</h1>
+        ${c.imagen ? `<img src="${c.imagen}" alt="${esc(c.nombre)} — Cancha de airsoft en ${esc(departamento)}" width="800" height="450" class="w-full h-auto rounded-sm mb-5 object-cover" />` : ''}
         ${c.descripcion ? `<p class="text-slate-600 mb-5">${esc(c.descripcion)}</p>` : ''}
         ${contactBlock(c)}
         ${c.organizador ? `<p class="text-sm text-slate-500 mb-5">Organizador: ${esc(c.organizador)}</p>` : ''}
@@ -391,7 +392,8 @@ function buildTiendas(cssHref) {
       })
       const body2 = `${breadcrumbNav(breadcrumbTienda)}
         <span class="inline-block text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-sm bg-accent/15 text-accent-dim mb-3">Tienda de airsoft · ${esc(ciudad)}</span>
-        <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-4">${esc(t.nombre)}</h1>
+        <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-4">${esc(t.nombre)} — Tienda de airsoft en ${esc(ciudad)}</h1>
+        ${t.imagen ? `<img src="${t.imagen}" alt="${esc(t.nombre)} — Tienda de airsoft en ${esc(ciudad)}" width="800" height="450" class="w-full h-auto rounded-sm mb-5 object-cover" />` : ''}
         ${t.especialidad ? `<p class="text-slate-700 font-medium mb-2">${esc(t.especialidad)}</p>` : ''}
         ${t.descripcion ? `<p class="text-slate-600 mb-5">${esc(t.descripcion)}</p>` : ''}
         ${contactBlock(t)}
@@ -416,7 +418,7 @@ function buildBlog(cssHref) {
     jsonLd: [breadcrumbJsonLd(breadcrumbIndex)],
   })
   const bodyIndex = `${breadcrumbNav(breadcrumbIndex)}
-    <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-6">Blog</h1>
+    <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-6">Blog de airsoft en Perú</h1>
     <div class="flex flex-col gap-4">
       ${blogPosts.map((p) => `<a href="${blogIndexPath}/${p.slug}/" class="block rounded-sm border border-slate-200 p-5 hover:border-accent">
         <h2 class="font-display font-semibold text-lg mb-1.5">${esc(p.title)}</h2>
