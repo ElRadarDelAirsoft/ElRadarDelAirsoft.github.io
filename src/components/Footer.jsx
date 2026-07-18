@@ -7,10 +7,15 @@ const columnTitle =
   'text-accent font-display font-semibold uppercase tracking-widest text-xs mb-3'
 
 const ctaButton =
-  'inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-sm border border-accent text-accent-dim ' +
-  'hover:bg-accent hover:text-black transition-[background-color,color,transform] duration-150 ease-out-quart ' +
-  'active:scale-[0.97] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 ' +
-  'dark:text-accent dark:focus-visible:ring-offset-base-900'
+  'inline-flex items-center gap-2 text-base sm:text-lg font-bold px-8 py-4 rounded-sm bg-accent text-black ' +
+  'hover:bg-accent-dim transition-[background-color,color,transform] duration-150 ease-out-quart ' +
+  'active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ' +
+  'dark:focus-visible:ring-offset-base-900'
+
+const bannerSocialBtn =
+  'inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-accent text-black ' +
+  'hover:bg-accent-dim transition-[background-color,transform] duration-150 ease-out-quart active:scale-90 ' +
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 dark:focus-visible:ring-offset-black'
 
 export default function Footer() {
   return (
@@ -71,26 +76,24 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-slate-200 dark:border-base-700 py-4 flex flex-col items-center gap-3">
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-6">
           <a
             href={COMUNIDAD_INSTAGRAM}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram comunidad"
-            className="text-slate-600 dark:text-slate-300 hover:text-accent transition-[color,transform] duration-150 ease-out-quart active:scale-90
-              focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
+            className={bannerSocialBtn}
           >
-            <InstagramIcon aria-hidden="true" className="w-6 h-6" />
+            <InstagramIcon aria-hidden="true" className="w-8 h-8 sm:w-10 sm:h-10" />
           </a>
           <a
             href={COMUNIDAD_TIKTOK}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="TikTok comunidad"
-            className="text-slate-600 dark:text-slate-300 hover:text-accent transition-[color,transform] duration-150 ease-out-quart active:scale-90
-              focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
+            className={bannerSocialBtn}
           >
-            <TiktokIcon aria-hidden="true" className="w-6 h-6" />
+            <TiktokIcon aria-hidden="true" className="w-8 h-8 sm:w-10 sm:h-10" />
           </a>
         </div>
         <div className="text-center text-xs uppercase tracking-widest text-slate-400 dark:text-slate-600">
