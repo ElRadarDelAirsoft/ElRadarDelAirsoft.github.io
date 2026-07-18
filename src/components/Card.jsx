@@ -4,13 +4,24 @@ import SocialIcons from './SocialIcons.jsx'
 import { WhatsAppIcon, LinkIcon } from './Icons.jsx'
 import { categoryConfig } from '../data/categoryConfig.js'
 
+// Categorías con fotos grandes (canchas/lugares) que además tienen una
+// miniatura "-thumb" generada aparte, mucho más liviana para el grid que
+// la foto completa (pensada para el hero de la página de detalle).
+const THUMB_CATEGORIES = new Set(['canchas', 'tiendas', 'eventos'])
+
 // Card genérica: recibe el item crudo del JSON + a qué categoría pertenece,
 // lo normaliza vía categoryConfig y renderiza un layout consistente para
 // cualquiera de las 9 categorías.
 export default function Card({ item, categoryKey, index = 0 }) {
   const [imgError, setImgError] = useState(false)
+  const [thumbFailed, setThumbFailed] = useState(false)
   const config = categoryConfig[categoryKey]
   const data = config.normalize(item)
+
+  const thumbSrc = THUMB_CATEGORIES.has(categoryKey) && data.imagen
+    ? data.imagen.replace(/(\.\w+)$/, '-thumb$1')
+    : data.imagen
+  const imgSrc = thumbFailed ? data.imagen : thumbSrc
 
   const showImage = data.imagen && !imgError
   const imgAlt = `${data.nombre} — ${config.imgAlt}${data.badge ? ` en ${data.badge}` : ''}`
@@ -23,13 +34,16 @@ export default function Card({ item, categoryKey, index = 0 }) {
       <div className="relative h-40 w-full overflow-hidden bg-base-950 flex items-center justify-center">
         {showImage ? (
           <img
-            src={data.imagen}
+            src={imgSrc}
             alt={imgAlt}
             width="400"
             height="160"
             loading="lazy"
             decoding="async"
-            onError={() => setImgError(true)}
+            onError={() => {
+              if (imgSrc !== data.imagen) setThumbFailed(true)
+              else setImgError(true)
+            }}
             className="h-full w-full object-cover transition-transform duration-300 ease-out-quart group-hover:scale-[1.03]"
           />
         ) : (

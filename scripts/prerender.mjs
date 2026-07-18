@@ -9,6 +9,7 @@
 
 import fs from 'node:fs'
 import path from 'node:path'
+import { execSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { slugify } from '../src/utils/slug.js'
 import { blogPosts } from '../src/data/blogPosts.js'
@@ -23,6 +24,7 @@ const DIST = path.join(ROOT, 'dist')
 const SITE_URL = 'https://elradardelairsoft.github.io'
 const SITE_NAME = 'El Radar del Airsoft'
 const LOGO_PATH = '/images/logo-radar-airsoft.webp'
+const OG_BANNER_PATH = '/images/og-banner.png'
 
 const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'public/data/airsoft.json'), 'utf8'))
 
@@ -83,9 +85,9 @@ function renderHead({ title, description, canonical, ogImage, cssHref, jsonLd = 
     <meta name="twitter:title" content="${esc(title)}" />
     <meta name="twitter:description" content="${esc(description)}" />
     <meta name="twitter:image" content="${ogImage}" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="preload" href="/fonts/oswald-variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link href="/fonts/fonts.css" rel="stylesheet" />
     <link rel="stylesheet" href="${cssHref}" />
     ${DARK_MODE_SCRIPT}
     ${jsonLd.map(jsonLdScript).join('\n    ')}`
@@ -183,9 +185,9 @@ function build404Page(cssHref) {
     <link rel="apple-touch-icon" href="/favicon.png" />
     <title>${esc(title)}</title>
     <meta name="robots" content="noindex" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="preload" href="/fonts/oswald-variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link href="/fonts/fonts.css" rel="stylesheet" />
     <link rel="stylesheet" href="${cssHref}" />
     ${DARK_MODE_SCRIPT}`
 
@@ -237,7 +239,7 @@ function buildCampos(cssHref) {
       title: `Canchas de airsoft en ${departamento} | ${SITE_NAME}`,
       description: `Directorio de canchas de airsoft en ${departamento}, Perú (también llamadas campos de airsoft): ${canchas.map((c) => c.nombre).join(', ')}. Direcciones, contacto y horarios.`,
       canonical: absUrl(`${depPath}/`),
-      ogImage: absUrl(LOGO_PATH),
+      ogImage: absUrl(OG_BANNER_PATH),
       cssHref,
       jsonLd: [
         breadcrumbJsonLd(breadcrumb),
@@ -279,7 +281,7 @@ function buildCampos(cssHref) {
         title: `${c.nombre} — Cancha de airsoft en ${departamento} | ${SITE_NAME}`,
         description,
         canonical: absUrl(`${campoPath}/`),
-        ogImage: c.imagen ? absUrl(c.imagen) : absUrl(LOGO_PATH),
+        ogImage: c.imagen ? absUrl(c.imagen) : absUrl(OG_BANNER_PATH),
         cssHref,
         jsonLd: [
           breadcrumbJsonLd(breadcrumbCampo),
@@ -337,7 +339,7 @@ function buildTiendas(cssHref) {
       title: `Tiendas de airsoft en ${ciudad} | ${SITE_NAME}`,
       description: `Directorio de tiendas de airsoft en ${ciudad}, Perú: ${tiendas.map((t) => t.nombre).join(', ')}. Réplicas, munición y accesorios.`,
       canonical: absUrl(`${ciudadPath}/`),
-      ogImage: absUrl(LOGO_PATH),
+      ogImage: absUrl(OG_BANNER_PATH),
       cssHref,
       jsonLd: [
         breadcrumbJsonLd(breadcrumb),
@@ -374,7 +376,7 @@ function buildTiendas(cssHref) {
         title: `${t.nombre} — Tienda de airsoft en ${ciudad} | ${SITE_NAME}`,
         description,
         canonical: absUrl(`${tiendaPath}/`),
-        ogImage: t.imagen ? absUrl(t.imagen) : absUrl(LOGO_PATH),
+        ogImage: t.imagen ? absUrl(t.imagen) : absUrl(OG_BANNER_PATH),
         cssHref,
         jsonLd: [
           breadcrumbJsonLd(breadcrumbTienda),
@@ -413,7 +415,7 @@ function buildBlog(cssHref) {
     title: `Blog de airsoft en Perú | ${SITE_NAME}`,
     description: 'Guías, comparativas y respuestas sobre airsoft en Perú: legalidad, diferencias con paintball/gotcha/gelsoft, y cómo empezar.',
     canonical: absUrl(`${blogIndexPath}/`),
-    ogImage: absUrl(LOGO_PATH),
+    ogImage: absUrl(OG_BANNER_PATH),
     cssHref,
     jsonLd: [breadcrumbJsonLd(breadcrumbIndex)],
   })
@@ -434,7 +436,7 @@ function buildBlog(cssHref) {
       title: `${post.title} | ${SITE_NAME}`,
       description: post.metaDescription,
       canonical: absUrl(`${postPath}/`),
-      ogImage: absUrl(LOGO_PATH),
+      ogImage: absUrl(OG_BANNER_PATH),
       cssHref,
       jsonLd: [
         breadcrumbJsonLd(breadcrumbPost),
@@ -520,8 +522,18 @@ function injectHomeContent() {
 
 // ---------- sitemap / robots / llms.txt ----------
 
+// Fecha real del build (último commit) en vez de un campo del JSON que hay
+// que acordarse de actualizar a mano y queda desfasado.
+function getLastCommitDate() {
+  try {
+    return execSync('git log -1 --format=%cd --date=short').toString().trim()
+  } catch {
+    return new Date().toISOString().slice(0, 10)
+  }
+}
+
 function buildSeoFiles() {
-  const lastmod = data._ultima_actualizacion || new Date().toISOString().slice(0, 10)
+  const lastmod = getLastCommitDate()
   const urls = ['/', ...generatedRoutes.map((r) => `${r}/`)]
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

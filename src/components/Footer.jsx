@@ -4,7 +4,7 @@ const COMUNIDAD_INSTAGRAM = 'https://www.instagram.com/elradardelairsoft/'
 const COMUNIDAD_TIKTOK = 'https://www.tiktok.com/@elradardelairsoft'
 
 const columnTitle =
-  'text-accent font-display font-semibold uppercase tracking-widest text-xs mb-3'
+  'text-accent-dim dark:text-accent font-display font-semibold uppercase tracking-widest text-xs mb-3'
 
 const ctaButton =
   'inline-flex items-center gap-2 text-sm font-bold px-6 py-3 rounded-sm bg-accent text-black ' +

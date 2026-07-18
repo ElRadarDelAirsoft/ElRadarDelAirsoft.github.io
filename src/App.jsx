@@ -7,6 +7,7 @@ import CategoryGrid from './components/CategoryGrid.jsx'
 import RegionFilter, { matchesRegion } from './components/RegionFilter.jsx'
 import { useAirsoftData } from './hooks/useAirsoftData.js'
 import { categoryConfig, categoryKeys, getSearchableText } from './data/categoryConfig.js'
+import { stripDiacritics } from './utils/slug.js'
 
 const VALID_REGIONS = ['todos', 'lima', 'provincias']
 
@@ -37,7 +38,7 @@ function useDarkMode() {
 }
 
 export default function App() {
-  const { data, error, loading } = useAirsoftData()
+  const data = useAirsoftData()
   const [isDark, toggleDark] = useDarkMode()
   const [{ search, activeCategory, regionFilter }, setFilters] = useState(readFiltersFromUrl)
 
@@ -73,8 +74,7 @@ export default function App() {
   }, [])
 
   const counts = useMemo(() => {
-    if (!data) return {}
-    const q = search.trim().toLowerCase()
+    const q = stripDiacritics(search.trim()).toLowerCase()
     return categoryKeys.reduce((acc, key) => {
       const items = data[categoryConfig[key].dataKey || key] || []
       acc[key] = q ? items.filter((it) => getSearchableText(it).includes(q)).length : items.length
@@ -83,8 +83,7 @@ export default function App() {
   }, [data, search])
 
   const groups = useMemo(() => {
-    if (!data) return []
-    const q = search.trim().toLowerCase()
+    const q = stripDiacritics(search.trim()).toLowerCase()
     const keysToShow = activeCategory === 'todo' ? categoryKeys : [activeCategory]
     return keysToShow.map((key) => {
       let items = data[categoryConfig[key].dataKey || key] || []
@@ -134,23 +133,11 @@ export default function App() {
         </aside>
 
         <main className="flex-1 min-w-0 flex flex-col gap-6">
-          {loading && (
-            <p className="text-center py-16 text-slate-500 dark:text-slate-400">Cargando biblioteca…</p>
-          )}
-
-          {error && (
-            <p className="text-center py-16 text-red-500">
-              Error al cargar los datos: {error}
-            </p>
-          )}
-
-          {!loading && !error && (
-            <CategoryGrid
-              groups={groups}
-              showHeaders={activeCategory === 'todo'}
-              emptyMessage="No se encontraron resultados para tu búsqueda."
-            />
-          )}
+          <CategoryGrid
+            groups={groups}
+            showHeaders={activeCategory === 'todo'}
+            emptyMessage="No se encontraron resultados para tu búsqueda."
+          />
         </main>
       </div>
 

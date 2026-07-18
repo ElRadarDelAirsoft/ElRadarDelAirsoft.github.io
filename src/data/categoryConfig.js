@@ -8,7 +8,7 @@ import {
   WrenchIcon,
 } from '../components/Icons.jsx'
 import { whatsappLinkFromPhone, whatsappGroupLink } from '../utils/whatsapp.js'
-import { slugify } from '../utils/slug.js'
+import { slugify, stripDiacritics } from '../utils/slug.js'
 
 // Cada entrada define: label/emoji para tabs, y normalize() que convierte
 // un item crudo del JSON en el esquema común que consume <Card />.
@@ -270,8 +270,9 @@ export const categoryConfig = {
 export const categoryKeys = Object.keys(categoryConfig)
 
 export function getSearchableText(rawItem) {
-  return Object.values(rawItem)
-    .filter((v) => typeof v === 'string' || typeof v === 'number')
-    .join(' ')
-    .toLowerCase()
+  return stripDiacritics(
+    Object.values(rawItem)
+      .filter((v) => typeof v === 'string' || typeof v === 'number')
+      .join(' ')
+  ).toLowerCase()
 }

@@ -20,6 +20,7 @@ export default function CategorySidebar({ active, onChange, counts }) {
           key={key}
           type="button"
           onClick={() => onChange(key)}
+          aria-current={active === key ? 'true' : undefined}
           className={`${itemBase} ${active === key ? itemActive : itemInactive}`}
         >
           <span className="truncate">{categoryConfig[key].emoji} {categoryConfig[key].label}</span>

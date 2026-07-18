@@ -1,32 +1,8 @@
-import { useEffect, useState } from 'react'
+import airsoftData from '../../public/data/airsoft.json'
 
-// Carga /data/airsoft.json (servido como estático desde /public/data/).
-// Único punto donde se lee el contenido editable por el admin.
+// Único punto donde se lee el contenido editable por el admin. Se importa
+// (no se hace fetch) para que quede embebido en el build: sin round-trip
+// de red ni flash de "cargando" en el primer render.
 export function useAirsoftData() {
-  const [data, setData] = useState(null)
-  const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    let cancelled = false
-    fetch('/data/airsoft.json')
-      .then((res) => {
-        if (!res.ok) throw new Error(`No se pudo cargar airsoft.json (${res.status})`)
-        return res.json()
-      })
-      .then((json) => {
-        if (!cancelled) setData(json)
-      })
-      .catch((err) => {
-        if (!cancelled) setError(err.message)
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false)
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [])
-
-  return { data, error, loading }
+  return airsoftData
 }

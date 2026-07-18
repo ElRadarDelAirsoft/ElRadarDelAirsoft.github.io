@@ -2,8 +2,6 @@
 
   "_INSTRUCCIONES": "EDITA ESTE ARCHIVO PARA AGREGAR/MODIFICAR CONTENIDO. Solo cambia los valores, no la estructura. No borres ninguna clave (aunque esté vacía, deja \"\"). Guarda las imágenes en /public/images/<categoria>/ y referencia la ruta como \"/images/<categoria>/archivo.jpg\". Para agregar una entrada nueva, copia un objeto existente dentro del arreglo de su categoría, pégalo y cambia los valores (usa un \"id\" nuevo que no se repita). IMPORTANTE PARA SEO: en \"canchas\" el campo \"departamento\" y en \"tiendas\" el campo \"ciudad\" determinan si esa entrada genera su propia página indexable (/campos/<departamento>/<nombre> o /tiendas/<ciudad>/<nombre>) al correr \"npm run build\". Si los dejas vacíos, la entrada sigue apareciendo en el directorio pero no genera página propia.",
 
-  "_ultima_actualizacion": "2026-07-08",
-
   "canchas": [
     {
       "id": 1,
@@ -92,8 +90,8 @@
       "departamento": "Lima",
       "telefono": "",
       "whatsapp": "+51 915064274",
-      "email": "http://www.aresextreme.com/",
-      "web": "",
+      "email": "",
+      "web": "http://www.aresextreme.com/",
       "instagram": "",
       "tiktok": "",
       "imagen": "/images/canchas/ares-lima-norte.webp",
@@ -542,7 +540,7 @@
     {
       "id": 5,
       "nombre": "Techies",
-      "foto": "/images/jugadores/nova-torres.jpg",
+      "foto": "/images/jugadores/techies.webp",
       "descripcion": "",
       "instagram": "https://www.instagram.com/__campo_de_tecnicos__/",
       "tiktok": "",

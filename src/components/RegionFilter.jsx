@@ -36,6 +36,7 @@ export default function RegionFilter({ value, onChange }) {
           key={opt.value}
           type="button"
           onClick={() => onChange(opt.value)}
+          aria-current={value === opt.value ? 'true' : undefined}
           className={`${pillBase} ${value === opt.value ? pillActive : pillInactive}`}
         >
           {opt.label}

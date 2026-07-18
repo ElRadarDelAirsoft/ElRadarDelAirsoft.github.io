@@ -21,6 +21,7 @@ export default function CategoryTabs({ active, onChange, counts }) {
       <button
         type="button"
         onClick={() => onChange('todo')}
+        aria-current={active === 'todo' ? 'true' : undefined}
         className={`${pillBase} ${active === 'todo' ? pillActive : pillInactive}`}
       >
         Ver todo
@@ -30,6 +31,7 @@ export default function CategoryTabs({ active, onChange, counts }) {
           key={key}
           type="button"
           onClick={() => onChange(key)}
+          aria-current={active === key ? 'true' : undefined}
           className={`${pillBase} ${active === key ? pillActive : pillInactive}`}
         >
           {categoryConfig[key].emoji} {categoryConfig[key].label}
