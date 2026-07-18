@@ -1,4 +1,4 @@
-import { InstagramIcon, TiktokIcon } from './Icons.jsx'
+import { InstagramIcon, TiktokIcon, LinkIcon } from './Icons.jsx'
 
 const COMUNIDAD_INSTAGRAM = 'https://www.instagram.com/elradardelairsoft/'
 const COMUNIDAD_TIKTOK = 'https://www.tiktok.com/@elradardelairsoft'
@@ -7,10 +7,11 @@ const columnTitle =
   'text-accent font-display font-semibold uppercase tracking-widest text-xs mb-3'
 
 const ctaButton =
-  'inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-sm border border-accent text-accent-dim ' +
-  'hover:bg-accent hover:text-black transition-[background-color,color,transform] duration-150 ease-out-quart ' +
-  'active:scale-[0.97] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 ' +
-  'dark:text-accent dark:focus-visible:ring-offset-base-900'
+  'inline-flex items-center gap-2 text-sm font-bold px-6 py-3 rounded-sm bg-accent text-black ' +
+  'shadow-[0_0_0_3px_rgba(95,211,236,0.25)] hover:shadow-[0_0_0_5px_rgba(95,211,236,0.35)] hover:-translate-y-0.5 hover:bg-accent-dim ' +
+  'transition-[background-color,box-shadow,transform] duration-150 ease-out-quart ' +
+  'active:scale-[0.97] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ' +
+  'dark:focus-visible:ring-offset-base-900'
 
 export default function Footer() {
   return (
@@ -18,7 +19,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-slate-600 dark:text-slate-400">
         <div>
           <h3 className={columnTitle}>Contacto, Sugerencias y Comunidad</h3>
-          <div className="flex items-center gap-3 mb-3">
+          <div className="flex items-center gap-4 mb-3">
             <a
               href={COMUNIDAD_INSTAGRAM}
               target="_blank"
@@ -27,7 +28,7 @@ export default function Footer() {
               className="hover:text-accent transition-[color,transform] duration-150 ease-out-quart active:scale-90
                 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
             >
-              <InstagramIcon aria-hidden="true" className="w-4 h-4" />
+              <InstagramIcon aria-hidden="true" className="w-8 h-8" />
             </a>
             <a
               href={COMUNIDAD_TIKTOK}
@@ -37,19 +38,19 @@ export default function Footer() {
               className="hover:text-accent transition-[color,transform] duration-150 ease-out-quart active:scale-90
                 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
             >
-              <TiktokIcon aria-hidden="true" className="w-4 h-4" />
+              <TiktokIcon aria-hidden="true" className="w-8 h-8" />
             </a>
           </div>
           <p>Última actualización: {__LAST_DEPLOY_DATE__}</p>
         </div>
 
-        <div>
+        <div className="flex flex-col items-center text-center">
           <h3 className={columnTitle}>¿Quieres sumar info o falta algo?</h3>
-          <p className="text-xs sm:text-sm mb-3">
+          <p className="text-xs sm:text-sm mb-4">
             Cuéntanos si falta una cancha, tienda, grupo o si encontraste un dato desactualizado.
           </p>
           <a href="https://forms.gle/zii1J6sbrNpeDjEK7" target="_blank" rel="noopener noreferrer" className={ctaButton}>
-            Aporta
+            Aporta <LinkIcon aria-hidden="true" className="w-4 h-4" />
           </a>
         </div>
 
