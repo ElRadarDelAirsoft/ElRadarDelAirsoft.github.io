@@ -22,7 +22,7 @@ El único directorio nacional de airsoft del Perú — la afirmación que cada p
 
 ## Brand Personality
 
-Táctico pero cercano. La base visual es militar-táctica — negro y cyan, Oswald en mayúsculas trackeadas, esquinas rectas, inspirada en arcturustactical.com — pero esa seriedad no debe leerse fría ni corporativa: tiene que sentirse hecha por y para la comunidad de airsoft, no una herramienta institucional distante. La autoridad viene de ser preciso y confiable con la información, no de la agresividad visual.
+Táctico pero cercano. La base visual es militar-táctica — negro y verde oliva, Oswald en mayúsculas trackeadas, esquinas rectas, inspirada en arcturustactical.com — pero esa seriedad no debe leerse fría ni corporativa: tiene que sentirse hecha por y para la comunidad de airsoft, no una herramienta institucional distante. La autoridad viene de ser preciso y confiable con la información, no de la agresividad visual.
 
 ## Anti-references
 
@@ -34,7 +34,7 @@ La función encuentra primero: buscar y filtrar información real siempre pesa m
 
 Cada página indexable es una puerta de entrada: dado que el tráfico orgánico es la métrica de éxito, cada ficha de cancha/tienda/ciudad y cada artículo del blog debe responder una pregunta real de forma directa, no solo listar datos.
 
-Táctico pero nunca frío: la estética militar (negro + cyan, Oswald trackeado, esquinas rectas) es la huella distintiva del sitio, pero cada decisión de copy y de interacción debe sentirse hecha por la comunidad, no para venderle algo.
+Táctico pero nunca frío: la estética militar (negro + verde oliva, Oswald trackeado, esquinas rectas) es la huella distintiva del sitio, pero cada decisión de copy y de interacción debe sentirse hecha por la comunidad, no para venderle algo.
 
 Nunca genérico: cualquier patrón que se sienta como plantilla de directorio intercambiable (tarjetas idénticas sin voz, iconografía de stock) se reemplaza por algo con la huella táctica del sitio.
 

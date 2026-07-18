@@ -17,5 +17,5 @@ Este proyecto usa el skill `impeccable` para trabajo de diseño. Antes de tocar 
 
 Resumen rápido: directorio funcional ("product", no "brand") para jugadores de airsoft en
 Perú que buscan dónde jugar/comprar/unirse a un grupo. Estética táctica pero cercana —
-negro + cyan (`accent: #5FD3EC`), Oswald en mayúsculas trackeadas para display, esquinas
-rectas — sin caer en look "neon gamer" ni en plantilla genérica de directorio.
+negro + verde oliva (`accent: #6B9B37`), Oswald en mayúsculas trackeadas para display,
+esquinas rectas — sin caer en look "neon gamer" ni en plantilla genérica de directorio.
