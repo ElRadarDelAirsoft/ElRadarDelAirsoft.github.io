@@ -145,7 +145,7 @@ export const categoryConfig = {
     normalize: (i) => ({
       id: i.id,
       nombre: i.nombre,
-      imagen: null,
+      imagen: i.imagen,
       descripcion: null,
       badge: null,
       direccion: null,
@@ -171,7 +171,7 @@ export const categoryConfig = {
     normalize: (i) => ({
       id: i.id,
       nombre: i.nombre,
-      imagen: null,
+      imagen: i.imagen,
       descripcion: i.especialidad,
       badge: null,
       direccion: i.ubicacion ? { texto: i.ubicacion, mapsQuery: i.ubicacion } : null,
