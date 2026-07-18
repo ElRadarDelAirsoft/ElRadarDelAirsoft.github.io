@@ -539,6 +539,17 @@
     },
     {
       "id": 5,
+      "nombre": "Vyke",
+      "foto": "/images/jugadores/vyke.webp",
+      "descripcion": "",
+      "instagram": "https://www.instagram.com/vyke_airsoft.pc/",
+      "tiktok": "",
+      "youtube": "",
+      "twitch": "",
+      "facebook": ""
+    },
+    {
+      "id": 6,
       "nombre": "Techies",
       "foto": "/images/jugadores/techies.webp",
       "descripcion": "",
