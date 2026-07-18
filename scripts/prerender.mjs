@@ -220,22 +220,22 @@ function buildCampos(cssHref) {
     // landing de ciudad/departamento
     const breadcrumb = [
       { name: 'Inicio', path: '/' },
-      { name: 'Campos', path: '/campos' },
+      { name: 'Canchas', path: '/campos' },
       { name: departamento, path: depPath },
     ]
     const faq = [
       {
-        q: `¿Cuántos campos de airsoft hay en ${departamento}?`,
-        a: `Actualmente ${SITE_NAME} tiene registrados ${canchas.length} campo${canchas.length === 1 ? '' : 's'} de airsoft en ${departamento}: ${canchas.map((c) => c.nombre).join(', ')}.`,
+        q: `¿Cuántas canchas de airsoft hay en ${departamento}?`,
+        a: `Actualmente ${SITE_NAME} tiene registradas ${canchas.length} cancha${canchas.length === 1 ? '' : 's'} de airsoft en ${departamento}: ${canchas.map((c) => c.nombre).join(', ')}.`,
       },
       {
-        q: `¿Cómo reservo una partida en un campo de airsoft en ${departamento}?`,
-        a: `Cada campo listado tiene su número de WhatsApp directo — es la forma más rápida de coordinar horarios y reservar tu partida.`,
+        q: `¿Cómo reservo una partida en una cancha de airsoft en ${departamento}?`,
+        a: `Cada cancha listada tiene su número de WhatsApp directo — es la forma más rápida de coordinar horarios y reservar tu partida.`,
       },
     ]
     const head = renderHead({
-      title: `Campos de airsoft en ${departamento} | ${SITE_NAME}`,
-      description: `Directorio de campos de airsoft en ${departamento}, Perú: ${canchas.map((c) => c.nombre).join(', ')}. Direcciones, contacto y horarios.`,
+      title: `Canchas de airsoft en ${departamento} | ${SITE_NAME}`,
+      description: `Directorio de canchas de airsoft en ${departamento}, Perú (también llamadas campos de airsoft): ${canchas.map((c) => c.nombre).join(', ')}. Direcciones, contacto y horarios.`,
       canonical: absUrl(`${depPath}/`),
       ogImage: absUrl(LOGO_PATH),
       cssHref,
@@ -253,8 +253,8 @@ function buildCampos(cssHref) {
       ],
     })
     const body = `${breadcrumbNav(breadcrumb)}
-      <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-2">Campos de airsoft en ${esc(departamento)}</h1>
-      <p class="text-slate-600 mb-8">${canchas.length} campo${canchas.length === 1 ? '' : 's'} registrado${canchas.length === 1 ? '' : 's'} en ${SITE_NAME}, el directorio nacional de airsoft del Perú.</p>
+      <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-2">Canchas de airsoft en ${esc(departamento)}</h1>
+      <p class="text-slate-600 mb-8">${canchas.length} cancha${canchas.length === 1 ? '' : 's'} de airsoft registrada${canchas.length === 1 ? '' : 's'} en ${SITE_NAME}, el directorio nacional de airsoft del Perú.</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
         ${canchas.map((c) => `<a href="${depPath}/${slugify(c.nombre)}/" class="block rounded-sm border border-slate-200 p-4 hover:border-accent">
           <h2 class="font-display font-semibold text-lg mb-1">${esc(c.nombre)}</h2>
@@ -274,9 +274,9 @@ function buildCampos(cssHref) {
       const nombreSlug = slugify(c.nombre)
       const campoPath = `${depPath}/${nombreSlug}`
       const breadcrumbCampo = [...breadcrumb, { name: c.nombre, path: campoPath }]
-      const description = c.descripcion || `${c.nombre} — campo de airsoft en ${departamento}, Perú. Dirección, contacto y horarios.`
+      const description = c.descripcion || `${c.nombre} — cancha de airsoft en ${departamento}, Perú. Dirección, contacto y horarios.`
       const head2 = renderHead({
-        title: `${c.nombre} — Airsoft en ${departamento} | ${SITE_NAME}`,
+        title: `${c.nombre} — Cancha de airsoft en ${departamento} | ${SITE_NAME}`,
         description,
         canonical: absUrl(`${campoPath}/`),
         ogImage: c.imagen ? absUrl(c.imagen) : absUrl(LOGO_PATH),
@@ -296,7 +296,7 @@ function buildCampos(cssHref) {
         ],
       })
       const body2 = `${breadcrumbNav(breadcrumbCampo)}
-        <span class="inline-block text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-sm bg-accent/15 text-accent-dim mb-3">Campo de airsoft · ${esc(departamento)}</span>
+        <span class="inline-block text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-sm bg-accent/15 text-accent-dim mb-3">Cancha de airsoft · ${esc(departamento)}</span>
         <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-4">${esc(c.nombre)}</h1>
         ${c.descripcion ? `<p class="text-slate-600 mb-5">${esc(c.descripcion)}</p>` : ''}
         ${contactBlock(c)}
@@ -467,6 +467,55 @@ function buildBlog(cssHref) {
   }
 }
 
+// ---------- home: contenido estático rastreable ----------
+
+// La home ("/") sigue siendo la SPA interactiva — React monta y reemplaza
+// #root por completo. Pero el HTML que Vite deja en dist/index.html llega
+// con #root vacío, así que cualquier bot que no ejecute JS (y varios
+// crawlers de motores GEO no lo hacen) ve una página sin texto ni keywords.
+// Inyectamos aquí contenido real (mismos datos que usa la SPA) dentro de
+// #root: los usuarios con JS lo ven un instante antes de que React lo
+// reemplace; los bots sin JS lo indexan tal cual.
+function injectHomeContent() {
+  const indexPath = path.join(DIST, 'index.html')
+  const html = fs.readFileSync(indexPath, 'utf8')
+
+  const departamentos = [...new Set((data.canchas || []).map((c) => (c.departamento || '').trim()).filter(Boolean))]
+  const ciudadesTiendas = [...new Set((data.tiendas || []).map((t) => (t.ciudad || '').trim()).filter(Boolean))]
+  const nCanchas = (data.canchas || []).length
+  const nTiendas = (data.tiendas || []).length
+  const nEquipos = (data.equipos || []).length
+
+  const seoContent = `<header class="border-b border-black/40 bg-[#232b1c]">
+      <div class="max-w-4xl mx-auto px-4 py-5">
+        <span class="inline-flex items-center gap-2 rounded-sm bg-[#f8f9fd] px-2.5 py-1.5">
+          <img src="${LOGO_PATH}" alt="${esc(SITE_NAME)}" width="452" height="456" class="h-14 w-auto object-contain" />
+        </span>
+      </div>
+    </header>
+    <main class="max-w-4xl mx-auto px-4 py-8">
+      <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-3">El Radar del Airsoft — Directorio Nacional de Airsoft en Perú</h1>
+      <p class="text-slate-600 mb-6">${esc(SITE_NAME)} es el directorio con canchas de airsoft en Lima y en todo el Perú, además de tiendas, grupos de WhatsApp, equipos, importadores y talleres de reparación. Actualmente hay ${nCanchas} canchas de airsoft, ${nTiendas} tiendas y ${nEquipos} equipos registrados a nivel nacional.</p>
+      <h2 class="font-display font-semibold uppercase tracking-wide text-lg mb-3">Canchas de airsoft por departamento</h2>
+      <ul class="flex flex-wrap gap-2 mb-8">
+        ${departamentos.map((d) => `<li><a href="/campos/${slugify(d)}/" class="inline-block text-sm px-3 py-1.5 rounded-sm border border-slate-300 hover:border-accent">Canchas de airsoft en ${esc(d)}</a></li>`).join('\n        ')}
+      </ul>
+      <h2 class="font-display font-semibold uppercase tracking-wide text-lg mb-3">Tiendas de airsoft por ciudad</h2>
+      <ul class="flex flex-wrap gap-2 mb-8">
+        ${ciudadesTiendas.map((c) => `<li><a href="/tiendas/${slugify(c)}/" class="inline-block text-sm px-3 py-1.5 rounded-sm border border-slate-300 hover:border-accent">Tiendas de airsoft en ${esc(c)}</a></li>`).join('\n        ')}
+      </ul>
+      <h2 class="font-display font-semibold uppercase tracking-wide text-lg mb-3">Blog</h2>
+      <ul class="mb-8">
+        ${blogPosts.map((p) => `<li><a href="/blog/${p.slug}/" class="text-sm text-accent-dim hover:underline">${esc(p.title)}</a></li>`).join('\n        ')}
+      </ul>
+      <p class="text-xs text-slate-400">Cargando el directorio interactivo…</p>
+    </main>`
+
+  const updated = html.replace('<div id="root"></div>', `<div id="root">${seoContent}</div>`)
+  if (updated === html) throw new Error('No se encontró <div id="root"></div> en dist/index.html — revisar injectHomeContent()')
+  fs.writeFileSync(indexPath, updated)
+}
+
 // ---------- sitemap / robots / llms.txt ----------
 
 function buildSeoFiles() {
@@ -500,7 +549,7 @@ Sitemap: ${absUrl('/sitemap.xml')}
 ${SITE_NAME} es un directorio comunitario, no una tienda ni un club. Reúne y organiza la información de contacto (WhatsApp, dirección, redes) de negocios y grupos de la comunidad de airsoft peruana.
 
 ## Categorías y volumen actual
-- Campos de airsoft: ${nCanchas} (departamentos con página propia: ${departamentos.join(', ') || 'sin datos aún'})
+- Canchas de airsoft (también llamadas campos de airsoft): ${nCanchas} (departamentos con página propia: ${departamentos.join(', ') || 'sin datos aún'})
 - Tiendas: ${nTiendas} (ciudades con página propia: ${ciudadesTiendas.join(', ') || 'sin datos aún'})
 - Equipos activos: ${nEquipos}
 - Blog: ${blogPosts.length} artículo${blogPosts.length === 1 ? '' : 's'} publicado${blogPosts.length === 1 ? '' : 's'}
@@ -510,7 +559,7 @@ ${SITE_NAME} es un directorio comunitario, no una tienda ni un club. Reúne y or
 
 ## Páginas principales
 - Directorio interactivo (buscador, filtros): ${absUrl('/')}
-- Campos por departamento: ${departamentos.map((d) => absUrl(`/campos/${slugify(d)}/`)).join(', ') || `${absUrl('/campos/')}<departamento>/`}
+- Canchas de airsoft por departamento: ${departamentos.map((d) => absUrl(`/campos/${slugify(d)}/`)).join(', ') || `${absUrl('/campos/')}<departamento>/`}
 - Tiendas por ciudad: ${ciudadesTiendas.map((c) => absUrl(`/tiendas/${slugify(c)}/`)).join(', ') || `${absUrl('/tiendas/')}<ciudad>/`}
 - Blog: ${absUrl('/blog/')}
 
@@ -531,6 +580,7 @@ function main() {
     process.exit(1)
   }
   const cssHref = findCssHref()
+  injectHomeContent()
   buildCampos(cssHref)
   buildTiendas(cssHref)
   buildBlog(cssHref)
