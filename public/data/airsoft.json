@@ -311,6 +311,26 @@
     },
     {
       "id": 9,
+      "nombre": "EVENTOS AIRSOFT",
+      "descripcion": "Este grupo es netamente para hablar de airsoft y estar comunicados con respecto a los eventos de airsoft.",
+      "link_whatsapp": "",
+      "miembros_aprox": "",
+      "admin_contacto": "Rambo +51 994016209",
+      "tematica": "",
+      "imagen": "/images/grupos-whatsapp/eventos-airsoft.webp"
+    },
+    {
+      "id": 10,
+      "nombre": "Grupo La Fabrica Zabodt",
+      "descripcion": "Un grupo en el que los miembros de la comunidad pueden hablar de cualquier cosa entre ellos.",
+      "link_whatsapp": "",
+      "miembros_aprox": "",
+      "admin_contacto": "Axel +51 964331909",
+      "tematica": "",
+      "imagen": "/images/grupos-whatsapp/grupo-la-fabrica-zabodt.webp"
+    },
+    {
+      "id": 11,
       "nombre": "GULAG LIMA",
       "descripcion": "Grupo enfocado en partidas en el Gulag.",
       "link_whatsapp": "",
@@ -339,14 +359,14 @@
   "importadores": [
     {
       "id": 1,
-      "nombre": "Sami Mejia",
+      "nombre": "Sami - Megamind",
       "contacto": "",
       "whatsapp": "+51 943511127",
-      "email": "",
-      "especialidad": "Réplicas y accesorios",
+      "email": "mejiasanoni@gmail.com",
+      "especialidad": "Asesoría en Importación de réplicas y accesorios - disponibilidad 24/7",
       "tiempo_entrega": "",
-      "zonas_cobertura": "",
-      "imagen": ""
+      "zonas_cobertura": "Santiago de Surco",
+      "imagen": "/images/Importadores/megamind.webp"
     },
     {
       "id": 2,
