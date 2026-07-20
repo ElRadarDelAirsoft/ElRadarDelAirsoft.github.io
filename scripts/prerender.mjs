@@ -148,6 +148,63 @@ function whatsappCta(phone, label = 'Contactar por WhatsApp') {
   return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm bg-green-600 text-white hover:bg-green-500">${esc(label)}</a>`
 }
 
+// ---------- mapa (modal con Google Maps embed) y galería de fotos ----------
+// Ambos son botones/JS plano (sin React, sin dependencias): estas páginas son
+// HTML "dumb" a propósito. "geolocalizacion" (lat,lng) da un pin exacto; si
+// está vacío, el mapa busca por el texto de dirección/ubicación en su lugar.
+
+function mapaButton(entity) {
+  const query = entity.geolocalizacion || entity.direccion || entity.ubicacion
+  if (!query) return ''
+  const url = `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`
+  return `<button type="button" onclick="${esc(`abrirMapa('${url}')`)}" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm bg-accent text-black hover:bg-accent/90">VER MAPA</button>`
+}
+
+const MAP_MODAL_HTML = `<div id="mapa-modal" class="hidden fixed inset-0 z-50 bg-black/70 items-center justify-center p-4" onclick="cerrarMapa(event)">
+  <div class="relative bg-white rounded-sm overflow-hidden w-[90vw] h-[70vh] sm:w-[50vw] sm:h-[50vh]" onclick="event.stopPropagation()">
+    <button type="button" onclick="cerrarMapa()" aria-label="Cerrar mapa" class="absolute top-2 right-2 z-10 w-8 h-8 flex items-center justify-center rounded-sm bg-black/70 text-white hover:bg-black">✕</button>
+    <iframe id="mapa-iframe" src="" class="w-full h-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</div>`
+
+const INTERACTIVE_SCRIPT = `<script>
+function abrirMapa(url) {
+  document.getElementById('mapa-iframe').src = url
+  var m = document.getElementById('mapa-modal')
+  m.classList.remove('hidden')
+  m.classList.add('flex')
+}
+function cerrarMapa(e) {
+  if (e && e.currentTarget !== e.target) return
+  var m = document.getElementById('mapa-modal')
+  m.classList.add('hidden')
+  m.classList.remove('flex')
+  document.getElementById('mapa-iframe').src = ''
+}
+function swapFoto(el) {
+  var main = document.getElementById('foto-principal')
+  var tmpSrc = main.src, tmpAlt = main.alt
+  main.src = el.src; main.alt = el.alt
+  el.src = tmpSrc; el.alt = tmpAlt
+}
+</script>`
+
+// mainSrc/mainAlt: foto principal. extras: hasta 5 rutas adicionales (JSON
+// "fotos_adicionales") — clic en una miniatura intercambia esa foto con la
+// que está arriba en grande.
+function photoGallery(mainSrc, mainAlt, extras) {
+  if (!mainSrc) return ''
+  const thumbs = (extras || []).filter(Boolean).slice(0, 5)
+  const img = `<img id="foto-principal" src="${mainSrc}" alt="${esc(mainAlt)}" width="800" height="450" class="w-full h-auto rounded-sm mb-2 object-cover" />`
+  if (thumbs.length === 0) return `${img}<div class="mb-5"></div>`
+  return `${img}
+    <div class="grid grid-cols-5 gap-2 mb-5">
+      ${thumbs.map((t, i) => `<button type="button" onclick="swapFoto(this.querySelector('img'))" aria-label="Ver foto ${i + 2}" class="block rounded-sm overflow-hidden border border-slate-200 hover:border-accent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent">
+        <img src="${t}" alt="${esc(mainAlt)} — foto ${i + 2}" width="120" height="80" class="w-full h-16 object-cover" />
+      </button>`).join('\n      ')}
+    </div>`
+}
+
 function page({ head, body }) {
   return `<!doctype html>
 <html lang="es">
@@ -300,11 +357,16 @@ function buildCampos(cssHref) {
       const body2 = `${breadcrumbNav(breadcrumbCampo)}
         <span class="inline-block text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-sm bg-accent/15 text-accent-dim mb-3">Cancha de airsoft · ${esc(departamento)}</span>
         <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-4">${esc(c.nombre)} — Cancha de airsoft en ${esc(departamento)}</h1>
-        ${c.imagen ? `<img src="${c.imagen}" alt="${esc(c.nombre)} — Cancha de airsoft en ${esc(departamento)}" width="800" height="450" class="w-full h-auto rounded-sm mb-5 object-cover" />` : ''}
+        ${photoGallery(c.imagen, `${c.nombre} — Cancha de airsoft en ${departamento}`, c.fotos_adicionales)}
         ${c.descripcion ? `<p class="text-slate-600 mb-5">${esc(c.descripcion)}</p>` : ''}
         ${contactBlock(c)}
         ${c.organizador ? `<p class="text-sm text-slate-500 mb-5">Organizador: ${esc(c.organizador)}</p>` : ''}
-        ${whatsappCta(c.whatsapp)}`
+        <div class="flex flex-wrap gap-2">
+          ${whatsappCta(c.whatsapp)}
+          ${mapaButton(c)}
+        </div>
+        ${MAP_MODAL_HTML}
+        ${INTERACTIVE_SCRIPT}`
       writePage(campoPath, page({ head: head2, body: body2 }))
     }
   }
@@ -402,6 +464,79 @@ function buildTiendas(cssHref) {
         ${whatsappCta(t.whatsapp)}`
       writePage(tiendaPath, page({ head: head2, body: body2 }))
     }
+  }
+}
+
+// ---------- generación: eventos ----------
+
+function buildEventos(cssHref) {
+  const eventos = (data.eventos || []).filter((e) => e.nombre)
+  if (eventos.length === 0) return
+
+  const eventosIndexPath = '/eventos'
+  const breadcrumbIndex = [{ name: 'Inicio', path: '/' }, { name: 'Eventos', path: eventosIndexPath }]
+
+  const headIndex = renderHead({
+    title: `Eventos de airsoft en Perú | ${SITE_NAME}`,
+    description: 'Próximos eventos y partidas especiales de airsoft en Perú: fecha, ubicación, aforo e inscripción.',
+    canonical: absUrl(`${eventosIndexPath}/`),
+    ogImage: absUrl(OG_BANNER_PATH),
+    cssHref,
+    jsonLd: [breadcrumbJsonLd(breadcrumbIndex)],
+  })
+  const bodyIndex = `${breadcrumbNav(breadcrumbIndex)}
+    <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-6">Eventos de airsoft en Perú</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      ${eventos.map((e) => `<a href="${eventosIndexPath}/${slugify(e.nombre)}/" class="block rounded-sm border border-slate-200 p-4 hover:border-accent">
+        <h2 class="font-display font-semibold text-lg mb-1">${esc(e.nombre)}</h2>
+        <p class="text-sm text-slate-600">${esc(e.fecha_hora || '')} ${esc(e.ubicacion || '')}</p>
+      </a>`).join('')}
+    </div>`
+  writePage(eventosIndexPath, page({ head: headIndex, body: bodyIndex }))
+
+  for (const e of eventos) {
+    const eventoPath = `${eventosIndexPath}/${slugify(e.nombre)}`
+    const breadcrumbEvento = [...breadcrumbIndex, { name: e.nombre, path: eventoPath }]
+    const description = e.descripcion || `${e.nombre} — evento de airsoft en Perú. ${e.fecha_hora || ''} ${e.ubicacion || ''}`.trim()
+    const head = renderHead({
+      title: `${e.nombre} — Evento de airsoft | ${SITE_NAME}`,
+      description,
+      canonical: absUrl(`${eventoPath}/`),
+      ogImage: e.imagen ? absUrl(e.imagen) : absUrl(OG_BANNER_PATH),
+      cssHref,
+      jsonLd: [
+        breadcrumbJsonLd(breadcrumbEvento),
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Event',
+          name: e.nombre,
+          description,
+          startDate: e.fecha_hora || undefined,
+          location: e.ubicacion ? { '@type': 'Place', name: e.ubicacion } : undefined,
+          url: absUrl(`${eventoPath}/`),
+          image: e.imagen ? absUrl(e.imagen) : undefined,
+        },
+      ],
+    })
+    const body = `${breadcrumbNav(breadcrumbEvento)}
+      <span class="inline-block text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-sm bg-accent/15 text-accent-dim mb-3">Evento de airsoft</span>
+      <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-4">${esc(e.nombre)}</h1>
+      ${photoGallery(e.imagen, e.nombre, e.fotos_adicionales)}
+      ${e.descripcion ? `<p class="text-slate-600 mb-5">${esc(e.descripcion)}</p>` : ''}
+      <ul class="flex flex-col gap-2 mb-5">
+        ${e.fecha_hora ? `<li class="text-sm text-slate-600">🗓️ ${esc(e.fecha_hora)}</li>` : ''}
+        ${e.ubicacion ? `<li class="text-sm text-slate-600">📍 ${esc(e.ubicacion)}</li>` : ''}
+        ${e.aforo ? `<li class="text-sm text-slate-600">👥 Aforo: ${esc(e.aforo)}</li>` : ''}
+        ${e.contacto ? `<li class="text-sm text-slate-600">☎️ Contacto: ${esc(e.contacto)}</li>` : ''}
+      </ul>
+      <div class="flex flex-wrap gap-2">
+        ${whatsappCta(e.whatsapp)}
+        ${mapaButton(e)}
+        ${e.link_inscripcion ? `<a href="${e.link_inscripcion}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm border border-accent text-accent-dim hover:bg-accent hover:text-black dark:text-accent">Inscribirme</a>` : ''}
+      </div>
+      ${MAP_MODAL_HTML}
+      ${INTERACTIVE_SCRIPT}`
+    writePage(eventoPath, page({ head, body }))
   }
 }
 
@@ -597,6 +732,7 @@ function main() {
   injectHomeContent()
   buildCampos(cssHref)
   buildTiendas(cssHref)
+  buildEventos(cssHref)
   buildBlog(cssHref)
   build404Page(cssHref)
   buildSeoFiles()

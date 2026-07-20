@@ -1,6 +1,6 @@
 {
 
-  "_INSTRUCCIONES": "EDITA ESTE ARCHIVO PARA AGREGAR/MODIFICAR CONTENIDO. Solo cambia los valores, no la estructura. No borres ninguna clave (aunque esté vacía, deja \"\"). Guarda las imágenes en /public/images/<categoria>/ y referencia la ruta como \"/images/<categoria>/archivo.jpg\". Para agregar una entrada nueva, copia un objeto existente dentro del arreglo de su categoría, pégalo y cambia los valores (usa un \"id\" nuevo que no se repita). IMPORTANTE PARA SEO: en \"canchas\" el campo \"departamento\" y en \"tiendas\" el campo \"ciudad\" determinan si esa entrada genera su propia página indexable (/campos/<departamento>/<nombre> o /tiendas/<ciudad>/<nombre>) al correr \"npm run build\". Si los dejas vacíos, la entrada sigue apareciendo en el directorio pero no genera página propia.",
+  "_INSTRUCCIONES": "EDITA ESTE ARCHIVO PARA AGREGAR/MODIFICAR CONTENIDO. Solo cambia los valores, no la estructura. No borres ninguna clave (aunque esté vacía, deja \"\"). Guarda las imágenes en /public/images/<categoria>/ y referencia la ruta como \"/images/<categoria>/archivo.jpg\". Para agregar una entrada nueva, copia un objeto existente dentro del arreglo de su categoría, pégalo y cambia los valores (usa un \"id\" nuevo que no se repita). IMPORTANTE PARA SEO: en \"canchas\" el campo \"departamento\" y en \"tiendas\" el campo \"ciudad\" determinan si esa entrada genera su propia página indexable (/campos/<departamento>/<nombre> o /tiendas/<ciudad>/<nombre>) al correr \"npm run build\". Si los dejas vacíos, la entrada sigue apareciendo en el directorio pero no genera página propia. \"eventos\" también genera página propia (/eventos/<nombre>) por cada evento. En \"canchas\" y \"eventos\": \"geolocalizacion\" es \"lat,lng\" (ej. \"-12.046374,-77.042793\", cópialo de \"Compartir > Copiar coordenadas\" en Google Maps) para el botón VER MAPA — si lo dejas vacío, el mapa busca por la dirección/ubicación de texto. \"fotos_adicionales\" es un arreglo de hasta 5 rutas de imagen para la galería debajo de la foto principal.",
 
   "canchas": [
     {
@@ -17,7 +17,9 @@
       "imagen": "/images/canchas/arena-airsoft.webp",
       "organizador": "Wizard",
       "descripcion": "Cancha CQB con varios modos de juego, zona de descanso y cochera.",
-      "horarios": "Dom 9:00am-1:00pm"
+      "horarios": "Dom 9:00am-1:00pm",
+      "geolocalizacion": "",
+      "fotos_adicionales": []
     },
     {
       "id": 2,
@@ -33,7 +35,9 @@
       "imagen": "/images/canchas/cqb-la-molina.webp",
       "organizador": "Padrino",
       "descripcion": "Escenario CQB techado, ideal para speedsoft y partidas cortas entre semana.",
-      "horarios": "Jue 8:00pm-11:00pm o Dom 9:00am-12pm"
+      "horarios": "Jue 8:00pm-11:00pm o Dom 9:00am-12pm",
+      "geolocalizacion": "",
+      "fotos_adicionales": []
     },
     {
       "id": 3,
@@ -49,7 +53,9 @@
       "imagen": "/images/canchas/la-estrella.webp",
       "organizador": "Akito",
       "descripcion": "Terreno abierto tipo desierto con coberturas. Eventos temáticos mensuales.",
-      "horarios": "Dom 9:00am-1:00pm"
+      "horarios": "Dom 9:00am-1:00pm",
+      "geolocalizacion": "",
+      "fotos_adicionales": []
     },
     {
       "id": 4,
@@ -65,7 +71,9 @@
       "imagen": "/images/canchas/cqb-lab.webp",
       "organizador": "Shinobi",
       "descripcion": "Cancha tipo desierto a las afueras de lima con varias edificaciones y modos de juego.",
-      "horarios": "Dom 9:00am-1:00pm"
+      "horarios": "Dom 9:00am-1:00pm",
+      "geolocalizacion": "",
+      "fotos_adicionales": []
     },
     {
       "id": 5,
@@ -81,7 +89,9 @@
       "imagen": "/images/canchas/gulag.webp",
       "organizador": "Eduardo - Nekros",
       "descripcion": "Cancha CQB con varios modelos de juego y laberintos",
-      "horarios": "Dom 9:00am-1:00pm"
+      "horarios": "Dom 9:00am-1:00pm",
+      "geolocalizacion": "",
+      "fotos_adicionales": []
     },
     {
       "id": 6,
@@ -97,7 +107,9 @@
       "imagen": "/images/canchas/ares-lima-norte.webp",
       "organizador": "Rambo",
       "descripcion": "Cancha CQB de estilo de juego rápido con parapetos de 2 pisos",
-      "horarios": "Dom 9:00am-1:00pm"
+      "horarios": "Dom 9:00am-1:00pm",
+      "geolocalizacion": "",
+      "fotos_adicionales": []
     },
     {
       "id": 7,
@@ -113,7 +125,9 @@
       "imagen": "/images/canchas/napoles.webp",
       "organizador": "Rambo",
       "descripcion": "Cancha en una mansion abandonada llena de adrenalina",
-      "horarios": "Dom 9:00am-1:00pm"
+      "horarios": "Dom 9:00am-1:00pm",
+      "geolocalizacion": "",
+      "fotos_adicionales": []
     },
     {
       "id": 8,
@@ -129,7 +143,9 @@
       "imagen": "/images/canchas/sherwood.webp",
       "organizador": "Chiquito",
       "descripcion": "Cancha tipo bosque con mas de 2 hectáreas de bosque , con casitas CQB y parapetos naturales",
-      "horarios": "Dom 9:00am-1:00pm"
+      "horarios": "Dom 9:00am-1:00pm",
+      "geolocalizacion": "",
+      "fotos_adicionales": []
     },
     {
       "id": 9,
@@ -145,7 +161,9 @@
       "imagen": "/images/canchas/war-zone-huaraz.webp",
       "organizador": "Pablo - Perseo",
       "descripcion": "Cancha CQB llena de adrenalina",
-      "horarios": "Vie 4:00pm-9:00pm, Sab-Dom 10:00am-9:00pm"
+      "horarios": "Vie 4:00pm-9:00pm, Sab-Dom 10:00am-9:00pm",
+      "geolocalizacion": "",
+      "fotos_adicionales": []
     },
     {
       "id": 10,
@@ -161,7 +179,9 @@
       "imagen": "/images/canchas/camboya.webp",
       "organizador": "Berraco",
       "descripcion": "Cancha tipo selva para jugar las mejores misiones tácticas",
-      "horarios": "Dom 9:00am-4:00pm"
+      "horarios": "Dom 9:00am-4:00pm",
+      "geolocalizacion": "",
+      "fotos_adicionales": []
     }
   ],
 
@@ -352,7 +372,9 @@
       "contacto": "Ryan Axel",
       "whatsapp": "+51 964331909",
       "link_inscripcion": "https://docs.google.com/forms/u/0/d/e/1FAIpQLScFapH7usB9XBT2A_AEJP7l8MqVChe57PCAhwORsoj57YI9uw/closedform",
-      "imagen": "/images/eventos/zabodt-la-fabrica.webp"
+      "imagen": "/images/eventos/zabodt-la-fabrica.webp",
+      "geolocalizacion": "",
+      "fotos_adicionales": []
     }
   ],
 
@@ -570,6 +592,17 @@
     },
     {
       "id": 6,
+      "nombre": "Nobdy",
+      "foto": "/images/jugadores/nobdy.webp",
+      "descripcion": "",
+      "instagram": "https://www.instagram.com/una_persona_carlos/",
+      "tiktok": "",
+      "youtube": "",
+      "twitch": "",
+      "facebook": ""
+    },
+    {
+      "id": 7,
       "nombre": "Techies",
       "foto": "/images/jugadores/techies.webp",
       "descripcion": "",

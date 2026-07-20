@@ -73,6 +73,7 @@ export const categoryConfig = {
         i.contacto ? { icon: TagIcon, text: `Contacto: ${i.contacto}` } : null,
       ].filter(Boolean),
       cta: i.link_inscripcion ? { label: 'Inscribirme', href: i.link_inscripcion } : null,
+      detailUrl: i.nombre ? `/eventos/${slugify(i.nombre)}/` : null,
     }),
   },
 
