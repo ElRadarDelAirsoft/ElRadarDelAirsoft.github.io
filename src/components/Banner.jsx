@@ -12,7 +12,7 @@ export default function Banner() {
     <div className="bg-black border-b border-accent/30">
       <div className="max-w-6xl mx-auto px-4 py-5">
         <p className="font-display text-xs font-bold uppercase tracking-widest text-accent text-center mb-3">
-          Cartelera de eventos
+          ¡Partidas de la semana!
         </p>
         {/* overflow-x-auto en el contenedor exterior + w-fit mx-auto en el interior:
             así se centra solo cuando entra (1-2 carteles), y cuando desborda
