@@ -150,11 +150,28 @@ function whatsappCta(phone, label = 'Contactar por WhatsApp') {
 
 // ---------- mapa (modal con Google Maps embed) y galería de fotos ----------
 // Ambos son botones/JS plano (sin React, sin dependencias): estas páginas son
-// HTML "dumb" a propósito. "geolocalizacion" (lat,lng) da un pin exacto; si
-// está vacío, el mapa busca por el texto de dirección/ubicación en su lugar.
+// HTML "dumb" a propósito. "geolocalizacion" acepta lo que sea que se pegue
+// ahí: un link de "Compartir" de Google Maps (con o sin coordenadas visibles
+// en la URL), un "lat,lng" plano, o una dirección de texto. Si está vacío,
+// el mapa busca por la dirección/ubicación de texto de la entidad.
+function mapsEmbedQuery(geo, fallback) {
+  const raw = (geo || '').trim()
+  if (!raw) return (fallback || '').trim()
+  if (/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/.test(raw)) return raw
+  // Google Maps mete el pin exacto del lugar en "!3d<lat>!4d<lng>" dentro
+  // del link — más preciso que el "@lat,lng" del centro del mapa (que puede
+  // haberse movido si la persona paneó antes de copiar el link).
+  let m = raw.match(/!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/)
+  if (m) return `${m[1]},${m[2]}`
+  m = raw.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/)
+  if (m) return `${m[1]},${m[2]}`
+  m = raw.match(/[?&]q=([^&]+)/)
+  if (m) return decodeURIComponent(m[1].replace(/\+/g, ' '))
+  return raw
+}
 
 function mapaButton(entity) {
-  const query = entity.geolocalizacion || entity.direccion || entity.ubicacion
+  const query = mapsEmbedQuery(entity.geolocalizacion, entity.direccion || entity.ubicacion)
   if (!query) return ''
   const url = `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`
   return `<button type="button" onclick="${esc(`abrirMapa('${url}')`)}" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm bg-accent text-black hover:bg-accent/90">VER MAPA</button>`

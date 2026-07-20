@@ -1,6 +1,6 @@
 {
 
-  "_INSTRUCCIONES": "EDITA ESTE ARCHIVO PARA AGREGAR/MODIFICAR CONTENIDO. Solo cambia los valores, no la estructura. No borres ninguna clave (aunque esté vacía, deja \"\"). Guarda las imágenes en /public/images/<categoria>/ y referencia la ruta como \"/images/<categoria>/archivo.jpg\". Para agregar una entrada nueva, copia un objeto existente dentro del arreglo de su categoría, pégalo y cambia los valores (usa un \"id\" nuevo que no se repita). IMPORTANTE PARA SEO: en \"canchas\" el campo \"departamento\" y en \"tiendas\" el campo \"ciudad\" determinan si esa entrada genera su propia página indexable (/campos/<departamento>/<nombre> o /tiendas/<ciudad>/<nombre>) al correr \"npm run build\". Si los dejas vacíos, la entrada sigue apareciendo en el directorio pero no genera página propia. \"eventos\" también genera página propia (/eventos/<nombre>) por cada evento. En \"canchas\" y \"eventos\": \"geolocalizacion\" es \"lat,lng\" (ej. \"-12.046374,-77.042793\", cópialo de \"Compartir > Copiar coordenadas\" en Google Maps) para el botón VER MAPA — si lo dejas vacío, el mapa busca por la dirección/ubicación de texto. \"fotos_adicionales\" es un arreglo de hasta 5 rutas de imagen para la galería debajo de la foto principal.",
+  "_INSTRUCCIONES": "EDITA ESTE ARCHIVO PARA AGREGAR/MODIFICAR CONTENIDO. Solo cambia los valores, no la estructura. No borres ninguna clave (aunque esté vacía, deja \"\"). Guarda las imágenes en /public/images/<categoria>/ y referencia la ruta como \"/images/<categoria>/archivo.jpg\". Para agregar una entrada nueva, copia un objeto existente dentro del arreglo de su categoría, pégalo y cambia los valores (usa un \"id\" nuevo que no se repita). IMPORTANTE PARA SEO: en \"canchas\" el campo \"departamento\" y en \"tiendas\" el campo \"ciudad\" determinan si esa entrada genera su propia página indexable (/campos/<departamento>/<nombre> o /tiendas/<ciudad>/<nombre>) al correr \"npm run build\". Si los dejas vacíos, la entrada sigue apareciendo en el directorio pero no genera página propia. \"eventos\" también genera página propia (/eventos/<nombre>) por cada evento. En \"canchas\" y \"eventos\": \"geolocalizacion\" acepta pegar el link completo de \"Compartir\" de Google Maps (clic derecho en el pin > Compartir > Copiar enlace), o directamente \"lat,lng\" (ej. \"-12.046374,-77.042793\"), para el botón VER MAPA — si lo dejas vacío, el mapa busca por la dirección/ubicación de texto. \"fotos_adicionales\" es un arreglo de hasta 5 rutas de imagen para la galería debajo de la foto principal.",
 
   "canchas": [
     {
@@ -18,7 +18,7 @@
       "organizador": "Wizard",
       "descripcion": "Cancha CQB con varios modos de juego, zona de descanso y cochera.",
       "horarios": "Dom 9:00am-1:00pm",
-      "geolocalizacion": "",
+      "geolocalizacion": "https://www.google.com/maps/place/Arena+Airsoft/@-11.988673,-77.1380795,17z/data=!4m14!1m7!3m6!1s0x9105cd4f2aff0c89:0x1c16ef942030f3f3!2sArena+Airsoft!8m2!3d-11.9886783!4d-77.1355046!16s%2Fg%2F11rwzxz232!3m5!1s0x9105cd4f2aff0c89:0x1c16ef942030f3f3!8m2!3d-11.9886783!4d-77.1355046!16s%2Fg%2F11rwzxz232?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
       "fotos_adicionales": []
     },
     {
@@ -36,7 +36,7 @@
       "organizador": "Padrino",
       "descripcion": "Escenario CQB techado, ideal para speedsoft y partidas cortas entre semana.",
       "horarios": "Jue 8:00pm-11:00pm o Dom 9:00am-12pm",
-      "geolocalizacion": "",
+      "geolocalizacion": "https://www.google.com/maps/place/Av.+la+Molina+44,+La+Molina+15026/@-12.083729,-76.9274516,21z/data=!4m6!3m5!1s0x9105c7284733523d:0xd16268efa4afff76!8m2!3d-12.0821488!4d-76.9279335!16s%2Fg%2F11j4x9nrbn?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
       "fotos_adicionales": []
     },
     {
@@ -54,7 +54,7 @@
       "organizador": "Akito",
       "descripcion": "Terreno abierto tipo desierto con coberturas. Eventos temáticos mensuales.",
       "horarios": "Dom 9:00am-1:00pm",
-      "geolocalizacion": "",
+      "geolocalizacion": "https://www.google.com/maps/place/Campo+de+Airsoft+La+Estrella/@-11.9511916,-77.036318,12z/data=!4m10!1m2!2m1!1scampo+la+estrella!3m6!1s0x9105c3ff04694809:0x768d83124127a970!8m2!3d-12.0274682!4d-76.8990661!15sChFjYW1wbyBsYSBlc3RyZWxsYVoTIhFjYW1wbyBsYSBlc3RyZWxsYZIBF2FkdmVudHVyZV9zcG9ydHNfY2VudGVymgEjQ2haRFNVaE5NRzluUzBWSlEwRm5UVVJKT1ZwSFZXRm5FQUXgAQD6AQQIABAw!16s%2Fg%2F11grt_fdlb?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
       "fotos_adicionales": []
     },
     {
@@ -72,7 +72,7 @@
       "organizador": "Shinobi",
       "descripcion": "Cancha tipo desierto a las afueras de lima con varias edificaciones y modos de juego.",
       "horarios": "Dom 9:00am-1:00pm",
-      "geolocalizacion": "",
+      "geolocalizacion": "https://www.google.com/maps/place/Panamericanan+Sur+Km+38,+Punta+Hermosa+15845/@-12.3281191,-76.8228593,18.58z/data=!4m6!3m5!1s0x9105987a80974ca5:0x5e9ba266439295bb!8m2!3d-12.333631!4d-76.8180347!16s%2Fg%2F11b6_7ft4h?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
       "fotos_adicionales": []
     },
     {
@@ -90,7 +90,7 @@
       "organizador": "Eduardo - Nekros",
       "descripcion": "Cancha CQB con varios modelos de juego y laberintos",
       "horarios": "Dom 9:00am-1:00pm",
-      "geolocalizacion": "",
+      "geolocalizacion": "https://www.google.com/maps?sca_esv=bdd6df52b611cc54&rlz=1C1GCEA_enPE1150PE1150&output=search&q=Jr.+Caylloma+840,+Lima,+Peru+-+Centro+de+Lima&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDhGSCZm7XyznrPTo9Hy_Q2uz8Xz4EW5JZiKHLKDFwhT6CR5poGF3Q_DFtAjJx_Odzcy2hoQmHqD8fpFq_45kz5RDKDGOZlVS6VDXRnXMjpGLsYvjs5W_Ag8871n1tSnDoanGdUqMfCcrmPBf7JJbBw_WPzRucHL-5maAlKh3n8lA_y8MzC7CugvA1P26Q_q4y4t7JsA&entry=mc&ved=1t:200715&ictx=111",
       "fotos_adicionales": []
     },
     {
@@ -108,7 +108,7 @@
       "organizador": "Rambo",
       "descripcion": "Cancha CQB de estilo de juego rápido con parapetos de 2 pisos",
       "horarios": "Dom 9:00am-1:00pm",
-      "geolocalizacion": "",
+      "geolocalizacion": "https://www.google.com/maps/place/3WWQ%2BW9,+Comas+15316/@-11.9026875,-77.0641374,17z/data=!3m1!4b1!4m5!3m4!1s0x9105d055201ee73d:0x2a6e92c427afef90!8m2!3d-11.9026875!4d-77.0615625?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
       "fotos_adicionales": []
     },
     {
@@ -126,7 +126,7 @@
       "organizador": "Rambo",
       "descripcion": "Cancha en una mansion abandonada llena de adrenalina",
       "horarios": "Dom 9:00am-1:00pm",
-      "geolocalizacion": "",
+      "geolocalizacion": "https://www.google.com/maps?sca_esv=bdd6df52b611cc54&rlz=1C1GCEA_enPE1150PE1150&output=search&q=Club+Portada+del+Sol+Av.+Nicol%C3%A1s+Ayll%C3%B3n,+Chaclacayo+15468&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDhGSCZm7XyznrPTo9Hy_Q2uz8Xz4EW5JZiKHLKDFwhT7vxXXyxFOUqxgd6aaGQquQ1Q4dMT20VvmID1kMayFngG2OoX9_yFkRUFLEzjqqPaI-KiG1dnKcmk8p41MzAiPDJS_mi_C4l_CVDOCcebGEk5LaF_EuuAsNqtfarlNO2ztWWPXvVyD7skQvGcdD0pQWaIzvDA&entry=mc&ved=1t:200715&ictx=111",
       "fotos_adicionales": []
     },
     {
@@ -144,7 +144,7 @@
       "organizador": "Chiquito",
       "descripcion": "Cancha tipo bosque con mas de 2 hectáreas de bosque , con casitas CQB y parapetos naturales",
       "horarios": "Dom 9:00am-1:00pm",
-      "geolocalizacion": "",
+      "geolocalizacion": "https://www.google.com/maps/place/Sherwood+Cieneguilla/@-12.1093324,-76.8007558,17z/data=!3m1!4b1!4m6!3m5!1s0x9105ebfbdc598811:0x4cfcd2e4a781b0d3!8m2!3d-12.1093377!4d-76.7981809!16s%2Fg%2F11fnh5rc7x?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
       "fotos_adicionales": []
     },
     {
@@ -162,7 +162,7 @@
       "organizador": "Pablo - Perseo",
       "descripcion": "Cancha CQB llena de adrenalina",
       "horarios": "Vie 4:00pm-9:00pm, Sab-Dom 10:00am-9:00pm",
-      "geolocalizacion": "",
+      "geolocalizacion": "https://www.google.com/maps/place/Compartamos+Financiera+Huaraz+Ancash/@-9.5289085,-77.5300914,17z/data=!3m1!4b1!4m6!3m5!1s0x91a90d1b4311729f:0x82182ef68702b8a7!8m2!3d-9.5289138!4d-77.5275165!16s%2Fg%2F11by_g11fp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
       "fotos_adicionales": []
     },
     {
@@ -180,7 +180,7 @@
       "organizador": "Berraco",
       "descripcion": "Cancha tipo selva para jugar las mejores misiones tácticas",
       "horarios": "Dom 9:00am-4:00pm",
-      "geolocalizacion": "",
+      "geolocalizacion": "https://www.google.com/maps/place/CAMBOYA+LA+SELVA/@-12.1525122,-77.0056311,17z/data=!3m1!4b1!4m6!3m5!1s0x9105b9003b9d5791:0xa6a111231a796ea4!8m2!3d-12.1525175!4d-77.0030562!16s%2Fg%2F11z0g8y_c6?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
       "fotos_adicionales": []
     }
   ],
@@ -373,8 +373,12 @@
       "whatsapp": "+51 964331909",
       "link_inscripcion": "https://docs.google.com/forms/u/0/d/e/1FAIpQLScFapH7usB9XBT2A_AEJP7l8MqVChe57PCAhwORsoj57YI9uw/closedform",
       "imagen": "/images/eventos/zabodt-la-fabrica.webp",
-      "geolocalizacion": "",
-      "fotos_adicionales": []
+      "geolocalizacion": "https://www.google.com/maps?sca_esv=bdd6df52b611cc54&rlz=1C1GCEA_enPE1150PE1150&output=search&q=EX+FABRICA+MANYLSA+-+Ate&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDwyGufVe9qSiGUEeM6QNWczlCszVxMQ79RozvY4NAA0eN3m2Ioe1Rkpqyauc5m0lLaxNayKb39T92x2ekU4pWoQCIEpLN_wOaCL4bjiVYsaQcQ9VQZP0ZdvZm1EEHfQOTS1SgQ3XB6WW-v-xzaM_IOkBgdfHyUKpht2SqK5KfgVhaPoqFT3JfsL3PW8zQTWmVl13n1Q&entry=mc&ved=1t:200715&ictx=111",
+      "fotos_adicionales": [
+        "/images/eventos/zabodt-la-fabrica-2.webp",
+        "/images/eventos/zabodt-la-fabrica-3.webp",
+        "/images/eventos/zabodt-la-fabrica-4.webp"
+      ]
     }
   ],
 
