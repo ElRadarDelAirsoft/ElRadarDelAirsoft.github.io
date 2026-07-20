@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import Header from './components/Header.jsx'
+import Banner from './components/Banner.jsx'
 import Footer from './components/Footer.jsx'
 import CategoryTabs from './components/CategoryTabs.jsx'
 import CategorySidebar from './components/CategorySidebar.jsx'
@@ -110,6 +111,8 @@ export default function App() {
         onToggleDark={toggleDark}
         onLogoClick={() => setActiveCategory('todo')}
       />
+
+      <Banner />
 
       {/* Mobile/tablet: barra horizontal pegajosa. Un sidebar fijo no funciona
           en pantallas angostas, así que acá se mantienen los tabs de siempre. */}
