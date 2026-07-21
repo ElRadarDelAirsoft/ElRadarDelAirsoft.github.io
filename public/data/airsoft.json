@@ -36,7 +36,7 @@
       "organizador": "Padrino",
       "descripcion": "Escenario CQB techado, ideal para speedsoft y partidas cortas entre semana.",
       "horarios": "Jue 8:00pm-11:00pm o Dom 9:00am-12pm",
-      "geolocalizacion": "https://www.google.com/maps/place/Av.+la+Molina+44,+La+Molina+15026/@-12.083729,-76.9274516,21z/data=!4m6!3m5!1s0x9105c7284733523d:0xd16268efa4afff76!8m2!3d-12.0821488!4d-76.9279335!16s%2Fg%2F11j4x9nrbn?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+      "geolocalizacion": "https://www.google.com/maps/place/CQB+La+Molina/@-12.0839258,-76.9283411,18.11z/data=!4m11!1m4!8m3!1e4!3m1!1e1!3m5!1s0x9105c7004317e105:0x665101082e1b8e30!8m2!3d-12.083793!4d-76.9273392!16s%2Fg%2F11nt9ltp2_?entry=ttu&g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D",
       "fotos_adicionales": []
     },
     {
@@ -72,7 +72,7 @@
       "organizador": "Shinobi",
       "descripcion": "Cancha tipo desierto a las afueras de lima con varias edificaciones y modos de juego.",
       "horarios": "Dom 9:00am-1:00pm",
-      "geolocalizacion": "https://www.google.com/maps/place/Panamericanan+Sur+Km+38,+Punta+Hermosa+15845/@-12.3281191,-76.8228593,18.58z/data=!4m6!3m5!1s0x9105987a80974ca5:0x5e9ba266439295bb!8m2!3d-12.333631!4d-76.8180347!16s%2Fg%2F11b6_7ft4h?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+      "geolocalizacion": "https://www.google.com/maps/place/CQB+Punta+Hermosa/@-12.3280386,-76.8254593,17z/data=!3m1!4b1!4m11!1m4!8m3!1e4!3m1!1e1!3m5!1s0x910599004efc2df7:0x2b51aa59e6812a9c!8m2!3d-12.3280439!4d-76.8228844!16s%2Fg%2F11nt9lxvqy?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
       "fotos_adicionales": []
     },
     {
@@ -607,6 +607,39 @@
     },
     {
       "id": 7,
+      "nombre": "Chihuahua",
+      "foto": "/images/jugadores/nobdy.webp",
+      "descripcion": "",
+      "instagram": "https://www.instagram.com/mrchihuahua_airsoft/",
+      "tiktok": "",
+      "youtube": "",
+      "twitch": "",
+      "facebook": ""
+    },
+    {
+      "id": 8,
+      "nombre": "PAS",
+      "foto": "/images/jugadores/nobdy.webp",
+      "descripcion": "",
+      "instagram": "https://www.instagram.com/pas_airsoft/",
+      "tiktok": "https://www.tiktok.com/@pas_airsoft?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnt5cFJiKsoqq-opAvrkPMuHf2009pCSzTLWXT8h7ua6rrC9eRPLCzcIi_3Fg_aem_AeOeQ-oVfmWTrL9-vvpxig",
+      "youtube": "https://www.youtube.com/@pas_airsoft",
+      "twitch": "",
+      "facebook": ""
+    },
+    {
+      "id": 9,
+      "nombre": "Mute",
+      "foto": "/images/jugadores/nobdy.webp",
+      "descripcion": "",
+      "instagram": "https://www.instagram.com/infm_mute/",
+      "tiktok": "",
+      "youtube": "",
+      "twitch": "",
+      "facebook": ""
+    },
+    {
+      "id": 10,
       "nombre": "Techies",
       "foto": "/images/jugadores/techies.webp",
       "descripcion": "",
