@@ -251,16 +251,6 @@
   "grupos_whatsapp": [
     {
       "id": 1,
-      "nombre": "Ventas y Partidas de Airsoft Perú",
-      "descripcion": "Grupo donde se habla de compra-venta y coordinación de partidas.",
-      "link_whatsapp": "",
-      "miembros_aprox": "",
-      "admin_contacto": "Miguel Navas +51 983 509 060",
-      "tematica": "",
-      "imagen": "/images/grupos-whatsapp/ventas-y-partidas-de-airsoft-peru.webp"
-    },
-    {
-      "id": 2,
       "nombre": "Airsoft Tacticshop & Eventos",
       "descripcion": "Grupo donde se habla de compra-venta y coordinación de partidas.",
       "link_whatsapp": "",
@@ -270,7 +260,7 @@
       "imagen": "/images/grupos-whatsapp/airsoft-tacticshop-eventos.webp"
     },
     {
-      "id": 3,
+      "id": 2,
       "nombre": "Akito airsoft club",
       "descripcion": "Grupo donde se habla de compra-venta y coordinación de partidas.",
       "link_whatsapp": "",
@@ -280,7 +270,7 @@
       "imagen": "/images/grupos-whatsapp/akito-airsoft-club.webp"
     },
     {
-      "id": 4,
+      "id": 3,
       "nombre": "Comunidad Airsofters Arena",
       "descripcion": "Grupo para charla abierta de la comunidad.",
       "link_whatsapp": "",
@@ -290,7 +280,7 @@
       "imagen": "/images/grupos-whatsapp/comunidad-airsofters-arena.webp"
     },
     {
-      "id": 5,
+      "id": 4,
       "nombre": "Market ASFT",
       "descripcion": "Grupo de compra-venta de Arena Airsoft",
       "link_whatsapp": "",
@@ -300,7 +290,7 @@
       "imagen": "/images/grupos-whatsapp/market-asft.webp"
     },
     {
-      "id": 6,
+      "id": 5,
       "nombre": "Promociones y Partidas ASFT",
       "descripcion": "Grupo de compra -venta y partidas en Arena Airsoft.",
       "link_whatsapp": "",
@@ -310,7 +300,7 @@
       "imagen": "/images/grupos-whatsapp/promociones-y-partidas-asft.webp"
     },
     {
-      "id": 7,
+      "id": 6,
       "nombre": "Yo apoyo el Airsoft en el Perú",
       "descripcion": "Grupo enfocado a hacer crecer el Airsoft en el Perú.",
       "link_whatsapp": "",
@@ -320,7 +310,7 @@
       "imagen": "/images/grupos-whatsapp/yo-apoyo-el-airsoft-en-el-peru.webp"
     },
     {
-      "id": 8,
+      "id": 7,
       "nombre": "Parabellum Airsoft",
       "descripcion": "Grupo enfocado mantenimiento de replicas & importación de réplicas y accesorios.",
       "link_whatsapp": "",
@@ -330,7 +320,7 @@
       "imagen": "/images/grupos-whatsapp/parabellum-airsoft.webp"
     },
     {
-      "id": 9,
+      "id": 8,
       "nombre": "EVENTOS AIRSOFT",
       "descripcion": "Este grupo es netamente para hablar de airsoft y estar comunicados con respecto a los eventos de airsoft.",
       "link_whatsapp": "",
@@ -340,7 +330,7 @@
       "imagen": "/images/grupos-whatsapp/eventos-airsoft.webp"
     },
     {
-      "id": 10,
+      "id": 9,
       "nombre": "Grupo La Fabrica Zabodt",
       "descripcion": "Un grupo en el que los miembros de la comunidad pueden hablar de cualquier cosa entre ellos.",
       "link_whatsapp": "",
@@ -350,7 +340,7 @@
       "imagen": "/images/grupos-whatsapp/grupo-la-fabrica-zabodt.webp"
     },
     {
-      "id": 11,
+      "id": 10,
       "nombre": "GULAG LIMA",
       "descripcion": "Grupo enfocado en partidas en el Gulag.",
       "link_whatsapp": "",
