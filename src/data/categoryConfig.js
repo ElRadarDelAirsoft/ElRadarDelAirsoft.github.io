@@ -36,7 +36,8 @@ export const categoryConfig = {
       imagen: i.imagen,
       descripcion: i.descripcion,
       badge: i.departamento || null,
-      direccion: i.direccion ? { texto: i.direccion, mapsQuery: i.direccion } : null,
+      // dirección y horarios ocultos del front a pedido (siguen en el JSON: i.direccion, i.horarios)
+      direccion: null,
       telefono: i.telefono,
       email: i.email,
       web: i.web,
@@ -44,7 +45,6 @@ export const categoryConfig = {
       socials: { instagram: i.instagram, tiktok: i.tiktok, youtube: null, twitch: null },
       extra: [
         i.organizador ? { icon: UsersIcon, text: `Organizador: ${i.organizador}` } : null,
-        i.horarios ? { icon: ClockIcon, text: i.horarios } : null,
       ].filter(Boolean),
       cta: null,
       detailUrl: i.departamento && i.nombre ? `/campos/${slugify(i.departamento)}/${slugify(i.nombre)}/` : null,
@@ -61,7 +61,8 @@ export const categoryConfig = {
       imagen: i.imagen,
       descripcion: i.descripcion,
       badge: null,
-      direccion: i.ubicacion ? { texto: i.ubicacion, mapsQuery: i.ubicacion } : null,
+      // ubicación (dirección) oculta del front a pedido (sigue en el JSON: i.ubicacion)
+      direccion: null,
       telefono: null,
       email: null,
       web: null,

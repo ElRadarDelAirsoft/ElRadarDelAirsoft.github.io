@@ -120,10 +120,13 @@ function contactRow(icon, label) {
   return `<li class="flex items-center gap-1.5 text-sm text-slate-600">${icon} ${label}</li>`
 }
 
-function contactBlock(entity) {
+// hideAddress/hideHorarios: canchas oculta dirección/horarios del front a
+// pedido (siguen intactos en el JSON) sin afectar a tiendas, que sigue
+// mostrando ambos campos igual que antes.
+function contactBlock(entity, { hideAddress = false, hideHorarios = false } = {}) {
   const rows = []
   const address = entity.direccion || entity.ubicacion
-  if (address) {
+  if (address && !hideAddress) {
     rows.push(`<li class="text-sm text-slate-600">📍 ${esc(address)}</li>`)
   }
   if (entity.telefono) rows.push(`<li><a href="tel:${esc(entity.telefono)}" class="text-sm text-slate-600 hover:text-accent-dim">📞 ${esc(entity.telefono)}</a></li>`)
@@ -138,7 +141,7 @@ function contactBlock(entity) {
     }
     rows.push(`<li><a href="${webHref}" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-600 hover:text-accent-dim">🌐 ${esc(webLabel)}</a></li>`)
   }
-  if (entity.horarios) rows.push(`<li class="text-sm text-slate-600">🕒 ${esc(entity.horarios)}</li>`)
+  if (entity.horarios && !hideHorarios) rows.push(`<li class="text-sm text-slate-600">🕒 ${esc(entity.horarios)}</li>`)
   return `<ul class="flex flex-col gap-2 mb-5">${rows.join('')}</ul>`
 }
 
@@ -148,56 +151,9 @@ function whatsappCta(phone, label = 'Contactar por WhatsApp') {
   return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm bg-green-600 text-white hover:bg-green-500">${esc(label)}</a>`
 }
 
-// ---------- mapa (modal con Google Maps embed) y galería de fotos ----------
-// Ambos son botones/JS plano (sin React, sin dependencias): estas páginas son
-// HTML "dumb" a propósito. "geolocalizacion" acepta lo que sea que se pegue
-// ahí: un link de "Compartir" de Google Maps (con o sin coordenadas visibles
-// en la URL), un "lat,lng" plano, o una dirección de texto. Si está vacío,
-// el mapa busca por la dirección/ubicación de texto de la entidad.
-function mapsEmbedQuery(geo, fallback) {
-  const raw = (geo || '').trim()
-  if (!raw) return (fallback || '').trim()
-  if (/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/.test(raw)) return raw
-  // Google Maps mete el pin exacto del lugar en "!3d<lat>!4d<lng>" dentro
-  // del link — más preciso que el "@lat,lng" del centro del mapa (que puede
-  // haberse movido si la persona paneó antes de copiar el link).
-  let m = raw.match(/!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/)
-  if (m) return `${m[1]},${m[2]}`
-  m = raw.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/)
-  if (m) return `${m[1]},${m[2]}`
-  m = raw.match(/[?&]q=([^&]+)/)
-  if (m) return decodeURIComponent(m[1].replace(/\+/g, ' '))
-  return raw
-}
-
-function mapaButton(entity) {
-  const query = mapsEmbedQuery(entity.geolocalizacion, entity.direccion || entity.ubicacion)
-  if (!query) return ''
-  const url = `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`
-  return `<button type="button" onclick="${esc(`abrirMapa('${url}')`)}" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm bg-accent text-black hover:bg-accent/90">VER MAPA</button>`
-}
-
-const MAP_MODAL_HTML = `<div id="mapa-modal" class="hidden fixed inset-0 z-50 bg-black/70 items-center justify-center p-4" onclick="cerrarMapa(event)">
-  <div class="relative bg-white rounded-sm overflow-hidden w-[90vw] h-[70vh] sm:w-[50vw] sm:h-[50vh]" onclick="event.stopPropagation()">
-    <button type="button" onclick="cerrarMapa()" aria-label="Cerrar mapa" class="absolute top-2 right-2 z-10 w-8 h-8 flex items-center justify-center rounded-sm bg-black/70 text-white hover:bg-black">✕</button>
-    <iframe id="mapa-iframe" src="" class="w-full h-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </div>
-</div>`
-
+// ---------- galería de fotos ----------
+// JS plano (sin React, sin dependencias): estas páginas son HTML "dumb" a propósito.
 const INTERACTIVE_SCRIPT = `<script>
-function abrirMapa(url) {
-  document.getElementById('mapa-iframe').src = url
-  var m = document.getElementById('mapa-modal')
-  m.classList.remove('hidden')
-  m.classList.add('flex')
-}
-function cerrarMapa(e) {
-  if (e && e.currentTarget !== e.target) return
-  var m = document.getElementById('mapa-modal')
-  m.classList.add('hidden')
-  m.classList.remove('flex')
-  document.getElementById('mapa-iframe').src = ''
-}
 function swapFoto(el) {
   var main = document.getElementById('foto-principal')
   var tmpSrc = main.src, tmpAlt = main.alt
@@ -334,7 +290,7 @@ function buildCampos(cssHref) {
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
         ${canchas.map((c) => `<a href="${depPath}/${slugify(c.nombre)}/" class="block rounded-sm border border-slate-200 p-4 hover:border-accent">
           <h2 class="font-display font-semibold text-lg mb-1">${esc(c.nombre)}</h2>
-          <p class="text-sm text-slate-600">${esc(c.direccion || '')}</p>
+          ${c.descripcion ? `<p class="text-sm text-slate-600 line-clamp-2">${esc(c.descripcion)}</p>` : ''}
         </a>`).join('')}
       </div>
       <section aria-labelledby="faq-heading">
@@ -376,13 +332,11 @@ function buildCampos(cssHref) {
         <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-4">${esc(c.nombre)} — Cancha de airsoft en ${esc(departamento)}</h1>
         ${photoGallery(c.imagen, `${c.nombre} — Cancha de airsoft en ${departamento}`, c.fotos_adicionales)}
         ${c.descripcion ? `<p class="text-slate-600 mb-5">${esc(c.descripcion)}</p>` : ''}
-        ${contactBlock(c)}
+        ${contactBlock(c, { hideAddress: true, hideHorarios: true })}
         ${c.organizador ? `<p class="text-sm text-slate-500 mb-5">Organizador: ${esc(c.organizador)}</p>` : ''}
         <div class="flex flex-wrap gap-2">
           ${whatsappCta(c.whatsapp)}
-          ${mapaButton(c)}
         </div>
-        ${MAP_MODAL_HTML}
         ${INTERACTIVE_SCRIPT}`
       writePage(campoPath, page({ head: head2, body: body2 }))
     }
@@ -506,7 +460,7 @@ function buildEventos(cssHref) {
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       ${eventos.map((e) => `<a href="${eventosIndexPath}/${slugify(e.nombre)}/" class="block rounded-sm border border-slate-200 p-4 hover:border-accent">
         <h2 class="font-display font-semibold text-lg mb-1">${esc(e.nombre)}</h2>
-        <p class="text-sm text-slate-600">${esc(e.fecha_hora || '')} ${esc(e.ubicacion || '')}</p>
+        <p class="text-sm text-slate-600">${esc(e.fecha_hora || '')}</p>
       </a>`).join('')}
     </div>`
   writePage(eventosIndexPath, page({ head: headIndex, body: bodyIndex }))
@@ -514,7 +468,7 @@ function buildEventos(cssHref) {
   for (const e of eventos) {
     const eventoPath = `${eventosIndexPath}/${slugify(e.nombre)}`
     const breadcrumbEvento = [...breadcrumbIndex, { name: e.nombre, path: eventoPath }]
-    const description = e.descripcion || `${e.nombre} — evento de airsoft en Perú. ${e.fecha_hora || ''} ${e.ubicacion || ''}`.trim()
+    const description = e.descripcion || `${e.nombre} — evento de airsoft en Perú. ${e.fecha_hora || ''}`.trim()
     const head = renderHead({
       title: `${e.nombre} — Evento de airsoft | ${SITE_NAME}`,
       description,
@@ -542,16 +496,13 @@ function buildEventos(cssHref) {
       ${e.descripcion ? `<p class="text-slate-600 mb-5">${esc(e.descripcion)}</p>` : ''}
       <ul class="flex flex-col gap-2 mb-5">
         ${e.fecha_hora ? `<li class="text-sm text-slate-600">🗓️ ${esc(e.fecha_hora)}</li>` : ''}
-        ${e.ubicacion ? `<li class="text-sm text-slate-600">📍 ${esc(e.ubicacion)}</li>` : ''}
         ${e.aforo ? `<li class="text-sm text-slate-600">👥 Aforo: ${esc(e.aforo)}</li>` : ''}
         ${e.contacto ? `<li class="text-sm text-slate-600">☎️ Contacto: ${esc(e.contacto)}</li>` : ''}
       </ul>
       <div class="flex flex-wrap gap-2">
         ${whatsappCta(e.whatsapp)}
-        ${mapaButton(e)}
         ${e.link_inscripcion ? `<a href="${e.link_inscripcion}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm border border-accent text-accent-dim hover:bg-accent hover:text-black dark:text-accent">Inscribirme</a>` : ''}
       </div>
-      ${MAP_MODAL_HTML}
       ${INTERACTIVE_SCRIPT}`
     writePage(eventoPath, page({ head, body }))
   }
