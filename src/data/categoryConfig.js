@@ -116,7 +116,7 @@ export const categoryConfig = {
       direccion: null,
       telefono: null,
       email: null,
-      web: null,
+      web: i.web || null,
       whatsapp: null,
       socials: { instagram: i.instagram, tiktok: i.tiktok, youtube: i.youtube, twitch: i.twitch, facebook: i.facebook },
       extra: [],

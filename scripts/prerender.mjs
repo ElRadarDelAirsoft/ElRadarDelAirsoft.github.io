@@ -152,6 +152,13 @@ function whatsappCta(phone, label = 'Contactar por WhatsApp') {
   return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm bg-green-600 text-white hover:bg-green-500">${esc(label)}</a>`
 }
 
+const INSTAGRAM_SVG = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>`
+
+function instagramCta(url) {
+  if (!url) return ''
+  return `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm border border-accent text-accent-dim hover:bg-accent hover:text-black dark:text-accent">${INSTAGRAM_SVG} Instagram</a>`
+}
+
 // ---------- galería de fotos ----------
 // JS plano (sin React, sin dependencias): estas páginas son HTML "dumb" a propósito.
 const INTERACTIVE_SCRIPT = `<script>
@@ -338,6 +345,7 @@ function buildCampos(cssHref) {
         ${c.organizador ? `<p class="text-sm text-slate-500 mb-5">Organizador: ${esc(c.organizador)}</p>` : ''}
         <div class="flex flex-wrap gap-2">
           ${whatsappCta(c.whatsapp)}
+          ${instagramCta(c.instagram)}
         </div>
         ${INTERACTIVE_SCRIPT}`
       writePage(campoPath, page({ head: head2, body: body2 }))
