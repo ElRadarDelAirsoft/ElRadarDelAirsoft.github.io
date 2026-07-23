@@ -24,7 +24,7 @@ const Header = forwardRef(function Header({ search, onSearchChange, isDark, onTo
               src="/images/logo-radar-airsoft-bw.webp"
               alt="El Radar del Airsoft"
               width="600"
-              height="600"
+              height="526"
               fetchpriority="high"
               className="h-20 sm:h-24 md:h-28 w-auto object-contain"
             />

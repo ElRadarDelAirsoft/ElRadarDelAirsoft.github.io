@@ -192,7 +192,7 @@ function page({ head, body }) {
         <div class="max-w-4xl mx-auto px-4 py-5">
           <a href="/" class="inline-flex items-center gap-2 rounded-sm bg-[#f8f9fd] dark:bg-transparent px-2.5 py-1.5 shadow-md dark:shadow-none w-fit">
             <img src="${LOGO_PATH}" alt="${esc(SITE_NAME)}" width="452" height="456" class="h-20 w-auto object-contain dark:hidden" />
-            <img src="${LOGO_PATH_DARK}" alt="${esc(SITE_NAME)}" width="600" height="600" class="hidden dark:block h-20 w-auto object-contain" />
+            <img src="${LOGO_PATH_DARK}" alt="${esc(SITE_NAME)}" width="600" height="526" class="hidden dark:block h-20 w-auto object-contain" />
           </a>
         </div>
       </header>
