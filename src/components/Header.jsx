@@ -14,18 +14,30 @@ const Header = forwardRef(function Header({ search, onSearchChange, isDark, onTo
         <button
           type="button"
           onClick={onLogoClick}
-          className="shrink-0 rounded-sm bg-[#f8f9fd] px-2.5 py-1.5 shadow-md transition-transform duration-150 ease-out-quart active:scale-95
-            focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2"
+          className={`shrink-0 rounded-sm px-2.5 py-1.5 transition-transform duration-150 ease-out-quart active:scale-95
+            focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2
+            ${isDark ? '' : 'bg-[#f8f9fd] shadow-md'}`}
           aria-label="Ir al inicio"
         >
-          <img
-            src="/images/logo-radar-airsoft.webp"
-            alt="El Radar del Airsoft"
-            width="452"
-            height="456"
-            fetchpriority="high"
-            className="h-20 sm:h-24 md:h-28 w-auto object-contain"
-          />
+          {isDark ? (
+            <img
+              src="/images/logo-radar-airsoft-bw.webp"
+              alt="El Radar del Airsoft"
+              width="600"
+              height="600"
+              fetchpriority="high"
+              className="h-20 sm:h-24 md:h-28 w-auto object-contain"
+            />
+          ) : (
+            <img
+              src="/images/logo-radar-airsoft.webp"
+              alt="El Radar del Airsoft"
+              width="452"
+              height="456"
+              fetchpriority="high"
+              className="h-20 sm:h-24 md:h-28 w-auto object-contain"
+            />
+          )}
         </button>
         <div className="flex flex-col items-end gap-1.5 flex-1 min-w-0 max-w-xs">
           <span className="text-xs font-bold uppercase tracking-wide text-white text-right rounded-sm bg-black/55 backdrop-blur-sm px-2 py-1">

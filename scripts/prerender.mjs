@@ -24,6 +24,7 @@ const DIST = path.join(ROOT, 'dist')
 const SITE_URL = 'https://elradardelairsoft.github.io'
 const SITE_NAME = 'El Radar del Airsoft'
 const LOGO_PATH = '/images/logo-radar-airsoft.webp'
+const LOGO_PATH_DARK = '/images/logo-radar-airsoft-bw.webp'
 const OG_BANNER_PATH = '/images/og-banner.png'
 
 const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'public/data/airsoft.json'), 'utf8'))
@@ -189,8 +190,9 @@ function page({ head, body }) {
       <header class="border-b border-black/40 bg-[#232b1c] bg-[url('/images/camo-tiger-stripe.webp')] bg-cover bg-center">
         <div class="h-[3px] w-full bg-accent"></div>
         <div class="max-w-4xl mx-auto px-4 py-5">
-          <a href="/" class="inline-flex items-center gap-2 rounded-sm bg-[#f8f9fd] px-2.5 py-1.5 shadow-md w-fit">
-            <img src="${LOGO_PATH}" alt="${esc(SITE_NAME)}" width="452" height="456" class="h-20 w-auto object-contain" />
+          <a href="/" class="inline-flex items-center gap-2 rounded-sm bg-[#f8f9fd] dark:bg-transparent px-2.5 py-1.5 shadow-md dark:shadow-none w-fit">
+            <img src="${LOGO_PATH}" alt="${esc(SITE_NAME)}" width="452" height="456" class="h-20 w-auto object-contain dark:hidden" />
+            <img src="${LOGO_PATH_DARK}" alt="${esc(SITE_NAME)}" width="600" height="600" class="hidden dark:block h-20 w-auto object-contain" />
           </a>
         </div>
       </header>
