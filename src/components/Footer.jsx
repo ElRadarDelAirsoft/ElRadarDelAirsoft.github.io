@@ -50,15 +50,14 @@ export default function Footer() {
             Cuéntanos si falta una cancha, tienda, grupo o si encontraste un dato desactualizado.
           </p>
           <a href="https://forms.gle/zii1J6sbrNpeDjEK7" target="_blank" rel="noopener noreferrer" className={ctaButton}>
-            Aporta <LinkIcon aria-hidden="true" className="w-4 h-4" />
+            Te escucho <LinkIcon aria-hidden="true" className="w-4 h-4" />
           </a>
         </div>
 
         <div>
           <h3 className={columnTitle}>Apoya el proyecto</h3>
           <p className="text-xs sm:text-sm mb-3">
-            Si te pude ayudar con algo, se aceptan donaciones para seguir dando un buen servicio. Escanea el
-            código con tu Yape:
+            Si te pude ayudar con algo, ¿me invitas un café? Escanea el código con tu Yape:
           </p>
           <img
             src="/images/Yape.jpg"
