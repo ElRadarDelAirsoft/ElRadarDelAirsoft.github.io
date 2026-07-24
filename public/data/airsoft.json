@@ -650,6 +650,18 @@
     },
     {
       "id": 10,
+      "nombre": "Razor",
+      "foto": "/images/jugadores/razor.webp",
+      "descripcion": "",
+      "web": "",
+      "instagram": "https://www.instagram.com/rb_airsoft/",
+      "tiktok": "",
+      "youtube": "",
+      "twitch": "",
+      "facebook": ""
+    },
+    {
+      "id": 11,
       "nombre": "Techies",
       "foto": "/images/jugadores/techies.webp",
       "descripcion": "",
