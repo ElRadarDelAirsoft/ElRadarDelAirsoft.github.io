@@ -78,11 +78,14 @@ export default function App() {
   const counts = useMemo(() => {
     const q = stripDiacritics(search.trim()).toLowerCase()
     return categoryKeys.reduce((acc, key) => {
-      const items = data[categoryConfig[key].dataKey || key] || []
+      let items = data[categoryConfig[key].dataKey || key] || []
+      if (key === 'canchas') {
+        items = items.filter((it) => matchesRegion(it.departamento, regionFilter))
+      }
       acc[key] = q ? items.filter((it) => getSearchableText(it).includes(q)).length : items.length
       return acc
     }, {})
-  }, [data, search])
+  }, [data, search, regionFilter])
 
   const groups = useMemo(() => {
     const q = stripDiacritics(search.trim()).toLowerCase()

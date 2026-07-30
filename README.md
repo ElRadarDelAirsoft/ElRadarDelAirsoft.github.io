@@ -66,7 +66,7 @@ JSON-LD) más `sitemap.xml`, `robots.txt` y `llms.txt`, todo dentro de `dist/`.
   2-3 líneas al inicio, headings en formato pregunta.
 - Las páginas de detalle son HTML estático sin React (no se hidratan) — la home (`/`) sigue
   siendo la SPA interactiva de siempre.
-- `public/404.png` (la ilustración del topo) se usa en `dist/404.html`, generada también por
+- `public/404.webp` (la ilustración del topo) se usa en `dist/404.html`, generada también por
   `scripts/prerender.mjs`. Netlify y Vercel sirven automáticamente un `404.html` en la raíz
   del build como página de error — no requiere configuración extra. Pesa ~2MB; si la
   reemplazas, conviene comprimirla primero.
@@ -94,7 +94,7 @@ src/
                                que consume <Card />. Si agregas una 10ma categoría,
                                este es el único lugar de código que necesitas tocar.
   hooks/
-    useAirsoftData.js         Carga /data/airsoft.json vía fetch
+    useAirsoftData.js         Importa public/data/airsoft.json de forma estática (build time)
   utils/
     whatsapp.js                Helpers para construir links wa.me / Google Maps
     slug.js                    slugify() — usado por Card.jsx y scripts/prerender.mjs

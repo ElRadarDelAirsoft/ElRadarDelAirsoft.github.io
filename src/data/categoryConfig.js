@@ -271,10 +271,20 @@ export const categoryConfig = {
 
 export const categoryKeys = Object.keys(categoryConfig)
 
+// Campos que son rutas de archivo o URLs, no texto que un usuario buscaría —
+// excluidos para que, por ejemplo, buscar "webp" no matchee cualquier
+// entrada con foto.
+const NON_SEARCHABLE_KEYS = new Set([
+  'id', 'imagen', 'foto', 'logo', 'archivo_pdf', 'geolocalizacion',
+  'link_inscripcion', 'link_whatsapp', 'web', 'instagram', 'tiktok',
+  'youtube', 'twitch', 'facebook',
+])
+
 export function getSearchableText(rawItem) {
   return stripDiacritics(
-    Object.values(rawItem)
-      .filter((v) => typeof v === 'string' || typeof v === 'number')
+    Object.entries(rawItem)
+      .filter(([key, v]) => !NON_SEARCHABLE_KEYS.has(key) && (typeof v === 'string' || typeof v === 'number'))
+      .map(([, v]) => v)
       .join(' ')
   ).toLowerCase()
 }

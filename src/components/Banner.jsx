@@ -143,13 +143,14 @@ export default function Banner() {
                         alt=""
                         aria-hidden="true"
                         className="absolute inset-0 w-full h-full object-cover scale-125 blur-2xl opacity-60"
-                        loading="lazy"
+                        loading={i === 0 ? 'eager' : 'lazy'}
                       />
                       <img
                         src={img.url}
                         alt={`Cartel de evento de airsoft — contacto ${img.contacto}`}
                         className="relative w-full h-full object-contain"
-                        loading="lazy"
+                        loading={i === 0 ? 'eager' : 'lazy'}
+                        fetchPriority={i === 0 ? 'high' : undefined}
                       />
                     </div>
                     <div className="absolute bottom-0 inset-x-0 bg-black/85 backdrop-blur-sm border-t-2 border-accent px-2 py-2 flex items-center justify-center gap-1.5">

@@ -19,8 +19,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
 const DIST = path.join(ROOT, 'dist')
 
-// TODO: actualizar con el dominio real antes de deployar a producción.
-// Afecta canonical, og:url, sitemap.xml y llms.txt.
+// Dominio real de producción (GitHub Pages). Afecta canonical, og:url,
+// sitemap.xml y llms.txt — si el sitio se muda a un dominio propio, actualizar acá.
 const SITE_URL = 'https://elradardelairsoft.github.io'
 const SITE_NAME = 'El Radar del Airsoft'
 const LOGO_PATH = '/images/logo-radar-airsoft.webp'
@@ -254,6 +254,31 @@ function buildCampos(cssHref) {
     byDepartamento.get(dep).push(c)
   }
 
+  // índice general: /campos — lista de departamentos con canchas registradas.
+  // Sin esto, el breadcrumb "Canchas" de cada página de detalle apuntaba a
+  // una ruta que nunca se generaba (404).
+  const camposIndexPath = '/campos'
+  const breadcrumbCamposIndex = [{ name: 'Inicio', path: '/' }, { name: 'Canchas', path: camposIndexPath }]
+  const totalCanchas = [...byDepartamento.values()].reduce((n, arr) => n + arr.length, 0)
+  const headCamposIndex = renderHead({
+    title: `Canchas de airsoft en Perú por departamento | ${SITE_NAME}`,
+    description: `Directorio de canchas de airsoft en Perú organizado por departamento: ${[...byDepartamento.keys()].join(', ')}.`,
+    canonical: absUrl(`${camposIndexPath}/`),
+    ogImage: absUrl(OG_BANNER_PATH),
+    cssHref,
+    jsonLd: [breadcrumbJsonLd(breadcrumbCamposIndex)],
+  })
+  const bodyCamposIndex = `${breadcrumbNav(breadcrumbCamposIndex)}
+    <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-2">Canchas de airsoft en Perú</h1>
+    <p class="text-slate-600 mb-8">${totalCanchas} cancha${totalCanchas === 1 ? '' : 's'} de airsoft registrada${totalCanchas === 1 ? '' : 's'} en ${SITE_NAME}, organizadas por departamento.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      ${[...byDepartamento.entries()].map(([dep, canchas]) => `<a href="/campos/${slugify(dep)}/" class="block rounded-sm border border-slate-200 p-4 hover:border-accent">
+        <h2 class="font-display font-semibold text-lg mb-1">${esc(dep)}</h2>
+        <p class="text-sm text-slate-600">${canchas.length} cancha${canchas.length === 1 ? '' : 's'}</p>
+      </a>`).join('')}
+    </div>`
+  writePage(camposIndexPath, page({ head: headCamposIndex, body: bodyCamposIndex }))
+
   for (const [departamento, canchas] of byDepartamento) {
     const depSlug = slugify(departamento)
     const depPath = `/campos/${depSlug}`
@@ -363,6 +388,29 @@ function buildTiendas(cssHref) {
     if (!byCiudad.has(ciudad)) byCiudad.set(ciudad, [])
     byCiudad.get(ciudad).push(t)
   }
+
+  // índice general: /tiendas — mismo motivo que el índice de /campos arriba.
+  const tiendasIndexPath = '/tiendas'
+  const breadcrumbTiendasIndex = [{ name: 'Inicio', path: '/' }, { name: 'Tiendas', path: tiendasIndexPath }]
+  const totalTiendas = [...byCiudad.values()].reduce((n, arr) => n + arr.length, 0)
+  const headTiendasIndex = renderHead({
+    title: `Tiendas de airsoft en Perú por ciudad | ${SITE_NAME}`,
+    description: `Directorio de tiendas de airsoft en Perú organizado por ciudad: ${[...byCiudad.keys()].join(', ')}.`,
+    canonical: absUrl(`${tiendasIndexPath}/`),
+    ogImage: absUrl(OG_BANNER_PATH),
+    cssHref,
+    jsonLd: [breadcrumbJsonLd(breadcrumbTiendasIndex)],
+  })
+  const bodyTiendasIndex = `${breadcrumbNav(breadcrumbTiendasIndex)}
+    <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-2">Tiendas de airsoft en Perú</h1>
+    <p class="text-slate-600 mb-8">${totalTiendas} tienda${totalTiendas === 1 ? '' : 's'} registrada${totalTiendas === 1 ? '' : 's'} en ${SITE_NAME}, organizadas por ciudad.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      ${[...byCiudad.entries()].map(([ciudad, tiendas]) => `<a href="/tiendas/${slugify(ciudad)}/" class="block rounded-sm border border-slate-200 p-4 hover:border-accent">
+        <h2 class="font-display font-semibold text-lg mb-1">${esc(ciudad)}</h2>
+        <p class="text-sm text-slate-600">${tiendas.length} tienda${tiendas.length === 1 ? '' : 's'}</p>
+      </a>`).join('')}
+    </div>`
+  writePage(tiendasIndexPath, page({ head: headTiendasIndex, body: bodyTiendasIndex }))
 
   for (const [ciudad, tiendas] of byCiudad) {
     const ciudadSlug = slugify(ciudad)
