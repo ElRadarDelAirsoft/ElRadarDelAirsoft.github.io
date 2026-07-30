@@ -31,7 +31,7 @@ export default function IgHelpFab() {
         >
           <XIcon aria-hidden="true" className="w-3 h-3" />
         </button>
-        ¡Si necesitas ayuda o es primera partida, escríbeme para guiarte!
+        ¡Si necesitas ayuda o será tu primera partida, escríbeme para guiarte!
       </div>
       <a
         href={IG_URL}
