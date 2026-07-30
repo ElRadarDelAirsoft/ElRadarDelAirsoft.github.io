@@ -12,9 +12,11 @@ function ChevronIcon({ direction = 'left', className = 'w-4 h-4' }) {
 }
 
 // "Cartelera" de carteles de eventos, tipo cine: cualquier cantidad de
-// carteles, cada uno en formato afiche (retrato) con el contacto superpuesto
-// abajo. Se centra sola cuando entran todos; cuando desbordan (mobile, o
-// muchos carteles), se convierte en un slider con flechas y puntos.
+// carteles, cada uno a ancho fijo pero alto libre (según su propia proporción,
+// vertical u horizontal) para no recortar ni dejar barras negras de sobra, con
+// el contacto superpuesto abajo. Se centra sola cuando entran todos; cuando
+// desbordan (mobile, o muchos carteles), se convierte en un slider con flechas
+// y puntos.
 export default function Banner() {
   const count = bannerImages.length
   const scrollerRef = useRef(null)
@@ -114,7 +116,7 @@ export default function Banner() {
               scrollLeft 0 en vez de recortar el primer cartel fuera de la
               zona alcanzable con scroll. */}
           <div ref={scrollerRef} className="overflow-x-auto snap-x snap-mandatory scroll-px-4 pb-1 scroll-smooth">
-            <div ref={trackRef} className="flex gap-4 w-fit mx-auto px-1">
+            <div ref={trackRef} className="flex items-start gap-4 w-fit mx-auto px-1">
               {bannerImages.map((img, i) => {
                 const waHref = whatsappLinkFromPhone(img.contacto)
                 return (
@@ -132,9 +134,7 @@ export default function Banner() {
                     <img
                       src={img.url}
                       alt={`Cartel de evento de airsoft — contacto ${img.contacto}`}
-                      width="760"
-                      height="1076"
-                      className="w-full aspect-[760/1076] object-contain bg-black"
+                      className="w-full h-auto block"
                       loading="lazy"
                     />
                     <div className="absolute bottom-0 inset-x-0 bg-black/85 backdrop-blur-sm border-t-2 border-accent px-2 py-2 flex items-center justify-center gap-1.5">
