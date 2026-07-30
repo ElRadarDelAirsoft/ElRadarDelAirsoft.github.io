@@ -2,6 +2,7 @@ import { InstagramIcon, TiktokIcon, LinkIcon } from './Icons.jsx'
 
 const COMUNIDAD_INSTAGRAM = 'https://www.instagram.com/elradardelairsoft/'
 const COMUNIDAD_TIKTOK = 'https://www.tiktok.com/@elradardelairsoft'
+const AUTOR_INSTAGRAM = 'https://www.instagram.com/eltopoairsoft/'
 
 const columnTitle =
   'text-accent-dim dark:text-accent font-display font-semibold uppercase tracking-widest text-xs mb-3'
@@ -96,6 +97,15 @@ export default function Footer() {
         <div className="text-center text-xs uppercase tracking-widest text-slate-400 dark:text-slate-600">
           El Radar del Airsoft — Perú
         </div>
+        <a
+          href={AUTOR_INSTAGRAM}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-center text-[11px] text-slate-400 dark:text-slate-600 hover:text-accent transition-colors duration-150 ease-out-quart
+            focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
+        >
+          Autor: eltopoairsoft
+        </a>
         <p className="text-center text-[11px] italic text-slate-400 dark:text-slate-600 max-w-2xl px-4">
           Esta página no está afiliada a ninguna de las personas, canchas o negocios aquí mencionados y no se hace
           responsable por las interacciones que puedan suscitarse con los contactos publicados. El objetivo de la
