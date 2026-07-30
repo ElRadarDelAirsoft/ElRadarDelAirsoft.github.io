@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import ContactBadge from './ContactBadge.jsx'
 import SocialIcons from './SocialIcons.jsx'
-import { WhatsAppIcon, LinkIcon } from './Icons.jsx'
+import { WhatsAppIcon, LinkIcon, ShieldCheckIcon } from './Icons.jsx'
 import { categoryConfig } from '../data/categoryConfig.js'
 
 // Categorías con fotos grandes (canchas/lugares) que además tienen una
@@ -65,6 +65,12 @@ export default function Card({ item, categoryKey, index = 0 }) {
         {data.badge && (
           <span className="absolute top-2 right-2 text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-sm bg-black/80 text-accent ring-1 ring-accent/40">
             {data.badge}
+          </span>
+        )}
+        {data.principiante && (
+          <span className="absolute top-2 left-2 inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-sm bg-accent text-black">
+            <ShieldCheckIcon aria-hidden="true" className="w-3 h-3 shrink-0" />
+            Principiantes
           </span>
         )}
       </div>

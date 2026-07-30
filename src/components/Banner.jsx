@@ -150,7 +150,7 @@ export default function Banner() {
                         alt={`Cartel de evento de airsoft — contacto ${img.contacto}`}
                         className="relative w-full h-full object-contain"
                         loading={i === 0 ? 'eager' : 'lazy'}
-                        fetchPriority={i === 0 ? 'high' : undefined}
+                        {...(i === 0 ? { fetchpriority: 'high' } : {})}
                       />
                     </div>
                     <div className="absolute bottom-0 inset-x-0 bg-black/85 backdrop-blur-sm border-t-2 border-accent px-2 py-2 flex items-center justify-center gap-1.5">

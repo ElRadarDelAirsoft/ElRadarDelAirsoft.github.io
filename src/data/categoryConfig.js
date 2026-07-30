@@ -6,6 +6,7 @@ import {
   CalendarIcon,
   TruckIcon,
   WrenchIcon,
+  PackageIcon,
 } from '../components/Icons.jsx'
 import { whatsappLinkFromPhone, whatsappGroupLink } from '../utils/whatsapp.js'
 import { slugify, stripDiacritics } from '../utils/slug.js'
@@ -22,7 +23,8 @@ import { slugify, stripDiacritics } from '../utils/slug.js'
 //   socials: { instagram, tiktok, youtube, twitch },
 //   extra: [{ icon, text }],
 //   cta: { label, href } | null,   // ej. link de inscripción a un evento
-//   detailUrl: string | null        // página indexable propia (solo canchas/tiendas con departamento/ciudad)
+//   detailUrl: string | null,       // página indexable propia (solo canchas/tiendas con departamento/ciudad)
+//   principiante: boolean           // solo canchas: true muestra la etiqueta "Principiantes" en <Card />
 // }
 
 export const categoryConfig = {
@@ -45,9 +47,11 @@ export const categoryConfig = {
       socials: { instagram: i.instagram, tiktok: i.tiktok, youtube: null, twitch: null },
       extra: [
         i.organizador ? { icon: UsersIcon, text: `Organizador: ${i.organizador}` } : null,
+        i.alquila_equipo ? { icon: PackageIcon, text: 'Alquila equipo' } : null,
       ].filter(Boolean),
       cta: null,
       detailUrl: i.departamento && i.nombre ? `/campos/${slugify(i.departamento)}/${slugify(i.nombre)}/` : null,
+      principiante: i.apto_principiantes === true,
     }),
   },
 
