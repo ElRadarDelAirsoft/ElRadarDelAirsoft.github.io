@@ -363,10 +363,13 @@ function buildCampos(cssHref) {
       })
       const body2 = `${breadcrumbNav(breadcrumbCampo)}
         <span class="inline-block text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-sm bg-accent/15 text-accent-dim mb-3">Cancha de airsoft · ${esc(departamento)}</span>
+        ${c.apto_principiantes ? `<span class="inline-block text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-sm bg-accent text-black mb-3 ml-2">Principiantes</span>` : ''}
+        ${c.alquila_equipo ? `<span class="inline-block text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-sm bg-accent text-black mb-3 ml-2">Alquila equipo</span>` : ''}
         <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-4">${esc(c.nombre)} — Cancha de airsoft en ${esc(departamento)}</h1>
         ${photoGallery(c.imagen, `${c.nombre} — Cancha de airsoft en ${departamento}`, c.fotos_adicionales)}
         ${c.descripcion ? `<p class="text-slate-600 mb-5">${esc(c.descripcion)}</p>` : ''}
         ${contactBlock(c, { hideAddress: true, hideHorarios: true })}
+        ${c.alquila_equipo ? `<p class="text-sm text-slate-600 mb-2">Si no tienes equipo propio, esta cancha alquila réplica y protección — pregunta al reservar.</p>` : ''}
         ${c.organizador ? `<p class="text-sm text-slate-500 mb-5">Organizador: ${esc(c.organizador)}</p>` : ''}
         <div class="flex flex-wrap gap-2">
           ${whatsappCta(c.whatsapp)}
