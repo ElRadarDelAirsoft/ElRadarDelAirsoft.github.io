@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import Header from './components/Header.jsx'
 import Banner from './components/Banner.jsx'
 import Footer from './components/Footer.jsx'
+import IgHelpFab from './components/IgHelpFab.jsx'
 import CategoryTabs from './components/CategoryTabs.jsx'
 import CategorySidebar from './components/CategorySidebar.jsx'
 import CategoryGrid from './components/CategoryGrid.jsx'
@@ -145,6 +146,7 @@ export default function App() {
       </div>
 
       <Footer />
+      <IgHelpFab />
     </div>
   )
 }
