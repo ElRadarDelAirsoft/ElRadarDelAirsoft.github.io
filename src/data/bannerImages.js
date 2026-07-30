@@ -9,9 +9,23 @@ const modules = import.meta.glob('../assets/banner/*.{jpg,jpeg,png,webp}', {
   import: 'default',
 })
 
+// Fecha del evento de cada cartel, para ordenar el carrusel del más próximo
+// al más lejano. Se actualiza a mano cada vez que se sube o cambia un cartel;
+// los que no tengan fecha registrada quedan al final.
+const eventDates = {
+  '+51 998 318 610': '2026-07-30', // Partida Nocturna, CQB La Molina
+  '+51 996 668 504': '2026-08-02', // Gulag Lima
+  '+51 936 371 606': '2026-08-02', // Partida Abierta
+  '+51 995 964 444': '2026-08-30', // Arena Airsoft, aniversario Pretorianos
+}
+
 export const bannerImages = Object.entries(modules)
   .map(([path, url]) => ({
     url,
     contacto: path.split('/').pop().replace(/\.[^.]+$/, ''),
   }))
-  .sort((a, b) => a.contacto.localeCompare(b.contacto, 'es'))
+  .sort((a, b) => {
+    const dateA = eventDates[a.contacto] || '9999-99-99'
+    const dateB = eventDates[b.contacto] || '9999-99-99'
+    return dateA.localeCompare(dateB)
+  })
