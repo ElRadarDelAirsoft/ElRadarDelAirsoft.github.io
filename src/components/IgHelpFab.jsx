@@ -8,11 +8,11 @@ export default function IgHelpFab() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    setVisible(localStorage.getItem(DISMISS_KEY) !== '1')
+    setVisible(sessionStorage.getItem(DISMISS_KEY) !== '1')
   }, [])
 
   function dismiss() {
-    localStorage.setItem(DISMISS_KEY, '1')
+    sessionStorage.setItem(DISMISS_KEY, '1')
     setVisible(false)
   }
 
