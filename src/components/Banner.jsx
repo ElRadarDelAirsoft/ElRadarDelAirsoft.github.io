@@ -12,11 +12,13 @@ function ChevronIcon({ direction = 'left', className = 'w-4 h-4' }) {
 }
 
 // "Cartelera" de carteles de eventos, tipo cine: cualquier cantidad de
-// carteles, cada uno a ancho fijo pero alto libre (según su propia proporción,
-// vertical u horizontal) para no recortar ni dejar barras negras de sobra, con
-// el contacto superpuesto abajo. Se centra sola cuando entran todos; cuando
-// desbordan (mobile, o muchos carteles), se convierte en un slider con flechas
-// y puntos.
+// carteles, todos en un slot del mismo tamaño (para mantener el ritmo visual
+// del carrusel) con el contacto superpuesto abajo. Cada cartel entra entero,
+// sin recortar, aunque su proporción no calce con la del slot (retrato muy
+// alto, horizontal, etc.) — el espacio sobrante se rellena con una versión
+// borrosa del mismo cartel en vez de negro plano. Se centra sola cuando
+// entran todos; cuando desbordan (mobile, o muchos carteles), se convierte en
+// un slider con flechas y puntos.
 export default function Banner() {
   const count = bannerImages.length
   const scrollerRef = useRef(null)
@@ -116,7 +118,7 @@ export default function Banner() {
               scrollLeft 0 en vez de recortar el primer cartel fuera de la
               zona alcanzable con scroll. */}
           <div ref={scrollerRef} className="overflow-x-auto snap-x snap-mandatory scroll-px-4 pb-1 scroll-smooth">
-            <div ref={trackRef} className="flex items-start gap-4 w-fit mx-auto px-1">
+            <div ref={trackRef} className="flex gap-4 w-fit mx-auto px-1">
               {bannerImages.map((img, i) => {
                 const waHref = whatsappLinkFromPhone(img.contacto)
                 return (
@@ -131,12 +133,25 @@ export default function Banner() {
                       transition-transform duration-200 ease-out-quart hover:scale-[1.02] active:scale-[0.98]
                       focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                   >
-                    <img
-                      src={img.url}
-                      alt={`Cartel de evento de airsoft — contacto ${img.contacto}`}
-                      className="w-full h-auto block"
-                      loading="lazy"
-                    />
+                    <div className="relative w-full aspect-[760/1076] bg-black overflow-hidden">
+                      {/* Relleno: versión borrosa y agrandada del mismo cartel, para
+                          que el slot se sienta lleno incluso cuando el cartel no
+                          calza con la proporción del slot (retrato muy alto, o
+                          horizontal). El cartel real va encima, entero y sin recortar. */}
+                      <img
+                        src={img.url}
+                        alt=""
+                        aria-hidden="true"
+                        className="absolute inset-0 w-full h-full object-cover scale-125 blur-2xl opacity-60"
+                        loading="lazy"
+                      />
+                      <img
+                        src={img.url}
+                        alt={`Cartel de evento de airsoft — contacto ${img.contacto}`}
+                        className="relative w-full h-full object-contain"
+                        loading="lazy"
+                      />
+                    </div>
                     <div className="absolute bottom-0 inset-x-0 bg-black/85 backdrop-blur-sm border-t-2 border-accent px-2 py-2 flex items-center justify-center gap-1.5">
                       <WhatsAppIcon aria-hidden="true" className="w-4 h-4 shrink-0 text-accent" />
                       <span className="font-display text-xs sm:text-sm font-bold uppercase tracking-wide text-white truncate">
