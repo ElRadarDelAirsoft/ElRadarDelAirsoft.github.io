@@ -41,6 +41,13 @@ function absUrl(p) {
   return SITE_URL + p
 }
 
+function linkify(escapedText) {
+  return escapedText.replace(
+    /(https?:\/\/[^\s)]+)/g,
+    (url) => `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">${url}</a>`
+  )
+}
+
 function jsonLdScript(obj) {
   const json = JSON.stringify(obj).replace(/</g, '\\u003c')
   return `<script type="application/ld+json">${json}</script>`
@@ -613,7 +620,7 @@ function buildSucamecFaq(cssHref) {
     <div class="flex flex-col gap-6 mb-10">
       ${faq.map((f) => `<div>
         <h2 class="font-display font-semibold text-lg mb-2">${esc(f.pregunta)}</h2>
-        <p class="text-sm text-slate-600">${esc(f.respuesta)}</p>
+        <p class="text-sm text-slate-600">${linkify(esc(f.respuesta))}</p>
       </div>`).join('')}
     </div>
     <div class="flex flex-wrap gap-2">
