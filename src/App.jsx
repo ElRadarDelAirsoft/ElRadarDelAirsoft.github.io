@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import Header from './components/Header.jsx'
 import Banner from './components/Banner.jsx'
+import EmpiezaAquiCta from './components/EmpiezaAquiCta.jsx'
 import Footer from './components/Footer.jsx'
 import IgHelpFab from './components/IgHelpFab.jsx'
 import CategoryTabs from './components/CategoryTabs.jsx'
@@ -117,6 +118,8 @@ export default function App() {
       />
 
       <Banner />
+
+      <EmpiezaAquiCta />
 
       {/* Mobile/tablet: barra horizontal pegajosa. Un sidebar fijo no funciona
           en pantallas angostas, así que acá se mantienen los tabs de siempre. */}

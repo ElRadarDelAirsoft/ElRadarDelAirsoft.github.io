@@ -13,6 +13,7 @@ import { execSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { slugify } from '../src/utils/slug.js'
 import { blogPosts } from '../src/data/blogPosts.js'
+import { guiasInicio } from '../src/data/guiasInicio.js'
 import { whatsappLinkFromPhone } from '../src/utils/whatsapp.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -631,6 +632,161 @@ function buildSucamecFaq(cssHref) {
   writePage(faqPath, page({ head, body }))
 }
 
+// ---------- generación: Empieza aquí (guías para principiantes) ----------
+
+const GUIA_ICON_SVG = {
+  ShieldCheckIcon: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3z"/><path d="m9 12 2 2 4-4"/></svg>`,
+  WrenchIcon: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.2L2 18.6 5.4 22l7.1-7.1a4 4 0 0 0 5.2-5.6l-2.5 2.5-2.6-.6-.6-2.6z"/></svg>`,
+  NotebookIcon: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 3v18M14 8h3M14 12h3M14 16h3"/></svg>`,
+}
+
+// Cada "guía" es una lista de bloques tipados (ver src/data/guiasInicio.js).
+// 'canchas-recomendadas' no trae datos propios: se calcula acá desde
+// data.canchas para no duplicar/desactualizar esa lista a mano.
+function renderGuiaBlock(block) {
+  switch (block.type) {
+    case 'texto':
+      return `<section class="mb-8">
+        <h2 class="font-display font-semibold text-xl mb-3">${esc(block.heading)}</h2>
+        ${block.body.map((p) => `<p class="text-slate-600 mb-3">${esc(p)}</p>`).join('')}
+      </section>`
+    case 'checklist':
+      return `<section class="mb-8">
+        <h2 class="font-display font-semibold text-xl mb-3">${esc(block.heading)}</h2>
+        <ul class="flex flex-col gap-2">
+          ${block.items.map((it) => `<li class="flex items-start gap-2 text-sm text-slate-600"><span class="text-accent-dim font-bold">✓</span><span>${esc(it)}</span></li>`).join('')}
+        </ul>
+      </section>`
+    case 'glosario':
+      return `<section class="mb-8">
+        <h2 class="font-display font-semibold text-xl mb-3">${esc(block.heading)}</h2>
+        <dl class="flex flex-col gap-3">
+          ${block.items.map((it) => `<div><dt class="font-semibold text-sm text-base-950 dark:text-slate-100">${esc(it.term)}</dt><dd class="text-sm text-slate-600">${esc(it.def)}</dd></div>`).join('')}
+        </dl>
+      </section>`
+    case 'arbol':
+      return `<section class="mb-8">
+        <h2 class="font-display font-semibold text-xl mb-3">${esc(block.heading)}</h2>
+        <ol class="flex flex-col gap-4">
+          ${block.pasos.map((p, i) => `<li class="rounded-sm border border-slate-200 p-4">
+            <p class="font-semibold text-sm mb-2">${i + 1}. ${esc(p.pregunta)}</p>
+            <p class="text-sm text-slate-600 mb-1"><span class="text-accent-dim font-bold">Sí →</span> ${esc(p.si)}</p>
+            <p class="text-sm text-slate-600"><span class="font-bold">No →</span> ${esc(p.no)}</p>
+          </li>`).join('')}
+        </ol>
+      </section>`
+    case 'tiers':
+      return `<section class="mb-8">
+        <h2 class="font-display font-semibold text-xl mb-3">${esc(block.heading)}</h2>
+        <div class="flex flex-col gap-4">
+          ${block.tiers.map((t) => `<div class="rounded-sm border border-slate-200 p-4">
+            <p class="font-display font-semibold text-base mb-0.5">${esc(t.nombre)}</p>
+            <p class="text-xs text-accent-dim font-semibold uppercase tracking-wide mb-2">${esc(t.para_quien)}</p>
+            <ul class="flex flex-col gap-1">
+              ${t.incluye.map((i) => `<li class="text-sm text-slate-600">• ${esc(i)}</li>`).join('')}
+            </ul>
+          </div>`).join('')}
+        </div>
+      </section>`
+    case 'busqueda':
+      return `<section class="mb-8">
+        <h2 class="font-display font-semibold text-xl mb-3">${esc(block.heading)}</h2>
+        <p class="text-sm text-slate-600 mb-3">${esc(block.nota)}</p>
+        <ul class="flex flex-wrap gap-2">
+          ${block.terminos.map((t) => `<li class="inline-block text-sm px-3 py-1.5 rounded-sm border border-slate-300 text-slate-600">"${esc(t)}"</li>`).join('')}
+        </ul>
+      </section>`
+    case 'tips':
+      return `<section class="mb-8">
+        <h2 class="font-display font-semibold text-xl mb-3">${esc(block.heading)}</h2>
+        <ul class="flex flex-col gap-3">
+          ${block.items.map((t) => `<li class="text-sm text-slate-600 border-l-4 border-accent pl-3">${esc(t)}</li>`).join('')}
+        </ul>
+      </section>`
+    case 'canchas-recomendadas': {
+      const canchas = (data.canchas || []).filter((c) => c.apto_principiantes)
+      return `<section class="mb-8">
+        <h2 class="font-display font-semibold text-xl mb-3">${esc(block.heading)}</h2>
+        ${block.note ? `<p class="text-sm text-slate-600 mb-4">${esc(block.note)}</p>` : ''}
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          ${canchas.map((c) => {
+            const dep = (c.departamento || '').trim()
+            const href = dep ? `/campos/${slugify(dep)}/${slugify(c.nombre)}/` : null
+            const nameBlock = href
+              ? `<a href="${href}" class="font-display font-semibold text-base mb-1 hover:text-accent-dim block">${esc(c.nombre)}</a>`
+              : `<p class="font-display font-semibold text-base mb-1">${esc(c.nombre)}</p>`
+            return `<div class="rounded-sm border border-slate-200 p-4">
+              ${nameBlock}
+              <p class="text-xs text-slate-500 mb-2">${esc([c.distrito, c.departamento].filter(Boolean).join(', '))}</p>
+              ${whatsappCta(c.whatsapp, 'Preguntar por WhatsApp')}
+            </div>`
+          }).join('')}
+        </div>
+      </section>`
+    }
+    default:
+      return ''
+  }
+}
+
+function buildEmpiezaAqui(cssHref) {
+  if (guiasInicio.length === 0) return
+
+  const indexPath = '/empieza-aqui'
+  const breadcrumbIndex = [{ name: 'Inicio', path: '/' }, { name: 'Empieza aquí', path: indexPath }]
+
+  const headIndex = renderHead({
+    title: `Empieza aquí: guías para nuevos en airsoft Perú | ${SITE_NAME}`,
+    description: 'Guías para quien recién empieza en airsoft en Perú: qué llevar a tu primera partida, cómo armar equipo propio y tips generales de la comunidad.',
+    canonical: absUrl(`${indexPath}/`),
+    ogImage: absUrl(OG_BANNER_PATH),
+    cssHref,
+    jsonLd: [breadcrumbJsonLd(breadcrumbIndex)],
+  })
+  const bodyIndex = `${breadcrumbNav(breadcrumbIndex)}
+    <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-2">Empieza aquí</h1>
+    <p class="text-slate-600 mb-8">Todo lo que un jugador nuevo necesita para dar el primer paso en airsoft en Perú.</p>
+    <div class="flex flex-col gap-4">
+      ${guiasInicio.map((g) => `<a href="${indexPath}/${g.slug}/" class="flex items-start gap-3 rounded-sm border border-slate-200 p-5 hover:border-accent">
+        <span class="text-accent-dim shrink-0 mt-0.5">${GUIA_ICON_SVG[g.icon] || ''}</span>
+        <span>
+          <span class="font-display font-semibold text-lg block mb-1">${esc(g.title)}</span>
+          <span class="text-sm text-slate-600 block">${esc(g.subtitle)}</span>
+        </span>
+      </a>`).join('')}
+    </div>`
+  writePage(indexPath, page({ head: headIndex, body: bodyIndex }))
+
+  for (const guia of guiasInicio) {
+    const guiaPath = `${indexPath}/${guia.slug}`
+    const breadcrumbGuia = [...breadcrumbIndex, { name: guia.title, path: guiaPath }]
+    const head = renderHead({
+      title: `${guia.title} | ${SITE_NAME}`,
+      description: guia.metaDescription,
+      canonical: absUrl(`${guiaPath}/`),
+      ogImage: absUrl(OG_BANNER_PATH),
+      cssHref,
+      jsonLd: [
+        breadcrumbJsonLd(breadcrumbGuia),
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: guia.title,
+          description: guia.metaDescription,
+          url: absUrl(`${guiaPath}/`),
+          author: { '@type': 'Organization', name: SITE_NAME },
+          publisher: { '@type': 'Organization', name: SITE_NAME, logo: { '@type': 'ImageObject', url: absUrl(LOGO_PATH) } },
+        },
+      ],
+    })
+    const body = `${breadcrumbNav(breadcrumbGuia)}
+      <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-2">${esc(guia.title)}</h1>
+      <p class="text-base font-medium text-slate-800 bg-accent/10 border-l-4 border-accent rounded-sm p-4 mb-8">${esc(guia.intro)}</p>
+      ${guia.blocks.map(renderGuiaBlock).join('')}`
+    writePage(guiaPath, page({ head, body }))
+  }
+}
+
 // ---------- generación: blog ----------
 
 function buildBlog(cssHref) {
@@ -734,6 +890,10 @@ function injectHomeContent() {
       <ul class="flex flex-wrap gap-2 mb-8">
         ${ciudadesTiendas.map((c) => `<li><a href="/tiendas/${slugify(c)}/" class="inline-block text-sm px-3 py-1.5 rounded-sm border border-slate-300 hover:border-accent">Tiendas de airsoft en ${esc(c)}</a></li>`).join('\n        ')}
       </ul>
+      <h2 class="font-display font-semibold uppercase tracking-wide text-lg mb-3">Empieza aquí</h2>
+      <ul class="mb-8">
+        ${guiasInicio.map((g) => `<li><a href="/empieza-aqui/${g.slug}/" class="text-sm text-accent-dim hover:underline">${esc(g.title)}</a></li>`).join('\n        ')}
+      </ul>
       <h2 class="font-display font-semibold uppercase tracking-wide text-lg mb-3">Blog</h2>
       <ul class="mb-8">
         ${blogPosts.map((p) => `<li><a href="/blog/${p.slug}/" class="text-sm text-accent-dim hover:underline">${esc(p.title)}</a></li>`).join('\n        ')}
@@ -793,6 +953,7 @@ ${SITE_NAME} es un directorio comunitario, no una tienda ni un club. Reúne y or
 - Tiendas: ${nTiendas} (ciudades con página propia: ${ciudadesTiendas.join(', ') || 'sin datos aún'})
 - Equipos activos: ${nEquipos}
 - Blog: ${blogPosts.length} artículo${blogPosts.length === 1 ? '' : 's'} publicado${blogPosts.length === 1 ? '' : 's'}
+- Empieza aquí: ${guiasInicio.length} guía${guiasInicio.length === 1 ? '' : 's'} para jugadores nuevos
 
 ## Nota de desambiguación importante
 "Airsoft" no es lo mismo que "gotcha" (nombre coloquial usado en Perú para paintball) ni que "gelsoft"/"gel blaster" (bolitas de gel). El airsoft usa réplicas realistas de armas y munición de BBs plásticas. Detalle completo: ${absUrl('/blog/airsoft-vs-paintball-vs-gotcha-vs-gelsoft-peru/')}
@@ -825,6 +986,7 @@ function main() {
   buildTiendas(cssHref)
   buildEventos(cssHref)
   buildSucamecFaq(cssHref)
+  buildEmpiezaAqui(cssHref)
   buildBlog(cssHref)
   build404Page(cssHref)
   buildSeoFiles()

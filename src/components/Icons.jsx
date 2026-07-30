@@ -221,3 +221,21 @@ export function WrenchIcon({ className = base }) {
     </svg>
   )
 }
+
+export function CompassIcon({ className = base }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <circle cx="12" cy="12" r="10" />
+      <path d="m16.2 7.8-2.1 6.3-6.3 2.1 2.1-6.3z" />
+    </svg>
+  )
+}
+
+export function NotebookIcon({ className = base }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <rect x="4" y="3" width="16" height="18" rx="1.5" />
+      <path d="M8 3v18M14 8h3M14 12h3M14 16h3" />
+    </svg>
+  )
+}
