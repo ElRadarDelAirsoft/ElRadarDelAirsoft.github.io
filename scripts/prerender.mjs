@@ -569,6 +569,61 @@ function buildEventos(cssHref) {
   }
 }
 
+// ---------- generación: FAQ Sucamec ----------
+
+// Página única (no una por pregunta): las 10 preguntas viven en
+// data.sucamec_faq (public/data/airsoft.json), a mano — no es contenido
+// derivable de conteos como las otras FAQ del sitio. No es asesoría legal:
+// el intro y el cierre lo dejan explícito.
+function buildSucamecFaq(cssHref) {
+  const faq = data.sucamec_faq || []
+  if (faq.length === 0) return
+
+  const faqPath = '/sucamec-faq'
+  // Sin "Marco Legal" en el breadcrumb: esa categoría no genera una página
+  // índice propia todavía, y un breadcrumb a una ruta que no existe es
+  // exactamente el bug que ya arreglamos una vez en /campos y /tiendas.
+  const breadcrumb = [{ name: 'Inicio', path: '/' }, { name: 'FAQ Sucamec', path: faqPath }]
+
+  const head = renderHead({
+    title: `Airsoft y SUCAMEC en Perú: Preguntas Frecuentes | ${SITE_NAME}`,
+    description: 'Las 10 preguntas más comunes sobre la legalidad del airsoft en Perú y la regulación de SUCAMEC, explicadas en lenguaje simple.',
+    canonical: absUrl(`${faqPath}/`),
+    ogImage: absUrl(OG_BANNER_PATH),
+    cssHref,
+    jsonLd: [
+      breadcrumbJsonLd(breadcrumb),
+      {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faq.map((f) => ({
+          '@type': 'Question',
+          name: f.pregunta,
+          acceptedAnswer: { '@type': 'Answer', text: f.respuesta },
+        })),
+      },
+    ],
+  })
+
+  const body = `${breadcrumbNav(breadcrumb)}
+    <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-4">Airsoft y SUCAMEC en Perú: Preguntas Frecuentes</h1>
+    <p class="text-sm text-slate-600 bg-accent/10 border-l-4 border-accent rounded-sm p-4 mb-8">
+      Esto no es asesoría legal. Es información recopilada de fuentes públicas (SUCAMEC, la Ley N° 30299 y su reglamento) para ayudarte a jugar con más tranquilidad. Ante una duda puntual sobre tu caso, consulta directamente con SUCAMEC.
+    </p>
+    <div class="flex flex-col gap-6 mb-10">
+      ${faq.map((f) => `<div>
+        <h2 class="font-display font-semibold text-lg mb-2">${esc(f.pregunta)}</h2>
+        <p class="text-sm text-slate-600">${esc(f.respuesta)}</p>
+      </div>`).join('')}
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <a href="/Ley-30299-LPDerecho.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm border border-accent text-accent-dim hover:bg-accent hover:text-black dark:text-accent">Ver Ley N° 30299 (PDF)</a>
+      <a href="https://www.gob.pe/sucamec" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm border border-accent text-accent-dim hover:bg-accent hover:text-black dark:text-accent">Ir a gob.pe/sucamec</a>
+    </div>`
+
+  writePage(faqPath, page({ head, body }))
+}
+
 // ---------- generación: blog ----------
 
 function buildBlog(cssHref) {
@@ -762,6 +817,7 @@ function main() {
   buildCampos(cssHref)
   buildTiendas(cssHref)
   buildEventos(cssHref)
+  buildSucamecFaq(cssHref)
   buildBlog(cssHref)
   build404Page(cssHref)
   buildSeoFiles()

@@ -7,6 +7,7 @@ import {
   TruckIcon,
   WrenchIcon,
   PackageIcon,
+  PoliceBadgeIcon,
 } from '../components/Icons.jsx'
 import { whatsappLinkFromPhone, whatsappGroupLink } from '../utils/whatsapp.js'
 import { slugify, stripDiacritics } from '../utils/slug.js'
@@ -267,8 +268,13 @@ export const categoryConfig = {
       web: i.web,
       whatsapp: null,
       socials: { instagram: null, tiktok: null, youtube: null, twitch: null },
-      extra: [i.relevancia ? { icon: TagIcon, text: i.relevancia } : null].filter(Boolean),
-      cta: i.archivo_pdf ? { label: 'Ver documento (PDF)', href: i.archivo_pdf } : null,
+      extra: [
+        i.relevancia ? { icon: TagIcon, text: i.relevancia } : null,
+        i.consejo_policial ? { icon: PoliceBadgeIcon, text: i.consejo_policial } : null,
+      ].filter(Boolean),
+      cta: i.archivo_pdf
+        ? { label: 'Ver documento (PDF)', href: i.archivo_pdf }
+        : (i.link_faq_sucamec ? { label: 'Aprende sobre Sucamec', href: i.link_faq_sucamec } : null),
     }),
   },
 }

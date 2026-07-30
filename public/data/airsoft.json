@@ -1,6 +1,6 @@
 {
 
-  "_INSTRUCCIONES": "EDITA ESTE ARCHIVO PARA AGREGAR/MODIFICAR CONTENIDO. Solo cambia los valores, no la estructura. No borres ninguna clave (aunque esté vacía, deja \"\"). Guarda las imágenes en /public/images/<categoria>/ y referencia la ruta como \"/images/<categoria>/archivo.jpg\". Para agregar una entrada nueva, copia un objeto existente dentro del arreglo de su categoría, pégalo y cambia los valores (usa un \"id\" nuevo que no se repita). IMPORTANTE PARA SEO: en \"canchas\" el campo \"departamento\" y en \"tiendas\" el campo \"ciudad\" determinan si esa entrada genera su propia página indexable (/campos/<departamento>/<nombre> o /tiendas/<ciudad>/<nombre>) al correr \"npm run build\". Si los dejas vacíos, la entrada sigue apareciendo en el directorio pero no genera página propia. \"eventos\" también genera página propia (/eventos/<nombre>) por cada evento. En \"canchas\" y \"eventos\": \"geolocalizacion\" acepta pegar el link completo de \"Compartir\" de Google Maps (clic derecho en el pin > Compartir > Copiar enlace), o directamente \"lat,lng\" (ej. \"-12.046374,-77.042793\"), para el botón VER MAPA — si lo dejas vacío, el mapa busca por la dirección/ubicación de texto. \"fotos_adicionales\" es un arreglo de hasta 5 rutas de imagen para la galería debajo de la foto principal. En \"canchas\" y \"eventos\": \"distrito\" es el distrito específico (ej. \"La Molina\", \"Ate\") — informativo, no genera página propia (eso lo sigue haciendo \"departamento\" en canchas). En \"jugadores Influencers\": \"web\" es la URL de su sitio propio (si tiene) — se muestra como ícono, no pongas el link dentro de \"descripcion\". En \"canchas\": \"apto_principiantes\" (true/false) muestra una etiqueta 'Principiantes' en la tarjeta del home para ayudar a jugadores nuevos a elegir dónde debutar — ponlo en true solo en las canchas donde de verdad recibes bien a alguien que nunca jugó. \"alquila_equipo\" (true/false) muestra 'Alquila equipo' en la tarjeta — actívalo si esa cancha presta o alquila réplica, protección y demás equipo a quien no tiene el suyo.",
+  "_INSTRUCCIONES": "EDITA ESTE ARCHIVO PARA AGREGAR/MODIFICAR CONTENIDO. Solo cambia los valores, no la estructura. No borres ninguna clave (aunque esté vacía, deja \"\"). Guarda las imágenes en /public/images/<categoria>/ y referencia la ruta como \"/images/<categoria>/archivo.jpg\". Para agregar una entrada nueva, copia un objeto existente dentro del arreglo de su categoría, pégalo y cambia los valores (usa un \"id\" nuevo que no se repita). IMPORTANTE PARA SEO: en \"canchas\" el campo \"departamento\" y en \"tiendas\" el campo \"ciudad\" determinan si esa entrada genera su propia página indexable (/campos/<departamento>/<nombre> o /tiendas/<ciudad>/<nombre>) al correr \"npm run build\". Si los dejas vacíos, la entrada sigue apareciendo en el directorio pero no genera página propia. \"eventos\" también genera página propia (/eventos/<nombre>) por cada evento. En \"canchas\" y \"eventos\": \"geolocalizacion\" acepta pegar el link completo de \"Compartir\" de Google Maps (clic derecho en el pin > Compartir > Copiar enlace), o directamente \"lat,lng\" (ej. \"-12.046374,-77.042793\"), para el botón VER MAPA — si lo dejas vacío, el mapa busca por la dirección/ubicación de texto. \"fotos_adicionales\" es un arreglo de hasta 5 rutas de imagen para la galería debajo de la foto principal. En \"canchas\" y \"eventos\": \"distrito\" es el distrito específico (ej. \"La Molina\", \"Ate\") — informativo, no genera página propia (eso lo sigue haciendo \"departamento\" en canchas). En \"jugadores Influencers\": \"web\" es la URL de su sitio propio (si tiene) — se muestra como ícono, no pongas el link dentro de \"descripcion\". En \"canchas\": \"apto_principiantes\" (true/false) muestra una etiqueta 'Principiantes' en la tarjeta del home para ayudar a jugadores nuevos a elegir dónde debutar — ponlo en true solo en las canchas donde de verdad recibes bien a alguien que nunca jugó. \"alquila_equipo\" (true/false) muestra 'Alquila equipo' en la tarjeta — actívalo si esa cancha presta o alquila réplica, protección y demás equipo a quien no tiene el suyo. En \"marco_legal\": \"consejo_policial\" (texto libre, hoy solo en la entrada 'Ley N° 30299') se muestra como una fila extra en la tarjeta con ícono de placa policial. \"link_faq_sucamec\" (hoy solo en la entrada 'SUCAMEC') muestra el botón 'Aprende sobre Sucamec' que lleva a /sucamec-faq/, generada a partir del arreglo \"sucamec_faq\" (10 preguntas y respuestas en lenguaje simple sobre airsoft y SUCAMEC — no es asesoría legal, es información recopilada de fuentes públicas).",
 
   "canchas": [
     {
@@ -1034,7 +1034,8 @@
       "telefono": "",
       "email": "",
       "direccion": "",
-      "imagen": ""
+      "imagen": "",
+      "link_faq_sucamec": "/sucamec-faq/"
     },
     {
       "id": 2,
@@ -1047,7 +1048,51 @@
       "email": "",
       "direccion": "",
       "imagen": "",
-      "archivo_pdf": "/Ley-30299-LPDerecho.pdf"
+      "archivo_pdf": "/Ley-30299-LPDerecho.pdf",
+      "consejo_policial": "Tenla a la mano para intervenciones policiales"
+    }
+  ],
+
+  "sucamec_faq": [
+    {
+      "id": 1,
+      "pregunta": "¿Es legal jugar airsoft en Perú?",
+      "respuesta": "Sí. Jugar airsoft de forma recreativa o deportiva es legal en Perú. La normativa de SUCAMEC diferencia el uso personal (sin licencia ni autorización) de la comercialización (que sí necesita autorización de SUCAMEC)."
+    },
+    {
+      "id": 2,
+      "pregunta": "¿Necesito un permiso o licencia para tener una réplica de airsoft?",
+      "respuesta": "Para uso personal no se requiere licencia de uso ni autorización de internamiento, a diferencia de un arma de fuego real. Donde sí se activa la regulación es del lado de la venta: una tienda necesita autorización de SUCAMEC para comercializar réplicas."
+    },
+    {
+      "id": 3,
+      "pregunta": "¿Puedo comprar una réplica de airsoft en una tienda física en Perú?",
+      "respuesta": "Sí, siempre que la tienda cuente con autorización de SUCAMEC para comercializar armas neumáticas o de airsoft con fines recreativos o deportivos. Es justamente lo que distingue a una tienda formal de una que no lo es."
+    },
+    {
+      "id": 4,
+      "pregunta": "¿Puedo traer mi réplica de airsoft del extranjero?",
+      "respuesta": "Según la información pública de SUCAMEC, el ingreso de armas neumáticas y de airsoft para uso personal requiere de un trámite ante SUCAMEC para su ingreso al pais. Si quieres saber más del proceso, te recomiendo un video (https://www.youtube.com/watch?v=1mH7gP6a6Xk) para que aprendas un poco más de la importación personal de réplicas y accesorios de Airsoft. Si tuvieras mas dudas, acércate a SUCAMEC para que te puedan asesorar y no tengas problemas con la retención en Aduanas antes de tu viaje y/o compra."
+    },
+    {
+      "id": 5,
+      "pregunta": "¿Qué hago si me interviene la policía llevando mi réplica?",
+      "respuesta": "Una réplica de airsoft puede ser indistinguible de un arma real a simple vista, así que una intervención policial es un riesgo real, no solo legal sino de seguridad personal. Transpórtala siempre sin munición, que lleve su punta naranja, guardada en un estuche o mochila (nunca a la vista ni al cinto), y ten a la mano una copia de la Ley N° 30299 y tu comprobante de compra para acreditar que es una réplica deportiva. Nunca uses tu replica en la vía pública y/o la estes mostrando, esto con el fin de evitar problemas y/o mal entendidos."
+    },
+    {
+      "id":6,
+      "pregunta": "¿Hay una edad mínima para jugar airsoft en Perú?",
+      "respuesta": "No existe una edad mínima fijada por ley a nivel nacional para el airsoft recreativo. Es cada cancha la que define su propia política de edad mínima y si exige autorización de un adulto — pregunta directamente en la cancha antes de ir."
+    },
+    {
+      "id": 7,
+      "pregunta": "¿Cuál es la diferencia entre el airsoft y las armas traumáticas que sí regula fuerte SUCAMEC?",
+      "respuesta": "Las armas traumáticas y de fogueo fueron reclasificadas por SUCAMEC como \"armas de fuego\" y sí requieren licencia de uso y tarjeta de propiedad. El airsoft (accionado por gas, resorte o motor eléctrico, y que dispara BBs plásticas) se regula bajo un régimen distinto y más liviano del lado del uso personal — no lo confundas con una traumática."
+    },
+    {
+      "id": 8,
+      "pregunta": "¿Dónde consulto la norma oficial o hago una consulta directa a SUCAMEC?",
+      "respuesta": "Puedes leer el reglamento completo de la Ley 30299 en el PDF que compartimos en Marco Legal, o consultar directamente en gob.pe/sucamec. El Radar del Airsoft no es una asesoría legal: esta sección es solo información recopilada de fuentes públicas para ayudarte a jugar con más tranquilidad."
     }
   ]
 }

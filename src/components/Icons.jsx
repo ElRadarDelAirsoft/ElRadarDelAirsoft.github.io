@@ -196,6 +196,15 @@ export function ShieldCheckIcon({ className = base }) {
   )
 }
 
+export function PoliceBadgeIcon({ className = base }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="m12 2 2.4 2.1 3.1-.5 1 3 2.8 1.5-.9 3 1.7 2.6-2.5 1.9.1 3.2-3.1.6-1.6 2.8L12 21l-3-.7-1.6-2.8-3.1-.6.1-3.2-2.5-1.9 1.7-2.6-.9-3 2.8-1.5 1-3 3.1.5z" />
+      <path d="m9 12.3 2 2 4.2-4.3" />
+    </svg>
+  )
+}
+
 export function PackageIcon({ className = base }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
