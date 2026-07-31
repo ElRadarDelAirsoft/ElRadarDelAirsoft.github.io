@@ -682,6 +682,7 @@ function renderGuiaBlock(block) {
         </ul>
       </section>`
     case 'glosario':
+      if (block.hidden) return ''
       return `<section class="mb-8">
         <h2 class="font-display font-semibold text-xl mb-3">${esc(block.heading)}</h2>
         <dl class="flex flex-col gap-3">

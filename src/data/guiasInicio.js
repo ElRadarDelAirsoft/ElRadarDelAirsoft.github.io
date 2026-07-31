@@ -49,6 +49,7 @@ export const guiasInicio = [
       {
         type: 'glosario',
         heading: 'Glosario básico para no perderte el primer día',
+        hidden: true, // true la oculta de esta guía sin borrar el bloque
         items: [
           { term: 'CQB', def: 'Close Quarters Battle — combate en espacios cerrados (pasillos, cuartos, contenedores). Partidas rápidas y de corta distancia.' },
           { term: 'MilSim', def: 'Military Simulation — partidas largas con roles, objetivos tipo misión y más énfasis en el realismo táctico. No es lo típico para debutar.' },
@@ -61,7 +62,7 @@ export const guiasInicio = [
         type: 'canchas-recomendadas',
         heading: 'En qué canchas me conviene jugar',
         note: 'Estas son las canchas marcadas como "apto para principiantes" en el directorio — todas alquilan equipo, así que no necesitas nada propio para ir.',
-        hidden: true, // true la oculta de esta guía sin borrar el bloque
+        hidden: false, // true la oculta de esta guía sin borrar el bloque
       },
       {
         type: 'banner-partidas',
