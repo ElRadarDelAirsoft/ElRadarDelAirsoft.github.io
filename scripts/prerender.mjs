@@ -14,6 +14,7 @@ import { fileURLToPath } from 'node:url'
 import { slugify } from '../src/utils/slug.js'
 import { blogPosts } from '../src/data/blogPosts.js'
 import { guiasInicio } from '../src/data/guiasInicio.js'
+import { eventDates as bannerEventDates } from '../src/data/bannerEventDates.js'
 import { whatsappLinkFromPhone } from '../src/utils/whatsapp.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -68,6 +69,29 @@ function findCssHref() {
   const match = indexHtml.match(/<link rel="stylesheet"[^>]+href="([^"]+)"/)
   if (!match) throw new Error('No se encontró el <link rel="stylesheet"> en dist/index.html')
   return match[1]
+}
+
+// Carteles del banner de home (src/assets/banner/), resueltos vía el
+// manifest de Vite (build.manifest en vite.config.js) para obtener su nombre
+// final hasheado en dist/assets/ — este script corre en Node plano después
+// del build, sin acceso a import.meta.glob (eso solo existe dentro de Vite).
+// Mismo orden que src/data/bannerImages.js: por fecha de evento, los que no
+// tienen fecha registrada quedan al final.
+function getBannerPosters() {
+  const manifestPath = path.join(DIST, '.vite/manifest.json')
+  if (!fs.existsSync(manifestPath)) return []
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
+  return Object.entries(manifest)
+    .filter(([src]) => src.startsWith('src/assets/banner/'))
+    .map(([src, entry]) => ({
+      url: `/${entry.file}`,
+      contacto: src.split('/').pop().replace(/\.[^.]+$/, ''),
+    }))
+    .sort((a, b) => {
+      const dateA = bannerEventDates[a.contacto] || '9999-99-99'
+      const dateB = bannerEventDates[b.contacto] || '9999-99-99'
+      return dateA.localeCompare(dateB)
+    })
 }
 
 const generatedRoutes = []
@@ -703,7 +727,30 @@ function renderGuiaBlock(block) {
           ${block.items.map((t) => `<li class="text-sm text-slate-600 border-l-4 border-accent pl-3">${esc(t)}</li>`).join('')}
         </ul>
       </section>`
+    case 'banner-partidas': {
+      const posters = getBannerPosters()
+      if (posters.length === 0) return ''
+      return `<section class="mb-8">
+        <h2 class="font-display font-semibold text-xl mb-3">${esc(block.heading)}</h2>
+        <div class="flex flex-wrap gap-4">
+          ${posters.map((p) => {
+            const waHref = whatsappLinkFromPhone(p.contacto)
+            const inner = `<div class="relative w-full aspect-[760/1076] bg-black overflow-hidden">
+                <img src="${p.url}" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover scale-125 blur-2xl opacity-60" loading="lazy" />
+                <img src="${p.url}" alt="Cartel de evento de airsoft — contacto ${esc(p.contacto)}" class="relative w-full h-full object-contain" loading="lazy" />
+              </div>
+              <div class="bg-black/85 border-t-2 border-accent px-2 py-2 flex items-center justify-center">
+                <span class="font-display text-xs font-bold uppercase tracking-wide text-white truncate">${esc(p.contacto)}</span>
+              </div>`
+            return waHref
+              ? `<a href="${waHref}" target="_blank" rel="noopener noreferrer" class="block w-40 sm:w-48 shrink-0 rounded-sm overflow-hidden border border-base-700 bg-black shadow-lg shadow-black/30 hover:border-accent transition-colors">${inner}</a>`
+              : `<div class="block w-40 sm:w-48 shrink-0 rounded-sm overflow-hidden border border-base-700 bg-black">${inner}</div>`
+          }).join('')}
+        </div>
+      </section>`
+    }
     case 'canchas-recomendadas': {
+      if (block.hidden) return ''
       const canchas = (data.canchas || []).filter((c) => c.apto_principiantes)
       return `<section class="mb-8">
         <h2 class="font-display font-semibold text-xl mb-3">${esc(block.heading)}</h2>

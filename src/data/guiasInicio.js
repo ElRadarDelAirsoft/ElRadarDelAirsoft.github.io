@@ -20,9 +20,9 @@ export const guiasInicio = [
     slug: 'primera-vez-airsoft',
     icon: 'ShieldCheckIcon',
     title: 'Voy a jugar mi primera partida de airsoft',
-    subtitle: 'Qué llevar, cuánto cuesta y en qué cancha conviene debutar',
+    subtitle: 'Qué llevar, cuánto cuesta y en qué cancha podría jugar',
     metaDescription:
-      'Guía para principiantes: qué llevar a tu primera partida de airsoft en Perú, cómo funciona el alquiler de equipo y en qué canchas conviene debutar.',
+      'Guía para principiantes: qué llevar a tu primera partida de airsoft en Perú, cómo funciona el alquiler de equipo y en qué canchas podría jugar.',
     intro:
       'No necesitas equipo propio para probar airsoft. Varias canchas alquilan réplica y protección — lo único que sí necesitas es venir con la actitud correcta y algunas cosas básicas.',
     blocks: [
@@ -30,19 +30,19 @@ export const guiasInicio = [
         type: 'checklist',
         heading: 'Qué llevar el primer día',
         items: [
-          'Ropa cómoda y oscura (algo que no te importe ensuciar)',
-          'Zapatillas cerradas, nunca sandalias u ojotas',
-          'Agua — las partidas cansan más de lo que parece',
-          'Efectivo para la entrada y el alquiler de equipo',
-          'Ropa de cambio, sobre todo si la cancha es de campo abierto',
-          'Protección ocular propia si la tienes (muchas canchas la incluyen en el alquiler, pero confírmalo antes)',
+          'Ropa cómoda de preferencia oscura (algo que no te importe ensuciar). De preferencia un buzo en la parte de abajo y en la de arriba un polo largo tipo deportivo o rashguard (para no sudar mucho)',
+          'Zapatillas cerradas, nunca sandalias (vas a enterar las zapatillas, literal)',
+          'Agua y/o Bebidas — las partidas cansan más de lo que parece y es importante estar hidratado para no pasarla mal',
+          'Snacks — la adrenalina hace que gastes energia, lleva snacks que te suban el azucar como frutas o chocolates para seguir jugando sin bajones de energía',          
+          'Ropa de cambio, vas a salir sudando fijo de tanto divertirte',
+          'Protección extra o Cosas que sumarían: Guantes de gimnasio, gorra, zapatillas de montañismo o gimnasio (con buen agarre). bloqueador solar para rostro y cuerpo, toalla pequeña y paños húmedos.',
         ],
       },
       {
         type: 'texto',
         heading: '¿Cuánto cuesta la entrada y el alquiler de equipo?',
         body: [
-          'El precio varía bastante de una cancha a otra y cambia con el tiempo, así que en vez de darte un número que puede estar desactualizado, lo más confiable es escribirle directo a la cancha por WhatsApp antes de ir y preguntar por el precio de entrada y de alquiler de réplica + protección para principiantes.',
+          'El precio varía si tienes o no réplica. Si eres nuevo, el promedio de alquiler de equipo completo, réplica + bbs es de 80-120 soles (el fullday de juego que dura como 3 horas y te dan 400 bbs). Esto puede variar entre canchas y cambia con el tiempo, así que en vez de darte un número que puede estar desactualizado, lo más confiable es escribirle directo al organizador de la cancha por WhatsApp antes de ir y preguntar por el precio de entrada y de alquiler de réplica + protección para principiantes.',
           'Todas las canchas de este directorio con "Alquila equipo" activo tienen su WhatsApp a un clic en su ficha.',
         ],
       },
@@ -59,8 +59,13 @@ export const guiasInicio = [
       },
       {
         type: 'canchas-recomendadas',
-        heading: 'En qué cancha conviene debutar',
+        heading: 'En qué canchas me conviene jugar',
         note: 'Estas son las canchas marcadas como "apto para principiantes" en el directorio — todas alquilan equipo, así que no necesitas nada propio para ir.',
+        hidden: true, // true la oculta de esta guía sin borrar el bloque
+      },
+      {
+        type: 'banner-partidas',
+        heading: 'Partidas de esta semana',
       },
     ],
   },
@@ -68,7 +73,7 @@ export const guiasInicio = [
     id: 2,
     slug: 'empezar-hobby-equipo-propio',
     icon: 'WrenchIcon',
-    title: 'Quiero empezar el hobby: equipo propio',
+    title: 'Quiero empezar el hobby',
     subtitle: 'Un árbol de decisión simple antes de invertir, y qué priorizar al comprar',
     metaDescription:
       'Antes de comprar tu primera réplica de airsoft en Perú: un árbol de decisión simple y qué priorizar al armar tu equipo propio.',
@@ -112,7 +117,7 @@ export const guiasInicio = [
     slug: 'tips-generales',
     icon: 'NotebookIcon',
     title: 'Tips generales',
-    subtitle: 'Notas sueltas de cancha — se van sumando con el tiempo',
+    subtitle: 'Notas y consejos que te pueden servir en el camino, los cuales sumo con el tiempo',
     metaDescription: 'Tips generales y notas sueltas para jugar airsoft en Perú, de la experiencia de la comunidad.',
     intro: 'Esta sección es para anotaciones cortas que no alcanzan para un artículo propio. Se va actualizando con el tiempo.',
     blocks: [

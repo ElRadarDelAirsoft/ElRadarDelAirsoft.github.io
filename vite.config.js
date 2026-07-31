@@ -15,4 +15,10 @@ export default defineConfig({
   define: {
     __LAST_DEPLOY_DATE__: JSON.stringify(getLastCommitDate()),
   },
+  build: {
+    // scripts/prerender.mjs (Node plano, corre después del build) lo lee
+    // para saber el nombre final hasheado de los carteles del banner y
+    // poder reusarlos en páginas estáticas como /empieza-aqui/.
+    manifest: true,
+  },
 })
