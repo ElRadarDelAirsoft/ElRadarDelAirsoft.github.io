@@ -640,7 +640,7 @@
       "web": "",
       "instagram": "https://www.instagram.com/mrchihuahua_airsoft/",
       "tiktok": "",
-      "youtube": "",
+      "youtube": "https://www.youtube.com/@mrchihuahua888",
       "twitch": "",
       "facebook": ""
     },
@@ -682,6 +682,18 @@
     },
     {
       "id": 11,
+      "nombre": "Radec",
+      "foto": "/images/jugadores/radec.webp",
+      "descripcion": "",
+      "web": "",
+      "instagram": "",
+      "tiktok": "",
+      "youtube": "https://www.youtube.com/@RadecAirsoft",
+      "twitch": "",
+      "facebook": ""
+    },
+    {
+      "id": 12,
       "nombre": "Techies",
       "foto": "/images/jugadores/techies.webp",
       "descripcion": "",
