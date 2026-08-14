@@ -12,6 +12,7 @@ export const eventDates = {
   '+51 943 446 795': '2026-08-16', // Partida Airsoft, CBL Lab Punta Hermosa
   '+51 994 016 209': '2026-08-16', // Airsoft Battle Rambo Perú, Comas-Trapiche
   '+51 996 928 899': '2026-08-16', // Partida Abierta
+  '+51 990 346 281': '2026-08-16', // Batalla por Camboya, Mercenarios Airsoft
   '+51 995 964 444': '2026-08-30', // Arena Airsoft, aniversario Pretorianos
   '+51913259 530': '2026-09-04', // El Último Recurso, Pampas
 }
