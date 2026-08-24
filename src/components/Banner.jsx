@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { bannerImages } from '../data/bannerImages.js'
-import { whatsappLinkFromPhone } from '../utils/whatsapp.js'
-import { WhatsAppIcon } from './Icons.jsx'
+import { bannerLinkFromContacto } from '../utils/bannerLink.js'
+import { WhatsAppIcon, LinkIcon } from './Icons.jsx'
 
 function ChevronIcon({ direction = 'left', className = 'w-4 h-4' }) {
   return (
@@ -120,14 +120,14 @@ export default function Banner() {
           <div ref={scrollerRef} className="overflow-x-auto snap-x snap-mandatory scroll-px-4 pb-1 scroll-smooth">
             <div ref={trackRef} className="flex gap-4 w-fit mx-auto px-1">
               {bannerImages.map((img, i) => {
-                const waHref = whatsappLinkFromPhone(img.contacto)
+                const { href, kind, label } = bannerLinkFromContacto(img.contacto)
                 return (
                   <a
                     key={img.url}
                     ref={(el) => { itemRefs.current[i] = el }}
-                    href={waHref || undefined}
-                    target={waHref ? '_blank' : undefined}
-                    rel={waHref ? 'noopener noreferrer' : undefined}
+                    href={href || undefined}
+                    target={href ? '_blank' : undefined}
+                    rel={href ? 'noopener noreferrer' : undefined}
                     className="relative shrink-0 snap-center w-48 sm:w-56 md:w-64 rounded-sm overflow-hidden
                       border border-base-700 shadow-lg shadow-black/50 bg-base-900
                       transition-transform duration-200 ease-out-quart hover:scale-[1.02] active:scale-[0.98]
@@ -147,16 +147,18 @@ export default function Banner() {
                       />
                       <img
                         src={img.url}
-                        alt={`Cartel de evento de airsoft — contacto ${img.contacto}`}
+                        alt={`Cartel de evento de airsoft — ${label}`}
                         className="relative w-full h-full object-contain"
                         loading={i === 0 ? 'eager' : 'lazy'}
                         {...(i === 0 ? { fetchpriority: 'high' } : {})}
                       />
                     </div>
                     <div className="absolute bottom-0 inset-x-0 bg-black/85 backdrop-blur-sm border-t-2 border-accent px-2 py-2 flex items-center justify-center gap-1.5">
-                      <WhatsAppIcon aria-hidden="true" className="w-4 h-4 shrink-0 text-accent" />
+                      {kind === 'url'
+                        ? <LinkIcon aria-hidden="true" className="w-4 h-4 shrink-0 text-accent" />
+                        : <WhatsAppIcon aria-hidden="true" className="w-4 h-4 shrink-0 text-accent" />}
                       <span className="font-display text-xs sm:text-sm font-bold uppercase tracking-wide text-white truncate">
-                        {img.contacto}
+                        {label}
                       </span>
                     </div>
                   </a>

@@ -16,6 +16,7 @@ import { blogPosts } from '../src/data/blogPosts.js'
 import { guiasInicio } from '../src/data/guiasInicio.js'
 import { eventDates as bannerEventDates } from '../src/data/bannerEventDates.js'
 import { whatsappLinkFromPhone } from '../src/utils/whatsapp.js'
+import { bannerLinkFromContacto } from '../src/utils/bannerLink.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
@@ -735,16 +736,16 @@ function renderGuiaBlock(block) {
         <h2 class="font-display font-semibold text-xl mb-3">${esc(block.heading)}</h2>
         <div class="flex flex-wrap gap-4">
           ${posters.map((p) => {
-            const waHref = whatsappLinkFromPhone(p.contacto)
+            const { href, label } = bannerLinkFromContacto(p.contacto)
             const inner = `<div class="relative w-full aspect-[760/1076] bg-black overflow-hidden">
                 <img src="${p.url}" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover scale-125 blur-2xl opacity-60" loading="lazy" />
-                <img src="${p.url}" alt="Cartel de evento de airsoft — contacto ${esc(p.contacto)}" class="relative w-full h-full object-contain" loading="lazy" />
+                <img src="${p.url}" alt="Cartel de evento de airsoft — ${esc(label)}" class="relative w-full h-full object-contain" loading="lazy" />
               </div>
               <div class="bg-black/85 border-t-2 border-accent px-2 py-2 flex items-center justify-center">
-                <span class="font-display text-xs font-bold uppercase tracking-wide text-white truncate">${esc(p.contacto)}</span>
+                <span class="font-display text-xs font-bold uppercase tracking-wide text-white truncate">${esc(label)}</span>
               </div>`
-            return waHref
-              ? `<a href="${waHref}" target="_blank" rel="noopener noreferrer" class="block w-40 sm:w-48 shrink-0 rounded-sm overflow-hidden border border-base-700 bg-black shadow-lg shadow-black/30 hover:border-accent transition-colors">${inner}</a>`
+            return href
+              ? `<a href="${href}" target="_blank" rel="noopener noreferrer" class="block w-40 sm:w-48 shrink-0 rounded-sm overflow-hidden border border-base-700 bg-black shadow-lg shadow-black/30 hover:border-accent transition-colors">${inner}</a>`
               : `<div class="block w-40 sm:w-48 shrink-0 rounded-sm overflow-hidden border border-base-700 bg-black">${inner}</div>`
           }).join('')}
         </div>
