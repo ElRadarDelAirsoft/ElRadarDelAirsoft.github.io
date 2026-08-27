@@ -8,8 +8,10 @@
 // existe dentro del build de Vite.
 export const eventDates = {
   'aHR0cHM6Ly9mb3Jtcy5nbGUvWmhxTHdBeDJxWldWb2txRjk': '2026-08-27', // Combat Zone Airsoft (Akito), partida nocturna, Campo La Estrella
+  '+51998 318 610': '2026-08-27', // Partida Nocturna, CQB La Molina
   'aHR0cHM6Ly9mb3Jtcy5nbGUvd2NMY1Y3SlpnZlJLZmpvSjY': '2026-08-30', // Arena Airsoft, aniversario Pretorianos (inscripción por formulario)
   '+51 998 318 610': '2026-08-30', // Partida de Reconocimiento de Cancha, Padrino Airsoft, Fundo Mamacona
+  'aHR0cHM6Ly9mb3Jtcy5nbGUvZVZ1NDJLREN0ZmlxS0Y0NzY': '2026-08-30', // Partida Cumpleañera, CQB Lab Punta Hermosa
   '+51913259 530': '2026-09-04', // El Último Recurso, Pampas
   'aHR0cHM6Ly9mb3Jtcy5nbGUvVkhqbnJIZjlpcExqUm5xVDk': '2026-09-13', // 20 años de Airsoft en el Perú, Fundo Mamacona
 }
