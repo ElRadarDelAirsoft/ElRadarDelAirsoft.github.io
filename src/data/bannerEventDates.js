@@ -7,7 +7,6 @@
 // sin Vite) pueda importar las fechas sin tocar import.meta.glob, que solo
 // existe dentro del build de Vite.
 export const eventDates = {
-  'aHR0cHM6Ly9mb3Jtcy5nbGUvWmhxTHdBeDJxWldWb2txRjk': '2026-08-27', // Combat Zone Airsoft (Akito), partida nocturna, Campo La Estrella
   '+51998 318 610': '2026-08-27', // Partida Nocturna, CQB La Molina
   'aHR0cHM6Ly9mb3Jtcy5nbGUvd2NMY1Y3SlpnZlJLZmpvSjY': '2026-08-30', // Arena Airsoft, aniversario Pretorianos (inscripción por formulario)
   '+51 998 318 610': '2026-08-30', // Partida de Reconocimiento de Cancha, Padrino Airsoft, Fundo Mamacona
