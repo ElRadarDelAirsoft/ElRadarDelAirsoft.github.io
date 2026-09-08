@@ -7,10 +7,6 @@
 // sin Vite) pueda importar las fechas sin tocar import.meta.glob, que solo
 // existe dentro del build de Vite.
 export const eventDates = {
-  'aHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vZm9ybXMvZC8xT3RLdl9vU2x5bUZNVEVfXzc3cEQyUW50c2dzY3d3dW9ZTjF6Q1BqVFh3by92aWV3Zm9ybQ': '2026-09-06', // Batalla por Camboya, Mercenarios Airsoft
-  'aHR0cHM6Ly9mb3Jtcy5nbGUvWXVpVmhjc2NOMnVxVFl1ZEE': '2026-09-06', // Combat Zone Airsoft (Akito), Campo La Estrella
-  'aHR0cHM6Ly9mb3Jtcy5nbGUvb1NUdXg1Zjdvc2g3ZEx2WkE': '2026-09-06', // Partida de Airsoft, CQB Lab Punta Hermosa
-  '+51 996 928 899': '2026-09-06', // Partida Abierta, límite 400fps
   'aHR0cHM6Ly9mb3Jtcy5nbGUvVkhqbnJIZjlpcExqUm5xVDk': '2026-09-13', // 20 años de Airsoft en el Perú, Fundo Mamacona
   '+51 994 016 209': '2026-09-13', // Operación Mad Max, La Estrella
 }
