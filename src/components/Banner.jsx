@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { bannerImages } from '../data/bannerImages.js'
+import { linkLabels } from '../data/bannerLinkLabels.js'
 import { bannerLinkFromContacto } from '../utils/bannerLink.js'
 import { WhatsAppIcon, LinkIcon } from './Icons.jsx'
 
@@ -120,7 +121,8 @@ export default function Banner() {
           <div ref={scrollerRef} className="overflow-x-auto snap-x snap-mandatory scroll-px-4 pb-1 scroll-smooth">
             <div ref={trackRef} className="flex gap-4 w-fit mx-auto px-1">
               {bannerImages.map((img, i) => {
-                const { href, kind, label } = bannerLinkFromContacto(img.contacto)
+                const { href, kind, label: defaultLabel } = bannerLinkFromContacto(img.contacto)
+                const label = linkLabels[img.contacto] || defaultLabel
                 return (
                   <a
                     key={img.url}

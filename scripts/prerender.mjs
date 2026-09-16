@@ -15,6 +15,7 @@ import { slugify } from '../src/utils/slug.js'
 import { blogPosts } from '../src/data/blogPosts.js'
 import { guiasInicio } from '../src/data/guiasInicio.js'
 import { eventDates as bannerEventDates } from '../src/data/bannerEventDates.js'
+import { linkLabels as bannerLinkLabels } from '../src/data/bannerLinkLabels.js'
 import { whatsappLinkFromPhone } from '../src/utils/whatsapp.js'
 import { bannerLinkFromContacto } from '../src/utils/bannerLink.js'
 
@@ -736,7 +737,8 @@ function renderGuiaBlock(block) {
         <h2 class="font-display font-semibold text-xl mb-3">${esc(block.heading)}</h2>
         <div class="flex flex-wrap gap-4">
           ${posters.map((p) => {
-            const { href, label } = bannerLinkFromContacto(p.contacto)
+            const { href, label: defaultLabel } = bannerLinkFromContacto(p.contacto)
+            const label = bannerLinkLabels[p.contacto] || defaultLabel
             const inner = `<div class="relative w-full aspect-[760/1076] bg-black overflow-hidden">
                 <img src="${p.url}" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover scale-125 blur-2xl opacity-60" loading="lazy" />
                 <img src="${p.url}" alt="Cartel de evento de airsoft — ${esc(label)}" class="relative w-full h-full object-contain" loading="lazy" />

@@ -47,8 +47,13 @@ im.save('src/assets/banner/<nombre-compilado>.webp', 'WEBP', quality=75)
   nombre = base64.urlsafe_b64encode(url.encode()).decode().rstrip('=')
   ```
   **No uses percent-encoding ni pongas la URL cruda como nombre**: los nombres con `:` `/` `?` son inválidos en Windows, y el percent-encoding (`%XX`) se probó y falla — Vite lo reinterpreta al resolver `import.meta.glob` y descarta el archivo sin avisar. Base64url (`[A-Za-z0-9_-]`) es el único formato validado que funciona. `src/utils/bannerLink.js` decodifica esto en runtime (browser y Node) y arma el link — no hace falta tocar ese archivo.
+- **Misma imagen, links distintos** (ej. el mismo cartel subido dos veces con dos formularios diferentes, uno por fecha) → cada URL se codifica sola (como arriba), pero además hay que:
+  1. Si las dos URLs son literalmente la misma (pasa cuando una ya está publicada con otro cartel — verificar decodificando ambas) → agregarle un fragmento inerte a la nueva para que no colisione el nombre de archivo con el cartel existente, ej. `url + '#20-set'` (un `#fragmento` no cambia qué formulario abre, solo el string).
+  2. Agregar una entrada en `src/data/bannerLinkLabels.js` (`'<nombre-compilado>': 'Inscríbete 19 Set'`) para que el cartel muestre ese texto en vez del genérico "Inscribirse".
 
-`Banner.jsx` y `prerender.mjs` detectan automáticamente si el nombre compilado es un teléfono o una URL codificada (vía `bannerLinkFromContacto`) y arman el link, ícono y etiqueta correctos (número de WhatsApp, o "Inscribirse" + ícono de link para URLs) — no hace falta lógica adicional por cartel.
+  **No metas el label como JSON dentro del nombre del archivo** (`{"url":...,"label":...}` en base64url) — para una URL larga (Google Forms `/d/e/.../viewform` ronda los 90 caracteres) el JSON empuja el nombre por encima del límite de 260 caracteres de Windows y `git add` falla con "Filename too long". El label siempre va en el archivo aparte.
+
+`Banner.jsx` y `prerender.mjs` arman el link, ícono y etiqueta automáticamente: `bannerLinkFromContacto` decodifica el nombre compilado (teléfono → wa.me + número; URL → el link + "Inscribirse" por defecto), y después se busca ese mismo nombre en `bannerLinkLabels.js` para pisar el label si hay uno custom. No hace falta lógica adicional por cartel.
 
 ## 4. Actualizar `src/data/bannerEventDates.js`
 

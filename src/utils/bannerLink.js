@@ -10,6 +10,12 @@ import { whatsappLinkFromPhone } from './whatsapp.js'
 // Para codificar una URL nueva al subir un cartel:
 //   Buffer.from(url, 'utf-8').toString('base64url')   // Node
 // Acá solo se decodifica, con atob/TextDecoder (disponibles en browser y Node).
+//
+// Nota: NO se metió acá el label custom (ver bannerLinkLabels.js) como JSON
+// en el propio blob — para una URL larga (ej. Google Forms /d/e/.../viewform,
+// ~90 caracteres) el JSON + base64 empuja el nombre de archivo por encima del
+// límite de 260 caracteres de Windows. El label vive en un archivo aparte,
+// igual que bannerEventDates.js.
 function base64UrlDecode(str) {
   const base64 = str.replace(/-/g, '+').replace(/_/g, '/')
   const binary = atob(base64)
