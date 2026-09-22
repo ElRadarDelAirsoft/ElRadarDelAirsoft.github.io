@@ -7,4 +7,5 @@
 // sin Vite) pueda importar las fechas sin tocar import.meta.glob, que solo
 // existe dentro del build de Vite.
 export const eventDates = {
+  '+51 998 318 610': '2026-09-24', // Partida Nocturna, CQB La Molina
 }
