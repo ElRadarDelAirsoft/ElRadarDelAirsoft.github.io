@@ -7,6 +7,6 @@
 // sin Vite) pueda importar las fechas sin tocar import.meta.glob, que solo
 // existe dentro del build de Vite.
 export const eventDates = {
-  '+51 994 016 209': '2026-10-18', // Airsoft Battle, Rambo Perú, Gulag Lima (9:00am)
+  '+51 962 356 886': '2026-10-25', // Partida Abierta, Arena Airsoft (9:00am a 1:00pm)
   'aHR0cHM6Ly9mb3Jtcy5nbGUvNjJhQ0d2ZUhRM0ROeVVQTjY': '2026-10-25', // Operación Kamikaze IV, Samurai Tactical Team, CQB Lab Punta Hermosa
 }
