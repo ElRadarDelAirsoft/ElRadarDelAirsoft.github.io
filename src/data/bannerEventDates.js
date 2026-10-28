@@ -7,4 +7,5 @@
 // sin Vite) pueda importar las fechas sin tocar import.meta.glob, que solo
 // existe dentro del build de Vite.
 export const eventDates = {
+  'aHR0cHM6Ly9mb3Jtcy5nbGUvNlZzZmRTQzVya0dNQk5vTjk': '2026-11-01', // Reinauguración CQB Lab, Punta Hermosa
 }
