@@ -15,9 +15,11 @@ import { slugify } from '../src/utils/slug.js'
 import { blogPosts } from '../src/data/blogPosts.js'
 import { guiasInicio } from '../src/data/guiasInicio.js'
 import { eventDates as bannerEventDates } from '../src/data/bannerEventDates.js'
+import { eventInfo as bannerEventInfo } from '../src/data/bannerEventInfo.js'
 import { linkLabels as bannerLinkLabels } from '../src/data/bannerLinkLabels.js'
 import { whatsappLinkFromPhone } from '../src/utils/whatsapp.js'
 import { bannerLinkFromContacto } from '../src/utils/bannerLink.js'
+import { isExpired, todayInLima, formatEventDate, formatEventTime, eventStartIso } from '../src/utils/bannerEvents.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
@@ -89,6 +91,7 @@ function getBannerPosters() {
       url: `/${entry.file}`,
       contacto: src.split('/').pop().replace(/\.[^.]+$/, ''),
     }))
+    .filter((p) => !isExpired(bannerEventDates[p.contacto]))
     .sort((a, b) => {
       const dateA = bannerEventDates[a.contacto] || '9999-99-99'
       const dateB = bannerEventDates[b.contacto] || '9999-99-99'
@@ -105,12 +108,16 @@ const DARK_MODE_SCRIPT = `<script>(function(){try{var s=localStorage.getItem('ai
 function renderHead({ title, description, canonical, ogImage, cssHref, jsonLd = [] }) {
   return `<meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#232b1c" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
     <title>${esc(title)}</title>
     <meta name="description" content="${esc(description)}" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="${canonical}" />
     <meta property="og:site_name" content="${esc(SITE_NAME)}" />
+    <meta property="og:locale" content="es_PE" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="${esc(title)}" />
     <meta property="og:description" content="${esc(description)}" />
@@ -149,6 +156,51 @@ function breadcrumbNav(items) {
         : `<a href="${it.path}" class="hover:text-accent-dim">${esc(it.name)}</a>`
     }`).join('')}
   </nav>`
+}
+
+// Meta description de 100-158 caracteres: une las partes en orden y corta en
+// el último límite de oración/palabra que entre. Las descripciones cortas del
+// JSON ("Cancha CQB llena de adrenalina") solas quedan muy por debajo del
+// largo que Google suele mostrar.
+function fitDescription(parts, max = 158) {
+  let out = ''
+  for (const part of parts.filter(Boolean)) {
+    const next = out ? `${out} ${part}` : part
+    if (next.length > max) break
+    out = next
+  }
+  if (!out) out = parts.filter(Boolean)[0].slice(0, max - 1).replace(/\s+\S*$/, '') + '…'
+  return out
+}
+
+// "Intro: A, B, C y más. Cierre." metiendo tantos nombres como quepan.
+function listDescription(intro, names, tail, max = 158) {
+  let shown = []
+  for (const name of names) {
+    const next = [...shown, name]
+    const candidate = `${intro} ${next.join(', ')}${next.length < names.length ? ' y más' : ''}. ${tail}`
+    if (candidate.length > max) break
+    shown = next
+  }
+  return `${intro} ${shown.join(', ')}${shown.length < names.length ? ' y más' : ''}. ${tail}`.replace(/\s+\./, '.')
+}
+
+function ensurePeriod(text) {
+  const t = String(text || '').trim()
+  return t && !/[.!?…]$/.test(t) ? `${t}.` : t
+}
+
+// "Otras canchas en Lima": enlaces internos entre fichas hermanas (cada
+// ficha antes solo enlazaba hacia arriba, a su landing).
+function relatedLinks({ heading, items, basePath, self }) {
+  const siblings = items.filter((it) => it !== self).slice(0, 6)
+  if (siblings.length === 0) return ''
+  return `<section aria-labelledby="related-heading" class="mt-10 pt-6 border-t border-slate-200 dark:border-base-700">
+        <h2 id="related-heading" class="font-display font-semibold uppercase tracking-wide text-lg mb-3">${esc(heading)}</h2>
+        <ul class="flex flex-wrap gap-2">
+          ${siblings.map((it) => `<li><a href="${basePath}/${slugify(it.nombre)}/" class="inline-block text-sm px-3 py-1.5 rounded-sm border border-slate-300 hover:border-accent">${esc(it.nombre)}</a></li>`).join('\n          ')}
+        </ul>
+      </section>`
 }
 
 function contactRow(icon, label) {
@@ -335,7 +387,7 @@ function buildCampos(cssHref) {
     ]
     const head = renderHead({
       title: `Canchas de airsoft en ${departamento} | ${SITE_NAME}`,
-      description: `Directorio de canchas de airsoft en ${departamento}, Perú (también llamadas campos de airsoft): ${canchas.map((c) => c.nombre).join(', ')}. Direcciones, contacto y horarios.`,
+      description: listDescription(`Canchas de airsoft en ${departamento}, Perú:`, canchas.map((c) => c.nombre), 'Contacto por WhatsApp.'),
       canonical: absUrl(`${depPath}/`),
       ogImage: absUrl(OG_BANNER_PATH),
       cssHref,
@@ -374,7 +426,14 @@ function buildCampos(cssHref) {
       const nombreSlug = slugify(c.nombre)
       const campoPath = `${depPath}/${nombreSlug}`
       const breadcrumbCampo = [...breadcrumb, { name: c.nombre, path: campoPath }]
-      const description = c.descripcion || `${c.nombre} — cancha de airsoft en ${departamento}, Perú. Dirección, contacto y horarios.`
+      const description = fitDescription([
+        `${c.nombre}: cancha de airsoft en ${departamento}, Perú.`,
+        ensurePeriod(c.descripcion),
+        c.apto_principiantes && c.alquila_equipo ? 'Apta para principiantes y con alquiler de equipo.' : '',
+        c.apto_principiantes && !c.alquila_equipo ? 'Apta para principiantes.' : '',
+        !c.apto_principiantes && c.alquila_equipo ? 'Alquila equipo.' : '',
+        c.whatsapp ? 'Contacto directo por WhatsApp.' : '',
+      ])
       const head2 = renderHead({
         title: `${c.nombre} — Cancha de airsoft en ${departamento} | ${SITE_NAME}`,
         description,
@@ -409,6 +468,8 @@ function buildCampos(cssHref) {
           ${whatsappCta(c.whatsapp)}
           ${instagramCta(c.instagram)}
         </div>
+        ${relatedLinks({ heading: `Otras canchas de airsoft en ${departamento}`, items: canchas, basePath: depPath, self: c })}
+        <p class="mt-6 text-sm text-slate-600">¿Primera vez? Lee la <a href="/empieza-aqui/primera-vez-airsoft/" class="text-accent-dim hover:underline">guía para tu primera partida de airsoft</a> o mira las <a href="/eventos/" class="text-accent-dim hover:underline">próximas partidas</a>.</p>
         ${INTERACTIVE_SCRIPT}`
       writePage(campoPath, page({ head: head2, body: body2 }))
     }
@@ -499,7 +560,12 @@ function buildTiendas(cssHref) {
       const nombreSlug = slugify(t.nombre)
       const tiendaPath = `${ciudadPath}/${nombreSlug}`
       const breadcrumbTienda = [...breadcrumb, { name: t.nombre, path: tiendaPath }]
-      const description = t.descripcion || `${t.nombre} — tienda de airsoft en ${ciudad}, Perú. ${t.especialidad || ''}`.trim()
+      const description = fitDescription([
+        `${t.nombre}: tienda de airsoft en ${ciudad}, Perú.`,
+        ensurePeriod(t.especialidad),
+        ensurePeriod(t.descripcion),
+        t.whatsapp ? 'Contacto directo por WhatsApp.' : '',
+      ])
       const head2 = renderHead({
         title: `${t.nombre} — Tienda de airsoft en ${ciudad} | ${SITE_NAME}`,
         description,
@@ -527,7 +593,8 @@ function buildTiendas(cssHref) {
         ${t.especialidad ? `<p class="text-slate-700 font-medium mb-2">${esc(t.especialidad)}</p>` : ''}
         ${t.descripcion ? `<p class="text-slate-600 mb-5">${esc(t.descripcion)}</p>` : ''}
         ${contactBlock(t)}
-        ${whatsappCta(t.whatsapp)}`
+        ${whatsappCta(t.whatsapp)}
+        ${relatedLinks({ heading: `Otras tiendas de airsoft en ${ciudad}`, items: tiendas, basePath: ciudadPath, self: t })}`
       writePage(tiendaPath, page({ head: head2, body: body2 }))
     }
   }
@@ -535,35 +602,130 @@ function buildTiendas(cssHref) {
 
 // ---------- generación: eventos ----------
 
+// Fecha/hora de un evento cargado a mano en el JSON ("2026-07-12 09:00am").
+function parseJsonEventDate(fechaHora) {
+  const m = /^(\d{4}-\d{2}-\d{2})(?:[ T]+(\d{1,2}):(\d{2})\s*(am|pm)?)?/i.exec(fechaHora || '')
+  if (!m) return { date: '', hora: '' }
+  let hora = ''
+  if (m[2]) {
+    let h = Number(m[2])
+    if (m[4]) h = (h % 12) + (m[4].toLowerCase() === 'pm' ? 12 : 0)
+    hora = `${String(h).padStart(2, '0')}:${m[3]}`
+  }
+  return { date: m[1], hora }
+}
+
+// Carteles del banner con fecha vigente y datos estructurados
+// (src/data/bannerEventInfo.js): son las partidas "de la semana".
+function getUpcomingBannerEvents() {
+  return getBannerPosters()
+    .map((p) => ({ ...p, date: bannerEventDates[p.contacto], info: bannerEventInfo[p.contacto] }))
+    .filter((e) => e.date && e.info)
+}
+
+function whenLabel(date, hora) {
+  const time = formatEventTime(hora)
+  return `${formatEventDate(date)}${time ? `, ${time}` : ''}`
+}
+
+function bannerEventJsonLd(e, eventosUrl) {
+  const { nombre, organizador, lugar, ciudad, hora } = e.info
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: nombre,
+    description: `${nombre}: partida de airsoft${organizador ? ` organizada por ${organizador}` : ''} el ${whenLabel(e.date, hora)}${lugar ? ` en ${lugar}${ciudad ? `, ${ciudad}` : ''}` : ''}.`,
+    startDate: eventStartIso(e.date, hora),
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    location: {
+      '@type': 'Place',
+      name: lugar || ciudad,
+      address: { '@type': 'PostalAddress', addressLocality: ciudad || undefined, addressCountry: 'PE' },
+    },
+    organizer: organizador ? { '@type': 'Organization', name: organizador } : undefined,
+    image: [absUrl(e.url)],
+    url: `${eventosUrl}#${slugify(nombre)}-${e.date}`,
+  }
+}
+
+function bannerEventCard(e) {
+  const { nombre, organizador, lugar, ciudad, hora } = e.info
+  const { href, kind } = bannerLinkFromContacto(e.contacto)
+  const label = bannerLinkLabels[e.contacto] || (kind === 'url' ? 'Inscribirse' : 'Contactar por WhatsApp')
+  const alt = `Cartel de ${nombre}, ${formatEventDate(e.date)}${lugar ? ` en ${lugar}, ${ciudad}` : ''}`
+  return `<article id="${esc(slugify(nombre))}-${e.date}" class="flex flex-col rounded-sm border border-slate-200 overflow-hidden">
+        <div class="aspect-[4/5] bg-black flex items-center justify-center">
+          <img src="${e.url}" alt="${esc(alt)}" loading="lazy" decoding="async" class="h-full w-full object-contain" />
+        </div>
+        <div class="p-4 flex flex-col gap-1.5 flex-1">
+          <h3 class="font-display font-semibold uppercase tracking-wide text-lg leading-snug">${esc(nombre)}</h3>
+          <p class="text-sm text-slate-700">🗓️ ${esc(whenLabel(e.date, hora))}</p>
+          ${lugar ? `<p class="text-sm text-slate-600">📍 ${esc(lugar)}${ciudad ? `, ${esc(ciudad)}` : ''}</p>` : ''}
+          ${organizador ? `<p class="text-sm text-slate-500">Organiza: ${esc(organizador)}</p>` : ''}
+          ${href ? `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer" class="mt-auto pt-2 inline-flex w-fit items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm ${kind === 'url' ? 'border border-accent text-accent-dim hover:bg-accent hover:text-black dark:text-accent' : 'bg-green-700 text-white hover:bg-green-600'}">${esc(label)}</a>` : ''}
+        </div>
+      </article>`
+}
+
 function buildEventos(cssHref) {
-  const eventos = (data.eventos || []).filter((e) => e.nombre)
-  if (eventos.length === 0) return
+  const today = todayInLima()
+  const banner = getUpcomingBannerEvents()
+  const manual = (data.eventos || []).filter((e) => e.nombre).map((e) => ({ ...e, ...parseJsonEventDate(e.fecha_hora) }))
+  const manualUpcoming = manual.filter((e) => e.date && !isExpired(e.date, today))
+  const manualPast = manual.filter((e) => !e.date || isExpired(e.date, today))
+  if (banner.length === 0 && manual.length === 0) return
 
   const eventosIndexPath = '/eventos'
+  const eventosUrl = absUrl(`${eventosIndexPath}/`)
   const breadcrumbIndex = [{ name: 'Inicio', path: '/' }, { name: 'Eventos', path: eventosIndexPath }]
+  const nUpcoming = banner.length + manualUpcoming.length
+
+  const manualCard = (e) => `<a href="${eventosIndexPath}/${slugify(e.nombre)}/" class="block rounded-sm border border-slate-200 p-4 hover:border-accent">
+        <h3 class="font-display font-semibold text-lg mb-1">${esc(e.nombre)}</h3>
+        <p class="text-sm text-slate-600">${esc(e.date ? whenLabel(e.date, e.hora) : e.fecha_hora || '')}</p>
+      </a>`
+
+  const description = nUpcoming > 0
+    ? fitDescription([
+        `Próximas partidas y eventos de airsoft en Perú: ${[...banner.map((e) => e.info.nombre), ...manualUpcoming.map((e) => e.nombre)].slice(0, 3).join(', ')}.`,
+        'Fecha, lugar y cómo inscribirte.',
+      ])
+    : 'Partidas y eventos de airsoft en Perú: fecha, lugar e inscripción. Vuelve pronto: se publican nuevas partidas cada semana.'
 
   const headIndex = renderHead({
-    title: `Eventos de airsoft en Perú | ${SITE_NAME}`,
-    description: 'Próximos eventos y partidas especiales de airsoft en Perú: fecha, ubicación, aforo e inscripción.',
-    canonical: absUrl(`${eventosIndexPath}/`),
-    ogImage: absUrl(OG_BANNER_PATH),
+    title: `Partidas y eventos de airsoft en Perú | ${SITE_NAME}`,
+    description,
+    canonical: eventosUrl,
+    ogImage: banner[0] ? absUrl(banner[0].url) : absUrl(OG_BANNER_PATH),
     cssHref,
-    jsonLd: [breadcrumbJsonLd(breadcrumbIndex)],
+    jsonLd: [breadcrumbJsonLd(breadcrumbIndex), ...banner.map((e) => bannerEventJsonLd(e, eventosUrl))],
   })
   const bodyIndex = `${breadcrumbNav(breadcrumbIndex)}
-    <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-6">Eventos de airsoft en Perú</h1>
+    <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-2">Partidas y eventos de airsoft en Perú</h1>
+    <p class="text-slate-600 mb-8">${nUpcoming > 0
+      ? `${nUpcoming} partida${nUpcoming === 1 ? '' : 's'} y evento${nUpcoming === 1 ? '' : 's'} anunciado${nUpcoming === 1 ? '' : 's'} en ${SITE_NAME}, ordenados por fecha.`
+      : 'Por ahora no hay partidas anunciadas. Se publican nuevas cada semana: vuelve pronto o revisa las canchas que abren cada domingo.'} Para jugar cualquier otro día, escribe por WhatsApp a una de las <a href="/campos/" class="text-accent-dim hover:underline">canchas de airsoft</a>.</p>
+    ${nUpcoming > 0 ? `<h2 class="font-display font-semibold uppercase tracking-wide text-lg mb-4">Próximas partidas</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
+      ${banner.map(bannerEventCard).join('\n      ')}
+      ${manualUpcoming.map(manualCard).join('\n      ')}
+    </div>` : ''}
+    ${manualPast.length > 0 ? `<h2 class="font-display font-semibold uppercase tracking-wide text-lg mb-4">Eventos anteriores</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      ${eventos.map((e) => `<a href="${eventosIndexPath}/${slugify(e.nombre)}/" class="block rounded-sm border border-slate-200 p-4 hover:border-accent">
-        <h2 class="font-display font-semibold text-lg mb-1">${esc(e.nombre)}</h2>
-        <p class="text-sm text-slate-600">${esc(e.fecha_hora || '')}</p>
-      </a>`).join('')}
-    </div>`
+      ${manualPast.map(manualCard).join('\n      ')}
+    </div>` : ''}`
   writePage(eventosIndexPath, page({ head: headIndex, body: bodyIndex }))
 
-  for (const e of eventos) {
+  for (const e of manual) {
     const eventoPath = `${eventosIndexPath}/${slugify(e.nombre)}`
     const breadcrumbEvento = [...breadcrumbIndex, { name: e.nombre, path: eventoPath }]
-    const description = e.descripcion || `${e.nombre} — evento de airsoft en Perú. ${e.fecha_hora || ''}`.trim()
+    const finished = !e.date || isExpired(e.date, today)
+    const description = fitDescription([
+      e.descripcion ? ensurePeriod(e.descripcion) : `${e.nombre}: evento de airsoft en Perú.`,
+      e.date ? `${finished ? 'Se realizó el' : 'Fecha:'} ${whenLabel(e.date, e.hora)}.` : '',
+      e.ubicacion ? `Lugar: ${e.ubicacion}.` : '',
+    ])
     const head = renderHead({
       title: `${e.nombre} — Evento de airsoft | ${SITE_NAME}`,
       description,
@@ -576,28 +738,38 @@ function buildEventos(cssHref) {
           '@context': 'https://schema.org',
           '@type': 'Event',
           name: e.nombre,
-          description,
-          startDate: e.fecha_hora || undefined,
-          location: e.ubicacion ? { '@type': 'Place', name: e.ubicacion } : undefined,
+          description: e.descripcion || description,
+          startDate: e.date ? eventStartIso(e.date, e.hora) : undefined,
+          eventStatus: 'https://schema.org/EventScheduled',
+          eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+          location: e.ubicacion
+            ? {
+                '@type': 'Place',
+                name: e.ubicacion,
+                address: { '@type': 'PostalAddress', addressLocality: e.distrito || undefined, addressCountry: 'PE' },
+              }
+            : undefined,
+          organizer: e.contacto ? { '@type': 'Person', name: e.contacto } : undefined,
           url: absUrl(`${eventoPath}/`),
-          image: e.imagen ? absUrl(e.imagen) : undefined,
+          image: e.imagen ? [absUrl(e.imagen)] : undefined,
         },
       ],
     })
     const body = `${breadcrumbNav(breadcrumbEvento)}
-      <span class="inline-block text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-sm bg-accent/15 text-accent-dim mb-3">Evento de airsoft</span>
+      <span class="inline-block text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-sm bg-accent/15 text-accent-dim mb-3">Evento de airsoft${finished ? ' · Finalizado' : ''}</span>
       <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-4">${esc(e.nombre)}</h1>
       ${photoGallery(e.imagen, e.nombre, e.fotos_adicionales)}
       ${e.descripcion ? `<p class="text-slate-600 mb-5">${esc(e.descripcion)}</p>` : ''}
       <ul class="flex flex-col gap-2 mb-5">
-        ${e.fecha_hora ? `<li class="text-sm text-slate-600">🗓️ ${esc(e.fecha_hora)}</li>` : ''}
+        ${e.date ? `<li class="text-sm text-slate-600">🗓️ ${esc(whenLabel(e.date, e.hora))}</li>` : e.fecha_hora ? `<li class="text-sm text-slate-600">🗓️ ${esc(e.fecha_hora)}</li>` : ''}
         ${e.aforo ? `<li class="text-sm text-slate-600">👥 Aforo: ${esc(e.aforo)}</li>` : ''}
         ${e.contacto ? `<li class="text-sm text-slate-600">☎️ Contacto: ${esc(e.contacto)}</li>` : ''}
       </ul>
-      <div class="flex flex-wrap gap-2">
+      ${finished ? '' : `<div class="flex flex-wrap gap-2">
         ${whatsappCta(e.whatsapp)}
         ${e.link_inscripcion ? `<a href="${e.link_inscripcion}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm border border-accent text-accent-dim hover:bg-accent hover:text-black dark:text-accent">Inscribirme</a>` : ''}
-      </div>
+      </div>`}
+      <p class="mt-6 text-sm text-slate-600">Mira las <a href="${eventosIndexPath}/" class="text-accent-dim hover:underline">próximas partidas y eventos de airsoft</a>.</p>
       ${INTERACTIVE_SCRIPT}`
     writePage(eventoPath, page({ head, body }))
   }
@@ -922,6 +1094,7 @@ function injectHomeContent() {
   const nCanchas = (data.canchas || []).length
   const nTiendas = (data.tiendas || []).length
   const nEquipos = (data.equipos || []).length
+  const upcomingEvents = getUpcomingBannerEvents()
 
   const seoContent = `<header class="border-b border-black/40 bg-[#232b1c]">
       <div class="max-w-4xl mx-auto px-4 py-5">
@@ -933,9 +1106,17 @@ function injectHomeContent() {
     <main class="max-w-4xl mx-auto px-4 py-8">
       <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-3">El Radar del Airsoft — Directorio Nacional de Airsoft en Perú</h1>
       <p class="text-slate-600 mb-6">${esc(SITE_NAME)} es el directorio con canchas de airsoft en Lima y en todo el Perú, además de tiendas, grupos de WhatsApp, equipos, importadores y talleres de reparación. Actualmente hay ${nCanchas} canchas de airsoft, ${nTiendas} tiendas y ${nEquipos} equipos registrados a nivel nacional.</p>
+      <h2 class="font-display font-semibold uppercase tracking-wide text-lg mb-3">Partidas y eventos de airsoft</h2>
+      <ul class="mb-8">
+        ${upcomingEvents.map((e) => `<li class="text-sm text-slate-600 mb-1">${esc(whenLabel(e.date, e.info.hora))} — <a href="/eventos/" class="text-accent-dim hover:underline">${esc(e.info.nombre)}</a>${e.info.lugar ? ` en ${esc(e.info.lugar)}` : ''}</li>`).join('\n        ')}
+        <li class="text-sm mt-1"><a href="/eventos/" class="text-accent-dim hover:underline">Ver todas las partidas y eventos de airsoft</a></li>
+      </ul>
       <h2 class="font-display font-semibold uppercase tracking-wide text-lg mb-3">Canchas de airsoft por departamento</h2>
-      <ul class="flex flex-wrap gap-2 mb-8">
+      <ul class="flex flex-wrap gap-2 mb-4">
         ${departamentos.map((d) => `<li><a href="/campos/${slugify(d)}/" class="inline-block text-sm px-3 py-1.5 rounded-sm border border-slate-300 hover:border-accent">Canchas de airsoft en ${esc(d)}</a></li>`).join('\n        ')}
+      </ul>
+      <ul class="flex flex-wrap gap-2 mb-8">
+        ${(data.canchas || []).filter((c) => c.departamento && c.nombre).map((c) => `<li><a href="/campos/${slugify(c.departamento)}/${slugify(c.nombre)}/" class="inline-block text-xs px-2.5 py-1 rounded-sm border border-slate-200 hover:border-accent">${esc(c.nombre)}</a></li>`).join('\n        ')}
       </ul>
       <h2 class="font-display font-semibold uppercase tracking-wide text-lg mb-3">Tiendas de airsoft por ciudad</h2>
       <ul class="flex flex-wrap gap-2 mb-8">
@@ -991,6 +1172,7 @@ Sitemap: ${absUrl('/sitemap.xml')}
   const nEquipos = (data.equipos || []).length
   const departamentos = [...new Set((data.canchas || []).map((c) => c.departamento).filter(Boolean))]
   const ciudadesTiendas = [...new Set((data.tiendas || []).map((t) => t.ciudad).filter(Boolean))]
+  const upcomingEvents = getUpcomingBannerEvents()
 
   const llms = `# ${SITE_NAME}
 
@@ -1013,8 +1195,12 @@ ${SITE_NAME} es un directorio comunitario, no una tienda ni un club. Reúne y or
 - Directorio interactivo (buscador, filtros): ${absUrl('/')}
 - Canchas de airsoft por departamento: ${departamentos.map((d) => absUrl(`/campos/${slugify(d)}/`)).join(', ') || `${absUrl('/campos/')}<departamento>/`}
 - Tiendas por ciudad: ${ciudadesTiendas.map((c) => absUrl(`/tiendas/${slugify(c)}/`)).join(', ') || `${absUrl('/tiendas/')}<ciudad>/`}
+- Partidas y eventos de airsoft (se actualiza cada semana): ${absUrl('/eventos/')}
 - Blog: ${absUrl('/blog/')}
-
+${upcomingEvents.length > 0 ? `
+## Próximas partidas
+${upcomingEvents.map((e) => `- ${whenLabel(e.date, e.info.hora)}: ${e.info.nombre}${e.info.lugar ? ` en ${e.info.lugar}${e.info.ciudad ? `, ${e.info.ciudad}` : ''}` : ''}${e.info.organizador ? ` (organiza ${e.info.organizador})` : ''}`).join('\n')}
+` : ''}
 ## Sitemap
 ${absUrl('/sitemap.xml')}
 `

@@ -1,8 +1,22 @@
 import { useEffect, useRef, useState } from 'react'
 import { bannerImages } from '../data/bannerImages.js'
 import { linkLabels } from '../data/bannerLinkLabels.js'
+import { eventDates } from '../data/bannerEventDates.js'
+import { eventInfo } from '../data/bannerEventInfo.js'
 import { bannerLinkFromContacto } from '../utils/bannerLink.js'
+import { formatEventDate } from '../utils/bannerEvents.js'
 import { WhatsAppIcon, LinkIcon } from './Icons.jsx'
+
+// Texto alternativo del cartel: evento, fecha y lugar si están registrados
+// (src/data/bannerEventInfo.js); si no, el genérico de siempre.
+function posterAlt(contacto, label) {
+  const info = eventInfo[contacto]
+  const date = eventDates[contacto]
+  if (!info) return `Cartel de evento de airsoft — ${label}`
+  const when = date ? `, ${formatEventDate(date)}` : ''
+  const where = info.lugar ? ` en ${info.lugar}${info.ciudad ? `, ${info.ciudad}` : ''}` : ''
+  return `Cartel de ${info.nombre}${when}${where}`
+}
 
 function ChevronIcon({ direction = 'left', className = 'w-4 h-4' }) {
   return (
@@ -91,11 +105,11 @@ export default function Banner() {
   }
 
   return (
-    <div className="bg-black border-b border-accent/30">
+    <section aria-labelledby="banner-heading" className="bg-black border-b border-accent/30">
       <div className="max-w-6xl mx-auto px-4 py-5">
-        <p className="font-display text-xs font-bold uppercase tracking-widest text-accent text-center mb-3">
+        <h2 id="banner-heading" className="font-display text-xs font-bold uppercase tracking-widest text-accent text-center mb-3">
           ¡Partidas de la semana!
-        </p>
+        </h2>
 
         <div className="relative">
           {hasOverflow && (
@@ -149,7 +163,7 @@ export default function Banner() {
                       />
                       <img
                         src={img.url}
-                        alt={`Cartel de evento de airsoft — ${label}`}
+                        alt={posterAlt(img.contacto, label)}
                         className="relative w-full h-full object-contain"
                         loading={i === 0 ? 'eager' : 'lazy'}
                         {...(i === 0 ? { fetchpriority: 'high' } : {})}
@@ -187,23 +201,37 @@ export default function Banner() {
         </div>
 
         {hasOverflow && (
-          <div className="flex items-center justify-center gap-2 mt-3" role="tablist" aria-label="Seleccionar cartel">
+          <div className="flex items-center justify-center mt-1" role="group" aria-label="Seleccionar cartel">
             {bannerImages.map((img, i) => (
+              // El botón mide 24x24 (área táctil mínima WCAG 2.5.8); la
+              // rayita visible es el span de adentro.
               <button
                 key={img.url}
                 type="button"
-                role="tab"
-                aria-selected={i === activeIndex}
+                aria-current={i === activeIndex ? 'true' : undefined}
                 aria-label={`Ver cartel ${i + 1} de ${count}`}
                 onClick={() => goTo(i)}
-                className={`h-1.5 rounded-sm transition-all duration-200 ease-out-quart
-                  focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black
-                  ${i === activeIndex ? 'w-5 bg-accent' : 'w-1.5 bg-white/30 hover:bg-white/50'}`}
-              />
+                className="group/dot flex items-center justify-center w-6 h-6 rounded-sm
+                  focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              >
+                <span
+                  className={`block h-1.5 rounded-sm transition-all duration-200 ease-out-quart
+                    ${i === activeIndex ? 'w-5 bg-accent' : 'w-1.5 bg-white/30 group-hover/dot:bg-white/50'}`}
+                />
+              </button>
             ))}
           </div>
         )}
+
+        <p className="text-center mt-2">
+          <a
+            href="/eventos/"
+            className="text-xs font-semibold text-accent hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-sm"
+          >
+            Ver todas las partidas y eventos →
+          </a>
+        </p>
       </div>
-    </div>
+    </section>
   )
 }

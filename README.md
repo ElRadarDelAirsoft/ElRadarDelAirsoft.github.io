@@ -68,8 +68,11 @@ JSON-LD) más `sitemap.xml`, `robots.txt` y `llms.txt`, todo dentro de `dist/`.
   siendo la SPA interactiva de siempre.
 - `public/404.webp` (la ilustración del topo) se usa en `dist/404.html`, generada también por
   `scripts/prerender.mjs`. Netlify y Vercel sirven automáticamente un `404.html` en la raíz
-  del build como página de error — no requiere configuración extra. Pesa ~2MB; si la
+  del build como página de error — no requiere configuración extra. Pesa ~120KB; si la
   reemplazas, conviene comprimirla primero.
+- `/eventos/` lista las partidas vigentes del banner del home (datos en
+  `src/data/bannerEventDates.js` + `src/data/bannerEventInfo.js`, que mantiene `/bannerweb`)
+  con markup schema.org/Event, además de los eventos sueltos de `airsoft.json`.
 
 ## Estructura del proyecto
 

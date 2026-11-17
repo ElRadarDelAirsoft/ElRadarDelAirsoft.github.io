@@ -13,10 +13,10 @@ Compará el contenido de:
 Para cada número de contacto:
 - **Presente en raw, ausente en compilada** → cartel nuevo, agregar.
 - **Presente en ambas pero el archivo raw es más nuevo/distinto** → cartel actualizado (mismo evento u otro), reemplazar.
-- **Presente en compilada, ausente en raw** → el evento ya pasó (el usuario borró el poster crudo tras el evento) → eliminar el `.webp` compilado y su entrada en `bannerEventDates.js`, usando `git rm` (no `rm`) y verificando primero con `git log --oneline -- "<path>"` que el archivo esté trackeado.
+- **Presente en compilada, ausente en raw** → el evento ya pasó (el usuario borró el poster crudo tras el evento) → eliminar el `.webp` compilado y sus entradas en `bannerEventDates.js` y `bannerEventInfo.js`, usando `git rm` (no `rm`) y verificando primero con `git log --oneline -- "<path>"` que el archivo esté trackeado.
 - **Fecha del evento ya pasada** (la fecha registrada en `bannerEventDates.js` es anterior a la fecha actual del sistema) → el evento venció, aunque el poster crudo siga presente en la carpeta → eliminar en ambos lados:
   - El archivo crudo en `public/images/Banner/` (carpeta untracked — borrado directo, no `git rm`).
-  - El `.webp` compilado en `src/assets/banner/` (`git rm`, verificando primero que esté trackeado) y su entrada en `bannerEventDates.js`.
+  - El `.webp` compilado en `src/assets/banner/` (`git rm`, verificando primero que esté trackeado) y sus entradas en `bannerEventDates.js` y `bannerEventInfo.js` (y en `bannerLinkLabels.js` si tenía label).
   - Esta regla solo aplica a carteles con fecha registrada en `bannerEventDates.js`; los que no tienen fecha no vencen automáticamente.
 
 ## 2. Extraer la fecha del evento
@@ -59,6 +59,16 @@ im.save('src/assets/banner/<nombre-compilado>.webp', 'WEBP', quality=75)
 
 Agregar/editar/quitar la entrada `'<nombre-compilado>': 'YYYY-MM-DD', // <descripción corta del evento>` según corresponda (mismo criterio para carteles de WhatsApp o de URL — la clave es el nombre de archivo compilado, no el contacto legible). Mantener el comentario de cabecera del archivo intacto.
 
+Además, en `src/data/bannerEventInfo.js` agregar/editar/quitar la entrada del mismo cartel (misma clave):
+
+```js
+'<nombre-compilado>': { nombre: 'Combat Zone Airsoft', organizador: 'Akito Airsoft', lugar: 'La Estrella', ciudad: 'Lima', hora: '09:00' },
+```
+
+- `nombre` = nombre del evento tal como lo muestra el cartel; `organizador` = quien lo organiza (equipo, cancha o marca); `lugar` = cancha o sitio (sin dirección exacta); `ciudad` = ciudad o distrito principal; `hora` = `"HH:MM"` en 24 h, o `''` si el cartel no la indica (no inventarla).
+- Esa info alimenta la página pública `/eventos/` (con markup schema.org/Event para Google), el texto alternativo del cartel en el banner y `llms.txt`. Un cartel sin entrada igual sale en el banner, pero no en `/eventos/`.
+- Si el cartel no deja claro el nombre, el lugar o la ciudad, preguntar al usuario en vez de adivinar.
+
 ## 5. Build y verificación
 
 ```
@@ -70,11 +80,12 @@ Debe correr `vite build && node scripts/prerender.mjs` sin errores. Luego:
 2. `navigate` a `http://localhost:4173/`
 3. `read_console_messages({onlyErrors: true})` — debe salir limpio
 4. `javascript_tool` ejecutando `[...document.querySelectorAll('a')].filter(a => a.querySelector('img')).map(a => ({href: a.href, text: a.textContent.trim()}))` para confirmar qué carteles quedaron, en qué orden, y que cada link sea el correcto (wa.me/... o la URL externa esperada) — más confiable que filtrar por nombre de archivo ahora que puede haber carteles sin "_51" en el nombre (el screenshot tool falla en este entorno, no usarlo)
-5. `preview_stop({serverId})`
+5. Abrir `http://localhost:4173/eventos/` y confirmar que lista los carteles vigentes con fecha, lugar y link correctos.
+6. `preview_stop({serverId})`
 
 ## 6. Commit y push a prod
 
-- `git add` solo los archivos relevantes (nunca `git add -A`): los `.webp` nuevos/modificados/eliminados en `src/assets/banner/` y `src/data/bannerEventDates.js`.
+- `git add` solo los archivos relevantes (nunca `git add -A`): los `.webp` nuevos/modificados/eliminados en `src/assets/banner/`, `src/data/bannerEventDates.js`, `src/data/bannerEventInfo.js` y `src/data/bannerLinkLabels.js` (si cambió).
 - Commit con mensaje corto describiendo el cambio (ej. "Agregar cartel de banner: <evento> (<fecha>)", "Quitar cartel de evento pasado (<evento>, <fecha>)", "Actualizar cartel de banner: <evento>"), con `Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>`.
 - `git fetch origin` y confirmar que `origin/main` coincide con la base local antes de pushear.
 - `git push origin main` — esto dispara el deploy a GitHub Pages (prod).

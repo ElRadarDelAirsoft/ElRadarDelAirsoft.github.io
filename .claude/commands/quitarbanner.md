@@ -19,14 +19,14 @@ Para cada cartel elegido (usar el resultado del script; si pasó tiempo, volver 
 
 1. `git log --oneline -- "src/assets/banner/<compilado>"` para confirmar que está trackeado y `git rm` del `.webp` compilado.
 2. Borrar el archivo `raw` correspondiente de `public/images/Banner/` (carpeta untracked, borrado directo). **Es obligatorio**: si el raw queda, la próxima corrida de `/bannerweb` lo vuelve a agregar como cartel nuevo. Si el script dice `raw: (no encontrado)`, seguir sin él.
-3. Quitar la entrada de ese cartel en `src/data/bannerEventDates.js` y, si existe, en `src/data/bannerLinkLabels.js`.
+3. Quitar la entrada de ese cartel en `src/data/bannerEventDates.js`, en `src/data/bannerEventInfo.js` y, si existe, en `src/data/bannerLinkLabels.js`.
 4. Si dos carteles comparten la misma imagen raw pero solo se quita uno, el otro sigue teniendo su propio archivo raw (el script los empareja por separado) — borrar únicamente el que corresponde.
 
 Después, igual que `/bannerweb` (pasos 5 y 6):
 
 - `npm run build`, sin errores.
 - `preview_start` → `navigate` a `http://localhost:4173/` → `read_console_messages({onlyErrors: true})` limpio → `javascript_tool` con `[...document.querySelectorAll('a')].filter(a => a.querySelector('img')).map(a => ({href: a.href, text: a.textContent.trim()}))` para confirmar que los quitados ya no están y los demás siguen → `preview_stop`.
-- `git add` solo los `.webp` eliminados, `bannerEventDates.js` y `bannerLinkLabels.js` (nunca `git add -A`).
+- `git add` solo los `.webp` eliminados, `bannerEventDates.js`, `bannerEventInfo.js` y `bannerLinkLabels.js` (nunca `git add -A`).
 - Commit tipo "Quitar cartel cancelado: <descripción>" con `Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>`.
 - `git fetch origin`, confirmar que `origin/main` coincide con la base local, `git push origin main`.
 - Responder en una o dos frases: qué se quitó y cuántos carteles quedan.
