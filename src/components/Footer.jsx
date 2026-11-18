@@ -4,6 +4,21 @@ const COMUNIDAD_INSTAGRAM = 'https://www.instagram.com/elradardelairsoft/'
 const COMUNIDAD_TIKTOK = 'https://www.tiktok.com/@elradardelairsoft'
 const AUTOR_INSTAGRAM = 'https://www.instagram.com/eltopoairsoft/'
 
+// Partner: grupo "Yo apoyo el Airsoft en el Perú". Pegar acá su link (p. ej. el
+// de WhatsApp); mientras esté vacío el logo se muestra sin enlace.
+const PARTNER_URL = ''
+
+const partnerLogo = (
+  <img
+    src="/images/grupos-whatsapp/yo-apoyo-el-airsoft-en-el-peru.webp"
+    alt="Yo apoyo el Airsoft en el Perú"
+    width="32"
+    height="32"
+    loading="lazy"
+    className="w-8 h-8 rounded-full object-cover"
+  />
+)
+
 const columnTitle =
   'text-accent-dim dark:text-accent font-display font-semibold uppercase tracking-widest text-xs mb-3'
 
@@ -43,6 +58,22 @@ export default function Footer() {
             </a>
           </div>
           <p>Última actualización: {__LAST_DEPLOY_DATE__}</p>
+
+          <h3 className={`${columnTitle} mt-6`}>Partner</h3>
+          {PARTNER_URL ? (
+            <a
+              href={PARTNER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Yo apoyo el Airsoft en el Perú"
+              className="inline-block rounded-full transition-transform duration-150 ease-out-quart hover:scale-110 active:scale-90
+                focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2"
+            >
+              {partnerLogo}
+            </a>
+          ) : (
+            partnerLogo
+          )}
         </div>
 
         <div className="flex flex-col items-center text-center">
