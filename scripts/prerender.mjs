@@ -20,6 +20,7 @@ import { linkLabels as bannerLinkLabels } from '../src/data/bannerLinkLabels.js'
 import { whatsappLinkFromPhone } from '../src/utils/whatsapp.js'
 import { bannerLinkFromContacto } from '../src/utils/bannerLink.js'
 import { isExpired, todayInLima, formatEventDate, formatEventTime, eventStartIso } from '../src/utils/bannerEvents.js'
+import { whatsappShareUrl, googleCalendarUrl, icsContent } from '../src/utils/shareCalendar.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
@@ -207,12 +208,16 @@ function contactRow(icon, label) {
   return `<li class="flex items-center gap-1.5 text-sm text-slate-600">${icon} ${label}</li>`
 }
 
-// hideAddress/hideHorarios: canchas oculta dirección/horarios del front a
-// pedido (siguen intactos en el JSON) sin afectar a tiendas, que sigue
-// mostrando ambos campos igual que antes.
-function contactBlock(entity, { hideAddress = false, hideHorarios = false } = {}) {
+// hideAddress: canchas oculta la dirección exacta del front a pedido (sigue
+// intacta en el JSON); sí muestra distrito y horarios (locationLabel y
+// horarios), que es lo que la gente busca ("cancha de airsoft en La Molina").
+// Tiendas sigue mostrando dirección y horarios como siempre.
+function contactBlock(entity, { hideAddress = false, hideHorarios = false, locationLabel = '' } = {}) {
   const rows = []
   const address = entity.direccion || entity.ubicacion
+  if (locationLabel) {
+    rows.push(`<li class="text-sm text-slate-600">📍 ${esc(locationLabel)}</li>`)
+  }
   if (address && !hideAddress) {
     rows.push(`<li class="text-sm text-slate-600">📍 ${esc(address)}</li>`)
   }
@@ -236,6 +241,36 @@ function whatsappCta(phone, label = 'Contactar por WhatsApp') {
   const href = whatsappLinkFromPhone(phone)
   if (!href) return ''
   return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm bg-green-600 text-white hover:bg-green-500">${esc(label)}</a>`
+}
+
+const WHATSAPP_SVG = `<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.15-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.15-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.148.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2.01 6.477 2.01 11.996c0 1.995.523 3.856 1.437 5.478L2 22l4.657-1.427a9.94 9.94 0 0 0 5.347 1.55h.004c5.518 0 9.994-4.478 9.994-9.997C22.002 6.477 17.522 2 12.004 2zm0 18.06h-.003a8.05 8.05 0 0 1-4.107-1.126l-.295-.175-3.05.934.973-2.973-.192-.305a8.03 8.03 0 0 1-1.24-4.319c0-4.43 3.607-8.036 8.043-8.036 2.148 0 4.166.837 5.684 2.357a7.983 7.983 0 0 1 2.35 5.684c0 4.43-3.606 8.036-8.163 8.036z"/></svg>`
+
+// "Compartir por WhatsApp": enlace wa.me con el texto ya armado (sin JS ni
+// Web Share API: funciona igual en celular y escritorio).
+function shareCta(text, label = 'Compartir por WhatsApp') {
+  return `<a href="${esc(whatsappShareUrl(text))}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm border border-green-700 text-green-800 hover:bg-green-700 hover:text-white dark:border-green-500 dark:text-green-400 dark:hover:bg-green-600 dark:hover:text-white">${WHATSAPP_SVG} ${esc(label)}</a>`
+}
+
+// "Agregar al calendario": enlace a Google Calendar + archivo .ics estático
+// (Apple Calendar, Outlook, etc.), generado en dist/eventos/calendario/.
+function calendarLinks({ slug, title, date, hora, details, location, pageUrl }) {
+  const fileName = `${slug}-${date}.ics`
+  const dir = path.join(DIST, 'eventos', 'calendario')
+  fs.mkdirSync(dir, { recursive: true })
+  fs.writeFileSync(path.join(dir, fileName), icsContent({ uid: `${slug}-${date}@elradardelairsoft`, title, date, hora, details, location, url: pageUrl }))
+  const linkClass = 'underline text-accent-dim hover:text-black dark:text-accent'
+  return `<p class="text-xs text-slate-600 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span class="font-semibold">📅 Agregar al calendario:</span>
+          <a href="${esc(googleCalendarUrl({ title, date, hora, details, location }))}" target="_blank" rel="noopener noreferrer" class="${linkClass}">Google Calendar</a>
+          <a href="/eventos/calendario/${fileName}" download class="${linkClass}">Apple / Outlook (.ics)</a>
+        </p>`
+}
+
+// Título "X | El Radar del Airsoft" solo si cabe en ~70 caracteres: con
+// distrito el nombre completo se pasa y Google lo corta de todos modos.
+function fitTitle(main) {
+  const full = `${main} | ${SITE_NAME}`
+  return full.length <= 70 ? full : main
 }
 
 const INSTAGRAM_SVG = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>`
@@ -272,6 +307,11 @@ function photoGallery(mainSrc, mainAlt, extras) {
     </div>`
 }
 
+// Registra el service worker (ver scripts/sw.template.js) también desde las
+// páginas estáticas: mucha gente llega directo a una ficha desde Google sin
+// pasar por la home, y así igual queda disponible sin internet después.
+const SW_REGISTER_SCRIPT = `<script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){})})}</script>`
+
 function page({ head, body }) {
   return `<!doctype html>
 <html lang="es">
@@ -296,6 +336,7 @@ function page({ head, body }) {
         <a href="/" class="text-sm font-semibold uppercase tracking-wide text-accent-dim dark:text-accent hover:underline">← Volver al directorio completo</a>
       </footer>
     </div>
+    ${SW_REGISTER_SCRIPT}
   </body>
 </html>`
 }
@@ -375,11 +416,18 @@ function buildCampos(cssHref) {
       { name: 'Canchas', path: '/campos' },
       { name: departamento, path: depPath },
     ]
+    const distritos = [...new Set(canchas.map((c) => (c.distrito || '').trim()).filter(Boolean))]
     const faq = [
       {
         q: `¿Cuántas canchas de airsoft hay en ${departamento}?`,
         a: `Actualmente ${SITE_NAME} tiene registradas ${canchas.length} cancha${canchas.length === 1 ? '' : 's'} de airsoft en ${departamento}: ${canchas.map((c) => c.nombre).join(', ')}.`,
       },
+      ...(distritos.length > 0
+        ? [{
+            q: `¿En qué distritos de ${departamento} puedo jugar airsoft?`,
+            a: `Hay canchas de airsoft en ${distritos.join(', ')}. ${canchas.filter((c) => c.distrito).map((c) => `${c.nombre} está en ${c.distrito}`).join('; ')}.`,
+          }]
+        : []),
       {
         q: `¿Cómo reservo una partida en una cancha de airsoft en ${departamento}?`,
         a: `Cada cancha listada tiene su número de WhatsApp directo — es la forma más rápida de coordinar horarios y reservar tu partida.`,
@@ -406,10 +454,11 @@ function buildCampos(cssHref) {
     })
     const body = `${breadcrumbNav(breadcrumb)}
       <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-2">Canchas de airsoft en ${esc(departamento)}</h1>
-      <p class="text-slate-600 mb-8">${canchas.length} cancha${canchas.length === 1 ? '' : 's'} de airsoft registrada${canchas.length === 1 ? '' : 's'} en ${SITE_NAME}, el directorio nacional de airsoft del Perú.</p>
+      <p class="text-slate-600 mb-8">${canchas.length} cancha${canchas.length === 1 ? '' : 's'} de airsoft registrada${canchas.length === 1 ? '' : 's'} en ${SITE_NAME}, el directorio nacional de airsoft del Perú${distritos.length > 0 ? `, en los distritos de ${esc(distritos.join(', '))}` : ''}.</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
         ${canchas.map((c) => `<a href="${depPath}/${slugify(c.nombre)}/" class="block rounded-sm border border-slate-200 p-4 hover:border-accent">
           <h2 class="font-display font-semibold text-lg mb-1">${esc(c.nombre)}</h2>
+          ${c.distrito || c.horarios ? `<p class="text-xs text-slate-500 mb-1">${[c.distrito ? `📍 ${esc(c.distrito)}` : '', c.horarios ? `🕒 ${esc(c.horarios)}` : ''].filter(Boolean).join(' · ')}</p>` : ''}
           ${c.descripcion ? `<p class="text-sm text-slate-600 line-clamp-2">${esc(c.descripcion)}</p>` : ''}
         </a>`).join('')}
       </div>
@@ -426,18 +475,22 @@ function buildCampos(cssHref) {
       const nombreSlug = slugify(c.nombre)
       const campoPath = `${depPath}/${nombreSlug}`
       const breadcrumbCampo = [...breadcrumb, { name: c.nombre, path: campoPath }]
+      const distrito = (c.distrito || '').trim()
+      const place = distrito && distrito.toLowerCase() !== departamento.toLowerCase() ? `${distrito}, ${departamento}` : departamento
+      const campoUrl = absUrl(`${campoPath}/`)
       const description = fitDescription([
-        `${c.nombre}: cancha de airsoft en ${departamento}, Perú.`,
+        `${c.nombre}: cancha de airsoft en ${place}, Perú.`,
         ensurePeriod(c.descripcion),
+        c.horarios ? `Horarios: ${ensurePeriod(c.horarios)}` : '',
         c.apto_principiantes && c.alquila_equipo ? 'Apta para principiantes y con alquiler de equipo.' : '',
         c.apto_principiantes && !c.alquila_equipo ? 'Apta para principiantes.' : '',
         !c.apto_principiantes && c.alquila_equipo ? 'Alquila equipo.' : '',
         c.whatsapp ? 'Contacto directo por WhatsApp.' : '',
       ])
       const head2 = renderHead({
-        title: `${c.nombre} — Cancha de airsoft en ${departamento} | ${SITE_NAME}`,
+        title: fitTitle(`${c.nombre} — Cancha de airsoft en ${place}`),
         description,
-        canonical: absUrl(`${campoPath}/`),
+        canonical: campoUrl,
         ogImage: c.imagen ? absUrl(c.imagen) : absUrl(OG_BANNER_PATH),
         cssHref,
         jsonLd: [
@@ -448,25 +501,28 @@ function buildCampos(cssHref) {
             name: c.nombre,
             description,
             url: absUrl(`${campoPath}/`),
-            address: c.direccion ? { '@type': 'PostalAddress', streetAddress: c.direccion, addressRegion: departamento, addressCountry: 'PE' } : undefined,
+            address: c.direccion || distrito
+              ? { '@type': 'PostalAddress', streetAddress: c.direccion || undefined, addressLocality: distrito || undefined, addressRegion: departamento, addressCountry: 'PE' }
+              : undefined,
             telephone: c.telefono || c.whatsapp || undefined,
             image: c.imagen ? absUrl(c.imagen) : undefined,
           },
         ],
       })
       const body2 = `${breadcrumbNav(breadcrumbCampo)}
-        <span class="inline-block text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-sm bg-accent/15 text-accent-dim mb-3">Cancha de airsoft · ${esc(departamento)}</span>
+        <span class="inline-block text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-sm bg-accent/15 text-accent-dim mb-3">Cancha de airsoft · ${esc(distrito || departamento)}</span>
         ${c.apto_principiantes ? `<span class="inline-block text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-sm bg-accent text-black mb-3 ml-2">Principiantes</span>` : ''}
         ${c.alquila_equipo ? `<span class="inline-block text-[11px] font-bold uppercase tracking-wide px-2 py-1 rounded-sm bg-accent text-black mb-3 ml-2">Alquila equipo</span>` : ''}
-        <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-4">${esc(c.nombre)} — Cancha de airsoft en ${esc(departamento)}</h1>
-        ${photoGallery(c.imagen, `${c.nombre} — Cancha de airsoft en ${departamento}`, c.fotos_adicionales)}
+        <h1 class="font-display font-semibold uppercase tracking-wide text-2xl sm:text-3xl mb-4">${esc(c.nombre)} — Cancha de airsoft en ${esc(place)}</h1>
+        ${photoGallery(c.imagen, `${c.nombre} — Cancha de airsoft en ${place}`, c.fotos_adicionales)}
         ${c.descripcion ? `<p class="text-slate-600 mb-5">${esc(c.descripcion)}</p>` : ''}
-        ${contactBlock(c, { hideAddress: true, hideHorarios: true })}
+        ${contactBlock(c, { hideAddress: true, locationLabel: place })}
         ${c.alquila_equipo ? `<p class="text-sm text-slate-600 mb-2">Si no tienes equipo propio, esta cancha alquila réplica y protección — pregunta al reservar.</p>` : ''}
         ${c.organizador ? `<p class="text-sm text-slate-500 mb-5">Organizador: ${esc(c.organizador)}</p>` : ''}
         <div class="flex flex-wrap gap-2">
           ${whatsappCta(c.whatsapp)}
           ${instagramCta(c.instagram)}
+          ${shareCta(`📍 ${c.nombre} — cancha de airsoft en ${place}.${c.horarios ? ` Horarios: ${c.horarios}.` : ''} Mira la ficha: ${campoUrl}`)}
         </div>
         ${relatedLinks({ heading: `Otras canchas de airsoft en ${departamento}`, items: canchas, basePath: depPath, self: c })}
         <p class="mt-6 text-sm text-slate-600">¿Primera vez? Lee la <a href="/empieza-aqui/primera-vez-airsoft/" class="text-accent-dim hover:underline">guía para tu primera partida de airsoft</a> o mira las <a href="/eventos/" class="text-accent-dim hover:underline">próximas partidas</a>.</p>
@@ -593,7 +649,10 @@ function buildTiendas(cssHref) {
         ${t.especialidad ? `<p class="text-slate-700 font-medium mb-2">${esc(t.especialidad)}</p>` : ''}
         ${t.descripcion ? `<p class="text-slate-600 mb-5">${esc(t.descripcion)}</p>` : ''}
         ${contactBlock(t)}
-        ${whatsappCta(t.whatsapp)}
+        <div class="flex flex-wrap gap-2">
+          ${whatsappCta(t.whatsapp)}
+          ${shareCta(`🛒 ${t.nombre} — tienda de airsoft en ${ciudad}.${t.especialidad ? ` ${ensurePeriod(t.especialidad)}` : ''} Mira la ficha: ${absUrl(`${tiendaPath}/`)}`)}
+        </div>
         ${relatedLinks({ heading: `Otras tiendas de airsoft en ${ciudad}`, items: tiendas, basePath: ciudadPath, self: t })}`
       writePage(tiendaPath, page({ head: head2, body: body2 }))
     }
@@ -649,12 +708,24 @@ function bannerEventJsonLd(e, eventosUrl) {
   }
 }
 
-function bannerEventCard(e) {
+function bannerEventCard(e, eventosUrl) {
   const { nombre, organizador, lugar, ciudad, hora } = e.info
   const { href, kind } = bannerLinkFromContacto(e.contacto)
   const label = bannerLinkLabels[e.contacto] || (kind === 'url' ? 'Inscribirse' : 'Contactar por WhatsApp')
   const alt = `Cartel de ${nombre}, ${formatEventDate(e.date)}${lugar ? ` en ${lugar}, ${ciudad}` : ''}`
-  return `<article id="${esc(slugify(nombre))}-${e.date}" class="flex flex-col rounded-sm border border-slate-200 overflow-hidden">
+  const anchor = `${slugify(nombre)}-${e.date}`
+  const where = lugar ? `${lugar}${ciudad ? `, ${ciudad}` : ''}` : ciudad || ''
+  const shareText = `🎯 ${nombre} — ${whenLabel(e.date, hora)}${where ? ` en ${where}` : ''}. Detalles e inscripción: ${eventosUrl}#${anchor}`
+  const calendar = calendarLinks({
+    slug: slugify(nombre),
+    title: nombre,
+    date: e.date,
+    hora,
+    details: `Partida de airsoft${organizador ? ` organizada por ${organizador}` : ''}. Inscripción y detalles: ${href || `${eventosUrl}#${anchor}`}`,
+    location: where,
+    pageUrl: `${eventosUrl}#${anchor}`,
+  })
+  return `<article id="${esc(anchor)}" class="flex flex-col rounded-sm border border-slate-200 overflow-hidden">
         <div class="aspect-[4/5] bg-black flex items-center justify-center">
           <img src="${e.url}" alt="${esc(alt)}" loading="lazy" decoding="async" class="h-full w-full object-contain" />
         </div>
@@ -663,7 +734,13 @@ function bannerEventCard(e) {
           <p class="text-sm text-slate-700">🗓️ ${esc(whenLabel(e.date, hora))}</p>
           ${lugar ? `<p class="text-sm text-slate-600">📍 ${esc(lugar)}${ciudad ? `, ${esc(ciudad)}` : ''}</p>` : ''}
           ${organizador ? `<p class="text-sm text-slate-500">Organiza: ${esc(organizador)}</p>` : ''}
-          ${href ? `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer" class="mt-auto pt-2 inline-flex w-fit items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm ${kind === 'url' ? 'border border-accent text-accent-dim hover:bg-accent hover:text-black dark:text-accent' : 'bg-green-700 text-white hover:bg-green-600'}">${esc(label)}</a>` : ''}
+          <div class="mt-auto pt-3 flex flex-col gap-3">
+            <div class="flex flex-wrap gap-2">
+              ${href ? `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer" class="inline-flex w-fit items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm ${kind === 'url' ? 'border border-accent text-accent-dim hover:bg-accent hover:text-black dark:text-accent' : 'bg-green-700 text-white hover:bg-green-600'}">${esc(label)}</a>` : ''}
+              ${shareCta(shareText, 'Compartir')}
+            </div>
+            ${calendar}
+          </div>
         </div>
       </article>`
 }
@@ -708,7 +785,7 @@ function buildEventos(cssHref) {
       : 'Por ahora no hay partidas anunciadas. Se publican nuevas cada semana: vuelve pronto o revisa las canchas que abren cada domingo.'} Para jugar cualquier otro día, escribe por WhatsApp a una de las <a href="/campos/" class="text-accent-dim hover:underline">canchas de airsoft</a>.</p>
     ${nUpcoming > 0 ? `<h2 class="font-display font-semibold uppercase tracking-wide text-lg mb-4">Próximas partidas</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
-      ${banner.map(bannerEventCard).join('\n      ')}
+      ${banner.map((e) => bannerEventCard(e, eventosUrl)).join('\n      ')}
       ${manualUpcoming.map(manualCard).join('\n      ')}
     </div>` : ''}
     ${manualPast.length > 0 ? `<h2 class="font-display font-semibold uppercase tracking-wide text-lg mb-4">Eventos anteriores</h2>
@@ -765,10 +842,20 @@ function buildEventos(cssHref) {
         ${e.aforo ? `<li class="text-sm text-slate-600">👥 Aforo: ${esc(e.aforo)}</li>` : ''}
         ${e.contacto ? `<li class="text-sm text-slate-600">☎️ Contacto: ${esc(e.contacto)}</li>` : ''}
       </ul>
-      ${finished ? '' : `<div class="flex flex-wrap gap-2">
-        ${whatsappCta(e.whatsapp)}
-        ${e.link_inscripcion ? `<a href="${e.link_inscripcion}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm border border-accent text-accent-dim hover:bg-accent hover:text-black dark:text-accent">Inscribirme</a>` : ''}
-      </div>`}
+      <div class="flex flex-wrap gap-2 mb-4">
+        ${finished ? '' : whatsappCta(e.whatsapp)}
+        ${finished || !e.link_inscripcion ? '' : `<a href="${e.link_inscripcion}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide px-4 py-2.5 rounded-sm border border-accent text-accent-dim hover:bg-accent hover:text-black dark:text-accent">Inscribirme</a>`}
+        ${shareCta(`🎯 ${e.nombre}${e.date ? ` — ${whenLabel(e.date, e.hora)}` : ''}${e.ubicacion ? ` en ${e.ubicacion}` : ''}. Más info: ${absUrl(`${eventoPath}/`)}`, 'Compartir')}
+      </div>
+      ${finished || !e.date ? '' : calendarLinks({
+        slug: slugify(e.nombre),
+        title: e.nombre,
+        date: e.date,
+        hora: e.hora,
+        details: `${e.descripcion ? `${ensurePeriod(e.descripcion)} ` : ''}Más info: ${absUrl(`${eventoPath}/`)}`,
+        location: [e.ubicacion, e.distrito].filter(Boolean).join(', '),
+        pageUrl: absUrl(`${eventoPath}/`),
+      })}
       <p class="mt-6 text-sm text-slate-600">Mira las <a href="${eventosIndexPath}/" class="text-accent-dim hover:underline">próximas partidas y eventos de airsoft</a>.</p>
       ${INTERACTIVE_SCRIPT}`
     writePage(eventoPath, page({ head, body }))
@@ -1138,6 +1225,30 @@ function injectHomeContent() {
   fs.writeFileSync(indexPath, updated)
 }
 
+// ---------- service worker ----------
+
+// Genera dist/sw.js desde scripts/sw.template.js. Precachea solo lo mínimo
+// para que la home (el directorio completo) abra sin internet: HTML, JS y CSS
+// con hash, fuentes y logos. Lo demás (páginas, imágenes) se guarda según se
+// visita. BUILD_ID distinto en cada build = el navegador instala el SW nuevo
+// y descarta las cachés viejas.
+function buildServiceWorker() {
+  const html = fs.readFileSync(path.join(DIST, 'index.html'), 'utf8')
+  const fromHtml = [...html.matchAll(/(?:src|href)="(\/(?:assets|fonts)\/[^"]+)"/g)].map((m) => m[1])
+  const precache = [...new Set(['/', ...fromHtml, '/favicon.png', LOGO_PATH, LOGO_PATH_DARK])]
+  for (const url of precache) {
+    if (url !== '/' && !fs.existsSync(path.join(DIST, url))) {
+      throw new Error(`[prerender] el service worker precachearía ${url}, pero no existe en dist/`)
+    }
+  }
+  const template = fs.readFileSync(path.join(__dirname, 'sw.template.js'), 'utf8')
+  const sw = template
+    .replace('__BUILD_ID__', Date.now().toString(36))
+    .replace('__PRECACHE__', JSON.stringify(precache, null, 2))
+  fs.writeFileSync(path.join(DIST, 'sw.js'), sw)
+  return precache.length
+}
+
 // ---------- sitemap / robots / llms.txt ----------
 
 // Fecha real del build (último commit) en vez de un campo del JSON que hay
@@ -1227,7 +1338,8 @@ function main() {
   buildBlog(cssHref)
   build404Page(cssHref)
   buildSeoFiles()
-  console.log(`[prerender] ${generatedRoutes.length} páginas estáticas generadas + sitemap.xml + robots.txt + llms.txt`)
+  const swFiles = buildServiceWorker()
+  console.log(`[prerender] ${generatedRoutes.length} páginas estáticas generadas + sitemap.xml + robots.txt + llms.txt + sw.js (${swFiles} archivos precacheados)`)
 }
 
 main()

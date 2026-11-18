@@ -39,7 +39,8 @@ export const categoryConfig = {
       imagen: i.imagen,
       descripcion: i.descripcion,
       badge: i.departamento || null,
-      // dirección y horarios ocultos del front a pedido (siguen en el JSON: i.direccion, i.horarios)
+      // la dirección exacta sigue oculta del front a pedido (queda en el JSON: i.direccion);
+      // distrito y horarios sí se muestran (filas "extra" de abajo)
       direccion: null,
       telefono: i.telefono,
       email: i.email,
@@ -47,6 +48,8 @@ export const categoryConfig = {
       whatsapp: i.whatsapp ? { label: 'Contactar por WhatsApp', href: whatsappLinkFromPhone(i.whatsapp) } : null,
       socials: { instagram: i.instagram, tiktok: i.tiktok, youtube: null, twitch: null },
       extra: [
+        i.distrito ? { icon: MapPinIcon, text: i.distrito } : null,
+        i.horarios ? { icon: ClockIcon, text: i.horarios } : null,
         i.organizador ? { icon: UsersIcon, text: `Organizador: ${i.organizador}` } : null,
         i.alquila_equipo ? { icon: PackageIcon, text: 'Alquila equipo' } : null,
       ].filter(Boolean),

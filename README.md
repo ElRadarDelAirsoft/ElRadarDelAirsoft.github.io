@@ -74,6 +74,22 @@ JSON-LD) más `sitemap.xml`, `robots.txt` y `llms.txt`, todo dentro de `dist/`.
   `src/data/bannerEventDates.js` + `src/data/bannerEventInfo.js`, que mantiene `/bannerweb`)
   con markup schema.org/Event, además de los eventos sueltos de `airsoft.json`.
 
+- **Distrito y horarios**: las fichas y cards de canchas muestran `distrito` y `horarios` del JSON
+  (alimentan el título/descripción SEO, p. ej. "Cancha de airsoft en La Molina, Lima"). La
+  `direccion` exacta sigue oculta del front a pedido (queda solo en el JSON y en el schema).
+- **Compartir y calendario**: fichas de canchas/tiendas y eventos llevan un botón "Compartir por
+  WhatsApp" (enlace `wa.me/?text=`); los eventos con fecha vigente suman "Agregar al calendario"
+  (Google Calendar + archivo `.ics` en `/eventos/calendario/`). Helpers en
+  `src/utils/shareCalendar.js`. Sin hora en el cartel, el evento queda de día completo; con hora, dura 4 h.
+- **Sin conexión (service worker)**: `scripts/sw.template.js` -> `dist/sw.js` en cada build
+  (precachea home, JS/CSS/fuentes/logos; páginas por red primero con respaldo en caché; imágenes
+  stale-while-revalidate). Cada deploy cambia su `BUILD_ID` y borra las cachés viejas. Solo se
+  registra en producción. Para apagarlo en una emergencia, publicar un `sw.js` que haga
+  `self.registration.unregister()` y borre las cachés `radar-*`.
+- **Bing / IndexNow**: `public/<clave>.txt` es la clave IndexNow; después de un deploy,
+  `npm run indexnow` envía todas las URLs del sitemap en vivo a Bing y demás buscadores adheridos.
+  Para Bing Webmaster Tools basta con importar el sitio desde Google Search Console (no requiere código en el sitio).
+
 ## Estructura del proyecto
 
 ```
