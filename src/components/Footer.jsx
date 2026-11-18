@@ -4,9 +4,9 @@ const COMUNIDAD_INSTAGRAM = 'https://www.instagram.com/elradardelairsoft/'
 const COMUNIDAD_TIKTOK = 'https://www.tiktok.com/@elradardelairsoft'
 const AUTOR_INSTAGRAM = 'https://www.instagram.com/eltopoairsoft/'
 
-// Partner: grupo "Yo apoyo el Airsoft en el Perú". Pegar acá su link (p. ej. el
-// de WhatsApp); mientras esté vacío el logo se muestra sin enlace.
-const PARTNER_URL = ''
+// Partner: "Yo apoyo el Airsoft en el Perú". Si queda vacío, el logo se muestra
+// sin enlace.
+const PARTNER_URL = 'https://peruairsoft.com'
 
 const partnerLogo = (
   <img
