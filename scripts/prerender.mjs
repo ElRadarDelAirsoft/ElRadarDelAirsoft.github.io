@@ -712,7 +712,7 @@ function bannerEventCard(e, eventosUrl) {
   const { nombre, organizador, lugar, ciudad, hora } = e.info
   const { href, kind } = bannerLinkFromContacto(e.contacto)
   const label = bannerLinkLabels[e.contacto] || (kind === 'url' ? 'Inscribirse' : 'Contactar por WhatsApp')
-  const alt = `Cartel de ${nombre}, ${formatEventDate(e.date)}${lugar ? ` en ${lugar}, ${ciudad}` : ''}`
+  const alt = `Cartel de ${nombre}, ${formatEventDate(e.date)}${lugar ? ` en ${lugar}${ciudad ? `, ${ciudad}` : ''}` : ''}`
   const anchor = `${slugify(nombre)}-${e.date}`
   const where = lugar ? `${lugar}${ciudad ? `, ${ciudad}` : ''}` : ciudad || ''
   const shareText = `🎯 ${nombre} — ${whenLabel(e.date, hora)}${where ? ` en ${where}` : ''}. Detalles e inscripción: ${eventosUrl}#${anchor}`
